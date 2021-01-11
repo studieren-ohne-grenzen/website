@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="container mx-auto">
+    <Menu :items="menu.items" />
     <article v-if="index">
       <nuxt-content :document="index" />
     </article>
@@ -7,13 +8,20 @@
 </template>
 
 <script>
+import Menu from '~/components/menu'
+
 export default {
+  components: {
+    Menu,
+  },
+
   async asyncData({ $content, app }) {
     const index = await $content(
       `${app.i18n.locale}/landing_page`,
       'index'
     ).fetch()
-    return { index }
+    const menu = await $content(`${app.i18n.locale}`, 'menu').fetch()
+    return { index, menu }
   },
 }
 </script>
