@@ -1,21 +1,19 @@
 <template>
   <div>
-    <Menu :items="menu.items" />
-    <nuxt-child></nuxt-child>
+    <article v-if="index" class="container mx-auto">
+      <nuxt-content :document="index" />
+    </article>
   </div>
 </template>
 
 <script>
-import Menu from '~/components/menu'
-
 export default {
-  components: {
-    Menu,
-  },
-
   async asyncData({ $content, app }) {
-    const menu = await $content(`${app.i18n.locale}`, 'menu').fetch()
-    return { menu }
+    const index = await $content(
+      `${app.i18n.locale}/landing_page`,
+      'index'
+    ).fetch()
+    return { index }
   },
 }
 </script>

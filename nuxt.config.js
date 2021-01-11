@@ -39,9 +39,9 @@ export default {
       {
         locales: [
           {
-            code: 'es',
-            iso: 'es-ES',
-            name: 'Español',
+            code: 'de',
+            iso: 'de-DE',
+            name: 'Deutsch',
           },
           {
             code: 'en',
@@ -54,9 +54,9 @@ export default {
             name: 'Français',
           },
           {
-            code: 'de',
-            iso: 'de-DE',
-            name: 'Deutsch',
+            code: 'es',
+            iso: 'es-ES',
+            name: 'Español',
           },
           {
             code: 'ru',
