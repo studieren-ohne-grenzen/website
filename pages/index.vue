@@ -1,7 +1,7 @@
 <template>
   <div>
-    <article v-if="title">
-      <nuxt-content class="text-gray-800" :document="title" />
+    <article v-if="index">
+      <nuxt-content :document="index" />
     </article>
   </div>
 </template>
@@ -9,13 +9,21 @@
 <script>
 export default {
   async asyncData({ $content, app }) {
-    const title = await $content(
+    const index = await $content(
       `${app.i18n.locale}/landing_page`,
-      'title'
+      'index'
     ).fetch()
-    return { title }
+    return { index }
   },
 }
 </script>
 
-<style></style>
+<style>
+.nuxt-content {
+  @apply text-gray-800 font-overpass font-light;
+}
+
+.nuxt-content h1 {
+  @apply text-sogblue text-3xl font-semibold;
+}
+</style>
