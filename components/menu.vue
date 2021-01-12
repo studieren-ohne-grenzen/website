@@ -99,7 +99,7 @@ export default {
 
 <style>
 .container {
-  @apply text-gray-800 font-overpass mx-auto px-4 my-10;
+  @apply text-gray-800 font-overpass mx-auto px-4 mt-4 lg:mt-10;
 }
 
 .menu-list {
