@@ -41,7 +41,7 @@
           </svg>
         </button>
         <ul
-          class="absolute top-full right-0 z-50 px-4 py-2 border rounded"
+          class="absolute top-full right-0 z-50 px-4 py-2 border rounded bg-white"
           :class="selectLanguage ? 'block' : 'hidden'"
           @mouseenter="selectLanguage = true"
           @mouseleave="selectLanguage = false"
