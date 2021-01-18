@@ -12,7 +12,6 @@ export default {
       const page = await $content(`${app.i18n.locale}/${slug}`, 'index').fetch()
       return { page }
     } catch (err) {
-      // TODO: provide links to page in different languages, if available
       error({
         statusCode: 404,
         message: 'Page could not be found',
