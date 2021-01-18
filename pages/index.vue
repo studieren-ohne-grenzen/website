@@ -23,12 +23,4 @@ export default {
 }
 </script>
 
-<style>
-.nuxt-content {
-  @apply text-gray-800 font-overpass font-light;
-}
-
-.nuxt-content h1 {
-  @apply text-sogblue text-3xl font-semibold;
-}
-</style>
+<style></style>

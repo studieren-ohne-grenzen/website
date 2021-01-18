@@ -1,10 +1,10 @@
 {
-  "items": {
-    "our_work": "Unsere Arbeit",
-    "about_us":  "Über Uns",
-    "get_involved": "Mitmachen",
-    "donate": "Spenden",
-    "scholarships": "Gefördert Werden",
-    "shop": "Shop"
-  }
+  "items": [
+    "our_work",
+    "about_us",
+    "get_involved",
+    "donate",
+    "scholarships",
+    "shop"
+  ]
 }

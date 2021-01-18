@@ -50,17 +50,17 @@
           </ul>
         </li>
         <li
-          v-for="(item, index) in items"
+          v-for="item in items"
           :key="item"
           class="flex-none w-full pt-4 mr-6 xl:mr-10"
         >
           <nuxt-link
-            :to="localePath(`/${index}`)"
-            :class="$route.params.slug === index ? 'border-sogblue' : ''"
+            :to="localePath(`/${item}`)"
+            :class="$route.params.slug === item ? 'border-sogblue' : ''"
             class="border-b-2 border-white pb-1"
             @click.native="showMenu = false"
           >
-            {{ item }}
+            {{ $t(`menu.${item}`) }}
           </nuxt-link>
         </li>
       </ul>
@@ -117,16 +117,16 @@ export default {
   name: 'MobileMenu',
   props: {
     items: {
-      type: Object,
+      type: Array,
       default() {
-        return {
-          our_work: 'Our Work',
-          about_us: 'About Us',
-          get_involved: 'Get Involved',
-          donate: 'Donate',
-          get_sponsored: 'Get Sponsored',
-          shop: 'Shop',
-        }
+        return [
+          'our_work',
+          'about_us',
+          'get_involved',
+          'donate',
+          'scholarships',
+          'shop',
+        ]
       },
     },
   },

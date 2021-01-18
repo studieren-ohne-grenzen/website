@@ -11,16 +11,16 @@
         </nuxt-link>
       </li>
       <li
-        v-for="(item, index) in items"
+        v-for="item in items"
         :key="item"
         class="flex-none pb-4 mr-2 px-2 xl:mr-10 hover:text-sogblue-dark transition-colors duration-100"
       >
         <nuxt-link
-          :to="localePath(`/${index}`)"
-          :class="$route.params.slug === index ? 'border-sogblue' : ''"
+          :to="localePath(`/${item}`)"
+          :class="$route.params.slug === item ? 'border-sogblue' : ''"
           class="border-b-2 border-white pb-1 transition-colors duration-300"
         >
-          {{ item }}
+          {{ $t(`menu.${item}`) }}
         </nuxt-link>
       </li>
       <li class="flex-none flex">
@@ -70,16 +70,16 @@ export default {
   name: 'Menu',
   props: {
     items: {
-      type: Object,
+      type: Array,
       default() {
-        return {
-          our_work: 'Our Work',
-          about_us: 'About Us',
-          get_involved: 'Get Involved',
-          donate: 'Donate',
-          get_sponsored: 'Get Sponsored',
-          shop: 'Shop',
-        }
+        return [
+          'our_work',
+          'about_us',
+          'get_involved',
+          'donate',
+          'scholarships',
+          'shop',
+        ]
       },
     },
   },

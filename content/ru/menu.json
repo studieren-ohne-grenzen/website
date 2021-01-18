@@ -1,10 +1,10 @@
 {
-  "items": {
-    "our_work": "Наша работа",
-    "about_us":  "О нас",
-    "get_involved": "Вовлекайся",
-    "donate": "Пожертвовать",
-    "scholarships": "Стипендии",
-    "shop": "Магазин"
-  }
+  "items": [
+    "our_work",
+    "about_us",
+    "get_involved",
+    "donate",
+    "scholarships",
+    "shop"
+  ]
 }
