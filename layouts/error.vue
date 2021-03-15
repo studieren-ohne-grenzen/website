@@ -67,6 +67,11 @@ export default {
     this.menu = await this.$content(this.$i18n.locale, 'menu').fetch()
     await this.lookupAvailableLocales()
   },
+  head() {
+    return {
+      title: this.$t('sog'),
+    }
+  },
   watch: {
     async '$route.params.slug'() {
       await this.lookupAvailableLocales()

@@ -1,4 +1,5 @@
 export default {
+  sog: 'Études Sans Frontières',
   error: {
     default: "Une erreur s'est produite.",
     404: "Cette page n'a pas pu être trouvée.",

@@ -1,4 +1,6 @@
-# Unsere Arbeit
+---
+title: Unsere Arbeit
+---
 
 ## Programme
 

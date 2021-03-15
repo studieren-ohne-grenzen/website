@@ -18,6 +18,20 @@ export default {
       })
     }
   },
+  head() {
+    return {
+      title: this.page.title
+        ? `${this.page.title} – ${this.$t('sog')}`
+        : this.$t('sog'),
+      meta: [
+        {
+          hid: `description`,
+          name: 'description',
+          content: this.page.description,
+        },
+      ],
+    }
+  },
 }
 </script>
 
@@ -42,7 +56,7 @@ export default {
 }
 
 .nuxt-content h2 {
-  @apply text-3xl;
+  @apply text-2xl;
 }
 
 .nuxt-content h3 {
