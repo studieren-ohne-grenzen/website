@@ -2,44 +2,37 @@
   <div>
     <Menu :items="menu.items" class="hidden lg:block" />
     <Mobile-Menu :items="menu.items" class="block lg:hidden" />
-    <div class="container mt-20 text-4xl font-overpass text-sogblue">
+    <div class="container mt-20 text-4xl font-overpass font-light">
       <div
         v-if="
           error.statusCode === 404 &&
           availableLocales &&
           availableLocales.length > 0
         "
+        class="text-sogblue"
       >
         {{ $t('error.language') }}
-        <div class="text-lg text-gray-800 mt-2">
+        <div class="text-lg text-gray-800 mt-2 font-normal">
           {{ $t('error.availableIn') }}
-          <!-- TODO: make it a nuxt-link -->
-          <a
+          <nuxt-link
             v-for="locale in availableLocales"
             :key="locale.code"
-            :href="
-              locale.code === $i18n.defaultLocale
-                ? `/${$route.params.slug}`
-                : `/${locale.code}/${$route.params.slug}`
-            "
+            :to="switchLocalePath(locale.code)"
             class="hover:text-sogblue-dark transition-colors duration-100"
           >
             {{ locale.name }}
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div v-else-if="error.statusCode === 404">
         {{ $t('error.404') }}
         <div class="text-lg text-gray-800 mt-2">
-          <!-- TODO: make it a nuxt-link -->
-          <a
-            :href="
-              $i18n.locale === $i18n.defaultLocale ? `/` : `/${$i18n.locale}/`
-            "
+          <nuxt-link
+            :to="localePath('/')"
             class="hover:text-sogblue-dark transition-colors duration-100"
           >
             {{ $t('error.backHome') }}
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div v-else>{{ $t('error.default') }}</div>

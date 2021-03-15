@@ -23,7 +23,7 @@ export default {
 
 <style>
 .nuxt-content {
-  @apply text-gray-800 font-overpass font-light;
+  @apply text-gray-800 font-overpass;
 }
 
 .nuxt-content * {
@@ -34,18 +34,18 @@ export default {
 .nuxt-content > h2,
 .nuxt-content > h3,
 .nuxt-content > h4 {
-  @apply text-sogblue font-semibold;
+  @apply text-sogblue font-light;
 }
 
 .nuxt-content h1 {
-  @apply text-3xl;
+  @apply text-4xl;
 }
 
 .nuxt-content h2 {
-  @apply text-2xl;
+  @apply text-3xl;
 }
 
 .nuxt-content h3 {
-  @apply text-lg;
+  @apply text-xl;
 }
 </style>
