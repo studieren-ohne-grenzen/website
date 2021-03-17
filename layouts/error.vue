@@ -24,7 +24,7 @@
           </nuxt-link>
         </div>
       </div>
-      <div v-else-if="error.statusCode === 404">
+      <div v-else-if="error.statusCode === 404" class="text-sogblue">
         {{ $t('error.404') }}
         <div class="text-lg text-gray-800 mt-2">
           <nuxt-link

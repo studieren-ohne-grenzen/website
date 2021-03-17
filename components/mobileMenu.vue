@@ -16,7 +16,7 @@
         </button>
       </li>
       <li class="flex items-center">
-        <button @click="openMenu()">
+        <button @click="showMenu = true">
           <svg class="h-8 w-8 fill-current text-gray-700" viewBox="0 0 24 24">
             <path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z" />
           </svg>
@@ -31,12 +31,18 @@
         <li class="w-full">
           <ul class="flex mb-4">
             <li class="flex-grow flex-shrink-0">
-              <nuxt-link :to="localePath('/')" @click.native="closeMenu()">
+              <nuxt-link
+                :to="localePath('/')"
+                @click.native="
+                  showMenu = false
+                  menuItemExtended = ''
+                "
+              >
                 <img src="~/static/Logo.png" alt="Start" class="h-14" />
               </nuxt-link>
             </li>
             <li class="flex">
-              <button @click="closeMenu()">
+              <button @click="showMenu = false">
                 <svg
                   class="h-8 w-8 fill-current text-gray-700"
                   viewBox="0 0 24 24"
@@ -55,23 +61,29 @@
           class="flex-none w-full pt-4 mr-6 xl:mr-10"
         >
           <nuxt-link
+            v-if="
+              menuItemExtended === item ||
+              subitems.length < index ||
+              subitems[index].length === 0
+            "
             :to="localePath(`/${item}`)"
-            :class="$route.params.slug === item ? 'border-sogblue' : ''"
-            class="border-b-2 border-white pb-1"
+            :class="
+              menuItemExtended === item ? 'border-sogblue' : 'border-white'
+            "
+            class="border-b-2 pb-0.5"
             @click.native="
-              if (
-                $route.params.slug === item ||
-                subitems.length < index ||
-                subitems[index].length === 0
-              )
-                closeMenu()
+              showMenu = false
+              menuItemExtended = item
             "
           >
             {{ $t(`menu.${item}`) }}
           </nuxt-link>
+          <button v-else @click="menuItemExtended = item">
+            {{ $t(`menu.${item}`) }}
+          </button>
           <ul
             v-if="
-              $route.params.slug === item &&
+              menuItemExtended === item &&
               subitems.length > index &&
               subitems[index].length > 0
             "
@@ -86,7 +98,7 @@
             >
               <nuxt-link
                 :to="localePath(`/${item}#${subitem.id}`)"
-                @click.native="closeMenu()"
+                @click.native="showMenu = false"
               >
                 {{ subitem.text }}
               </nuxt-link>
@@ -170,15 +182,10 @@ export default {
     return {
       showMenu: false,
       selectLanguage: false,
+      menuItemExtended() {
+        return this.$route.params.slug
+      },
     }
-  },
-  methods: {
-    closeMenu() {
-      this.showMenu = false
-    },
-    openMenu() {
-      this.showMenu = true
-    },
   },
 }
 </script>
