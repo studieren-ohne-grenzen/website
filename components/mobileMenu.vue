@@ -16,7 +16,7 @@
         </button>
       </li>
       <li class="flex items-center">
-        <button @click="showMenu = true">
+        <button @click="openMenu()">
           <svg class="h-8 w-8 fill-current text-gray-700" viewBox="0 0 24 24">
             <path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z" />
           </svg>
@@ -25,18 +25,18 @@
     </ul>
     <div
       :class="showMenu ? 'visible' : 'hidden'"
-      class="absolute top-0 left-0 w-full h-full z-40 p-4 bg-white"
+      class="absolute inset-0 overflow-scroll w-full h-full z-40 p-4 bg-white"
     >
-      <ul class="w-full flex flex-wrap">
+      <ul class="w-full flex flex-wrap pb-8">
         <li class="w-full">
           <ul class="flex mb-4">
             <li class="flex-grow flex-shrink-0">
-              <nuxt-link :to="localePath('/')" @click.native="showMenu = false">
+              <nuxt-link :to="localePath('/')" @click.native="closeMenu()">
                 <img src="~/static/Logo.png" alt="Start" class="h-14" />
               </nuxt-link>
             </li>
             <li class="flex">
-              <button @click="showMenu = false">
+              <button @click="closeMenu()">
                 <svg
                   class="h-8 w-8 fill-current text-gray-700"
                   viewBox="0 0 24 24"
@@ -50,7 +50,7 @@
           </ul>
         </li>
         <li
-          v-for="item in items"
+          v-for="(item, index) in items"
           :key="item"
           class="flex-none w-full pt-4 mr-6 xl:mr-10"
         >
@@ -58,10 +58,40 @@
             :to="localePath(`/${item}`)"
             :class="$route.params.slug === item ? 'border-sogblue' : ''"
             class="border-b-2 border-white pb-1"
-            @click.native="showMenu = false"
+            @click.native="
+              if (
+                $route.params.slug === item ||
+                subitems.length < index ||
+                subitems[index].length === 0
+              )
+                closeMenu()
+            "
           >
             {{ $t(`menu.${item}`) }}
           </nuxt-link>
+          <ul
+            v-if="
+              $route.params.slug === item &&
+              subitems.length > index &&
+              subitems[index].length > 0
+            "
+          >
+            <li
+              v-for="subitem in subitems[index]"
+              :key="subitem.id"
+              :class="{
+                'ml-6 pt-2': subitem.depth === 2,
+                'ml-12': subitem.depth === 3,
+              }"
+            >
+              <nuxt-link
+                :to="localePath(`/${item}#${subitem.id}`)"
+                @click.native="closeMenu()"
+              >
+                {{ subitem.text }}
+              </nuxt-link>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -95,7 +125,7 @@
           </ul>
         </li>
         <li
-          v-for="locale in this.$i18n.locales"
+          v-for="locale in $i18n.locales"
           :key="locale.code"
           class="flex-none w-full pt-4 mr-6 xl:mr-10"
         >
@@ -129,12 +159,26 @@ export default {
         ]
       },
     },
+    subitems: {
+      type: Array,
+      default() {
+        return [[], [], [], [], [], []]
+      },
+    },
   },
   data() {
     return {
       showMenu: false,
       selectLanguage: false,
     }
+  },
+  methods: {
+    closeMenu() {
+      this.showMenu = false
+    },
+    openMenu() {
+      this.showMenu = true
+    },
   },
 }
 </script>

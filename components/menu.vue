@@ -47,7 +47,7 @@
           @mouseleave="selectLanguage = false"
         >
           <li
-            v-for="locale in this.$i18n.locales"
+            v-for="locale in $i18n.locales"
             :key="locale.code"
             class="flex hover:text-sogblue-dark transition-colors duration-100 leading-tight"
           >
@@ -80,6 +80,12 @@ export default {
           'scholarships',
           'shop',
         ]
+      },
+    },
+    subitems: {
+      type: Array,
+      default() {
+        return []
       },
     },
   },
