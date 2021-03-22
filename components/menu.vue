@@ -11,21 +11,58 @@
         </nuxt-link>
       </li>
       <li
-        v-for="item in items"
+        v-for="(item, index) in items"
         :key="item"
-        class="flex-none pb-4 mr-2 px-2 xl:mr-10 hover:text-sogblue-dark transition-colors duration-100"
+        class="relative flex-none pb-2 mr-2 px-2 xl:mr-4 2xl:mr-8"
+        @mouseenter="menuItemExtended = item"
+        @mouseleave="menuItemExtended = ''"
       >
         <nuxt-link
           :to="localePath(`/${item}`)"
-          :class="$route.params.slug === item ? 'border-sogblue' : ''"
-          class="border-b-2 border-white pb-1 transition-colors duration-300"
+          :class="{
+            'border-sogblue':
+              $route.params.slug === item &&
+              (menuItemExtended === item || menuItemExtended === ''),
+            'border-gray-300':
+              $route.params.slug === item && menuItemExtended !== item,
+            'text-sogblue-dark': menuItemExtended === item,
+            'text-gray-300':
+              menuItemExtended !== item && menuItemExtended !== '',
+          }"
+          class="border-b-2 border-white pb-1 transition-colors duration-200"
         >
           {{ $t(`menu.${item}`) }}
         </nuxt-link>
+        <ul
+          v-if="
+            menuItemExtended === item &&
+            subitems.length > index &&
+            subitems[index].length > 0
+          "
+          class="absolute top-full left-0 z-50 pb-3.5 pt-1.5 px-4 ml-1 border rounded bg-white"
+        >
+          <li
+            v-for="subitem in subitems[index]"
+            :key="subitem.id"
+            class="w-full flex"
+          >
+            <nuxt-link
+              :class="{
+                'pt-2': subitem.depth === 2,
+                'pl-6': subitem.depth === 3,
+              }"
+              class="flex-grow whitespace-nowrap hover:text-sogblue-dark transition-colors duration-200"
+              :to="localePath(`/${item}#${subitem.id}`)"
+              @click.native="menuItemExtended = ''"
+            >
+              {{ subitem.text }}
+            </nuxt-link>
+          </li>
+        </ul>
       </li>
       <li class="flex-none flex">
         <button
-          class="pb-4 pl-2"
+          class="pb-2 pl-2"
           @mouseenter="selectLanguage = true"
           @mouseleave="selectLanguage = false"
           @click="selectLanguage = true"
@@ -85,13 +122,14 @@ export default {
     subitems: {
       type: Array,
       default() {
-        return []
+        return [[], [], [], [], [], []]
       },
     },
   },
   data() {
     return {
       selectLanguage: false,
+      menuItemExtended: '',
     }
   },
 }
