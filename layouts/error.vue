@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen">
     <Menu :items="menu.items" class="hidden lg:block" />
     <Mobile-Menu :items="menu.items" class="block lg:hidden" />
-    <div class="container mt-20 text-4xl font-overpass font-light">
+    <div class="container mt-20 text-4xl font-overpass font-light flex-grow">
       <div
         v-if="
           error.statusCode === 404 &&
@@ -37,17 +37,20 @@
       </div>
       <div v-else>{{ $t('error.default') }}</div>
     </div>
+    <Footer :items="footer.items"></Footer>
   </div>
 </template>
 
 <script>
 import Menu from '~/components/menu'
 import MobileMenu from '~/components/mobileMenu'
+import Footer from '~/components/footer'
 
 export default {
   components: {
     Menu,
     MobileMenu,
+    Footer,
   },
   props: {
     error: {
@@ -60,11 +63,13 @@ export default {
   data() {
     return {
       menu: {},
+      footer: {},
       availableLocales: [],
     }
   },
   async fetch() {
     this.menu = await this.$content(this.$i18n.locale, 'menu').fetch()
+    this.footer = await this.$content(this.$i18n.locale, 'footer').fetch()
     await this.lookupAvailableLocales()
   },
   head() {

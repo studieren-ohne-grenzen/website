@@ -15,4 +15,9 @@ export default {
     scholarships: 'Scholarships',
     shop: 'Shop',
   },
+  footer: {
+    transparency: 'Transparency',
+    contact: 'Contact',
+    imprint: 'Imprint',
+  },
 }

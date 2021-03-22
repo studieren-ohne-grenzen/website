@@ -15,4 +15,9 @@ export default {
     scholarships: 'Стипендии',
     shop: 'Магазин',
   },
+  footer: {
+    transparency: 'Прозрачность',
+    contact: 'Контакты',
+    imprint: 'Вывод',
+  },
 }

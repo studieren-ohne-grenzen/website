@@ -15,4 +15,9 @@ export default {
     scholarships: 'Gefördert Werden',
     shop: 'Shop',
   },
+  footer: {
+    transparency: 'Transparenz',
+    contact: 'Kontakt',
+    imprint: 'Impressum',
+  },
 }

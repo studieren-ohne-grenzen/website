@@ -15,4 +15,9 @@ export default {
     scholarships: 'Patrocínese',
     shop: 'Tienda',
   },
+  footer: {
+    transparency: 'Transparencia',
+    contact: 'Contacto',
+    imprint: 'Pie de imprenta',
+  },
 }

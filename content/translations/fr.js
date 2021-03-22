@@ -15,4 +15,9 @@ export default {
     scholarships: 'Bourses',
     shop: 'Boutique',
   },
+  footer: {
+    transparency: 'Transparence',
+    contact: 'Contact',
+    imprint: 'Mentions légales',
+  },
 }

@@ -1,26 +1,30 @@
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen">
     <Menu :items="menu.items" :subitems="submenu" class="hidden lg:block" />
     <Mobile-Menu
       :items="menu.items"
       :subitems="submenu"
       class="block lg:hidden"
     />
-    <nuxt-child></nuxt-child>
+    <nuxt-child class="flex-grow"></nuxt-child>
+    <Footer :items="footer.items"></Footer>
   </div>
 </template>
 
 <script>
 import Menu from '~/components/menu'
 import MobileMenu from '~/components/mobileMenu'
+import Footer from '~/components/footer'
 
 export default {
   components: {
     Menu,
     MobileMenu,
+    Footer,
   },
   async asyncData({ $content, app }) {
     const menu = await $content(`${app.i18n.locale}`, 'menu').fetch()
+    const footer = await $content(`${app.i18n.locale}`, 'footer').fetch()
     const submenu = []
     for (const i in menu.items) {
       try {
@@ -33,7 +37,7 @@ export default {
         submenu.push([])
       }
     }
-    return { menu, submenu }
+    return { menu, submenu, footer }
   },
 }
 </script>
