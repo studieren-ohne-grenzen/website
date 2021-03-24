@@ -7,7 +7,7 @@
       class="block lg:hidden"
     />
     <nuxt-child class="flex-grow"></nuxt-child>
-    <Footer :items="footer.items"></Footer>
+    <Footer :items="footer.items" :social-icons="footer.socialIcons"></Footer>
   </div>
 </template>
 

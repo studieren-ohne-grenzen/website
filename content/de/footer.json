@@ -3,5 +3,22 @@
     "transparency",
     "contact",
     "imprint"
+  ],
+  "socialIcons": [
+    {
+      "type": "facebook", "url": "https://www.facebook.com/studierenohnegrenzen"
+    },
+    {
+      "type": "instagram", "url": "https://www.instagram.com/sog_deutschland"
+    },
+    {
+      "type": "youtube", "url": "https://www.youtube.com/channel/UCN1pHGAazBjv2kawQM5EejA"
+    },
+    {
+      "type": "linkedin", "url": "https://de.linkedin.com/company/studieren-ohne-grenzen"
+    },
+    {
+      "type": "github", "url": "https://github.com/studieren-ohne-grenzen"
+    }
   ]
 }
