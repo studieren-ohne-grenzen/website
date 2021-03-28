@@ -11,5 +11,13 @@
     {
       "type": "instagram", "url": "https://www.instagram.com/sog_deutschland"
     }
+  ],
+  "awards": [
+    {
+      "name": "Echt Gut", "image": "awards/echtGut.gif", "url": "about_us"
+    },
+    {
+      "name": "Engagement mit Perspektive", "image": "awards/engMitPersp.png", "url": "https://www.engagement-mit-perspektive.de/"
+    }
   ]
 }

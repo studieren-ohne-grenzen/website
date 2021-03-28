@@ -20,5 +20,19 @@
     {
       "type": "github", "url": "https://github.com/studieren-ohne-grenzen"
     }
+  ],
+  "awards": [
+    {
+      "name": "Afrika Festival Berlin", "image": "awards/kenako.png", "url": ""
+    },
+    {
+      "name": "Echt Gut", "image": "awards/echtGut.gif", "url": "about_us"
+    },
+    {
+      "name": "Land der Ideen", "image": "awards/landDerIdeen.jpg", "url": ""
+    },
+    {
+      "name": "Engagement mit Perspektive", "image": "awards/engMitPersp.png", "url": "https://www.engagement-mit-perspektive.de/"
+    }
   ]
 }
