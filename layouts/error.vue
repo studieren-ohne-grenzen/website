@@ -37,7 +37,12 @@
       </div>
       <div v-else>{{ $t('error.default') }}</div>
     </div>
-    <Footer :items="footer.items"></Footer>
+    <Footer
+      :items="footer.items"
+      :social-icons="footer.socialIcons"
+      :awards="footer.awards"
+    >
+    </Footer>
   </div>
 </template>
 
