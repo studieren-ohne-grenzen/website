@@ -17,6 +17,7 @@
     "nuxt-i18n": "^6.17.0"
   },
   "devDependencies": {
+    "@nuxt/image": "^0.4.1",
     "@nuxtjs/eslint-config": "^6",
     "@nuxtjs/eslint-module": "^3",
     "@nuxtjs/tailwindcss": "^4",
