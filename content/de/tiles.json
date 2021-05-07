@@ -1,5 +1,5 @@
 {
-    "tiles": [
+    "imgs": [
         {
           "name": "test1", "image": "landing/1_test.jpg", "url": ""
         },
