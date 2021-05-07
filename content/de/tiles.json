@@ -1,0 +1,22 @@
+{
+    "tiles": [
+        {
+          "name": "test1", "image": "landing/1_test.jpg", "url": ""
+        },
+        {
+          "name": "test2", "image": "landing/2_test.jpg", "url": ""
+        },
+        {
+          "name": "test3", "image": "landing/3_test.jpg", "url": ""
+        },
+        {
+          "name": "test4", "image": "landing/4_test.jpg", "url": ""
+        },
+        {
+            "name": "test5", "image": "landing/5_test.jpg", "url": ""
+        },
+        {
+            "name": "test6", "image": "landing/6_test.jpg", "url": ""
+        }
+      ]
+}
