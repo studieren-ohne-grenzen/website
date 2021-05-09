@@ -1,22 +1,22 @@
 {
-    "imgs": [
-        {
-          "name": "test1", "image": "landing/1_test.jpg", "url": ""
-        },
-        {
-          "name": "test2", "image": "landing/2_test.jpg", "url": ""
-        },
-        {
-          "name": "test3", "image": "landing/3_test.jpg", "url": ""
-        },
-        {
-          "name": "test4", "image": "landing/4_test.jpg", "url": ""
-        },
-        {
-            "name": "test5", "image": "landing/5_test.jpg", "url": ""
-        },
-        {
-            "name": "test6", "image": "landing/6_test.jpg", "url": ""
-        }
-      ]
+  "imgs": [
+    {
+      "name": "test1", "image": "landing/tiles/1_test.jpg", "url": ""
+    },
+    {
+      "name": "test2", "image": "landing/tiles/2_test.jpg", "url": ""
+    },
+    {
+      "name": "test3", "image": "landing/tiles/3_test.jpg", "url": ""
+    },
+    {
+      "name": "test4", "image": "landing/tiles/4_test.png", "url": ""
+    },
+    {
+      "name": "test5", "image": "landing/tiles/5_test.jpg", "url": ""
+    },
+    {
+      "name": "test6", "image": "landing/tiles/6_test.jpg", "url": ""
+    }
+  ]
 }
