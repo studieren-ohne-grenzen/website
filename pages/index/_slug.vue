@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
 .nuxt-content {
   @apply text-gray-800 font-overpass;
 }
