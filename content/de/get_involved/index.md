@@ -1,9 +1,7 @@
 ---
 title: Mitmachen
 ---
-
 ## Vor Ort
-
 ### Aachen (Zweigverein)
 ### Bayreuth
 ### Berlin
@@ -20,6 +18,8 @@ title: Mitmachen
 ### München
 ### Stuttgart
 ### Tübingen
+
+<sog-map></sog-map>
 
 ## Bundesweit
 

@@ -1,10 +1,25 @@
 <template>
   <footer
-    class="bg-gradient-to-tr from-sogblue-dark to-sogblue-darker pb-10 pt-6 mt-6"
+    class="
+      bg-gradient-to-tr
+      from-sogblue-dark
+      to-sogblue-darker
+      pb-10
+      pt-6
+      mt-6
+    "
   >
     <div class="container grid grid-cols-1 md:grid-cols-2 grid-flow-col">
       <ul
-        class="col-start-1 flex flex-wrap place-self-center md:place-self-start text-white hover:text-sogblue-lighter mb-4"
+        class="
+          col-start-1
+          flex flex-wrap
+          place-self-center
+          md:place-self-start
+          text-white
+          hover:text-sogblue-lighter
+          mb-4
+        "
       >
         <li
           v-for="item in items"
@@ -13,7 +28,16 @@
         >
           <nuxt-link
             :to="localePath(`/${item}`)"
-            class="pl-3 pr-1 py-2 xl:pr-6 2xl:pr-10 transition-colors duration-200 hover:text-white"
+            class="
+              pl-3
+              pr-1
+              py-2
+              xl:pr-6
+              2xl:pr-10
+              transition-colors
+              duration-200
+              hover:text-white
+            "
           >
             <span
               :class="
@@ -29,13 +53,29 @@
         </li>
       </ul>
       <ul
-        class="col-start-1 md:col-start-2 flex flex-wrap place-self-center md:place-self-end text-white hover:text-sogblue-lighter"
+        class="
+          col-start-1
+          md:col-start-2
+          flex flex-wrap
+          place-self-center
+          md:place-self-end
+          text-white
+          hover:text-sogblue-lighter
+        "
       >
         <li v-for="icon in socialIcons" :key="icon.type">
           <a
             :href="icon.url"
             target="_blank"
-            class="pl-3 pr-1 xl:pr-3 2xl:pr-6 transition-colors duration-200 hover:text-white"
+            class="
+              pl-3
+              pr-1
+              xl:pr-3
+              2xl:pr-6
+              transition-colors
+              duration-200
+              hover:text-white
+            "
           >
             <svg
               viewBox="0 0 24 24"
@@ -47,12 +87,34 @@
         </li>
       </ul>
       <ul
-        class="mt-8 md:mt-2 col-start-1 col-end-3 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 place-self-center md:place-self-start"
+        class="
+          mt-8
+          md:mt-2
+          col-start-1 col-end-3
+          grid grid-cols-3
+          sm:grid-cols-4
+          lg:grid-cols-6
+          place-self-center
+          md:place-self-start
+        "
       >
         <li
           v-for="award in awards"
           :key="award.name"
-          class="bg-white m-2 ml-3 mr-1 xl:mr-3 2xl:mr-6 flex justify-center flex-col w-20 sm:w-24 lg:w-28"
+          class="
+            bg-white
+            m-2
+            ml-3
+            mr-1
+            xl:mr-3
+            2xl:mr-6
+            flex
+            justify-center
+            flex-col
+            w-20
+            sm:w-24
+            lg:w-28
+          "
         >
           <SogLink :dest="award.url" :alt="award.name" class="p-2">
             <nuxt-picture

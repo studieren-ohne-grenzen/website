@@ -20,6 +20,12 @@ module.exports = {
           DEFAULT: '#E1823E',
         },
       },
+      stroke: {
+        'sogblue-dark': '#007EBB',
+      },
+      fill: {
+        white: '#FFFFFF',
+      },
     },
   },
 }
