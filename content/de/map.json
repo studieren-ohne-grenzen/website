@@ -1,0 +1,131 @@
+{
+  "places": [
+    {
+      "name": "Aachen",
+      "picture": "lokalgruppen/aachen.jpg",
+      "text": "Der Zweigverein Aachen trifft ist am Stipendienprogramm Mweso beteiligt, wobei in Aachen das Bücherprojekt angesiedelt ist. Wir veranstalten zahlreiche Benefiz-Veranstaltungen, wie die Nacht der Profs und schaffen Bewusstsein für die Themen von SOG durch Podiumsdiskussionen und Filmabende. Schau doch mal vorbei!",
+      "social": [
+        { "instagram": "sog_aachen" },
+        { "facebook": "sogaachen" }
+      ],
+      "coordinates": {"north": 50.776667, "east": 6.083611},
+      "text_flow": "left"
+    },
+    {
+      "name": "Bayreuth",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 49.948056, "east": 11.578333}
+    },
+    {
+      "name": "Berlin",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 52.518611, "east": 13.408333},
+      "text_flow": "left"
+    },
+    {
+      "name": "Bonn",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 50.733992, "east": 7.099814}
+    },
+    {
+      "name": "Dresden",
+      "picture": "lokalgruppen/dresden.jpg",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 51.049259, "east": 13.73836}
+    },
+    {
+      "name": "Frankfurt",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 50.110556, "east": 8.682222},
+      "text_flow": "left"
+    },
+    {
+      "name": "Göttingen",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 51.533889, "east": 9.935556}
+    },
+    {
+      "name": "Heidelberg",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 49.41032, "east": 8.69707}
+    },
+    {
+      "name": "Jena",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 50.927206, "east": 11.586361}
+    },
+    {
+      "name": "Karlsruhe",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 49.014, "east": 8.4043},
+      "text_flow": "left"
+    },
+    {
+      "name": "Konstanz",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 47.66336, "east": 9.17598}
+    },
+    {
+      "name": "Köln",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 50.938056, "east": 6.956944}
+    },
+    {
+      "name": "Leipzig",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 51.340333, "east": 12.37475}
+    },
+    {
+      "name": "Marburg",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 50.808453, "east": 8.771796}
+    },
+    {
+      "name": "München",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 48.137222, "east": 11.575556}
+    },
+    {
+      "name": "Stuttgart",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 48.775556, "east": 9.182778}
+    },
+    {
+      "name": "Tübingen",
+      "picture": "",
+      "text": "",
+      "social": [],
+      "coordinates": {"north": 48.520144, "east": 9.053363},
+      "text_flow": "left"
+    }
+  ]
+}

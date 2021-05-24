@@ -2,14 +2,14 @@
 title: Mitmachen
 ---
 ## Vor Ort
-### Aachen (Zweigverein)
+### Aachen
 ### Bayreuth
 ### Berlin
 ### Bonn
 ### Dresden
-### Frankfurt a.M.
+### Frankfurt
 ### Göttingen
-### Heidelberg (Zweigverein)
+### Heidelberg
 ### Jena
 ### Karlsruhe
 ### Konstanz
