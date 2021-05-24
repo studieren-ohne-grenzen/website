@@ -1,52 +1,76 @@
 <template>
-  <div class="flex items-start flex-wrap">
-    <div
-      class="
-        md:w-1/2
-        max-h-60
-        sm:max-h-96
-        md:max-h-full
-        mx-auto
-        flex-shrink-0
-        md:pr-8
-        relative
-      "
-    >
+  <div class="flex items-start px-8 md:px-0 flex-wrap">
+    <div class="w-full md:w-1/2 flex-shrink-0 relative">
       <a
         href="#aachen-zweigverein"
         class="absolute flex items-center"
-        style="top: 50.5%; left: -0.5%"
+        :style="positionAachen"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          class="h-6 fill-white stroke-sogblue-dark"
+          viewBox="-1 -1 25 25"
+          class="
+            h-4
+            -mt-4
+            -ml-2
+            sm:h-6
+            sm:-mt-6 sm:-ml-3
+            fill-white
+            stroke-sogblue-dark stroke-2
+          "
         >
           <path
-            d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"
+            d="M12,0C7.8,0,4,3.4,4,7.6S7.5,16.8,12,24c4.5-7.2,8-12.2,8-16.4S16.2,0,12,0Z"
           />
         </svg>
-        <div class="text-white leading-none">Aachen</div>
+        <div
+          class="-mt-3 sm:-mt-5 text-white text-xs sm:text-base leading-none"
+        >
+          Aachen
+        </div>
       </a>
       <a
         href="#dresden"
         class="absolute flex items-center"
-        style="top: 48%; right: 20%"
+        :style="positionDresden"
       >
-        <div class="text-white leading-none">Dresden</div>
+        <div
+          class="
+            -mt-3
+            sm:-mt-5
+            mr-2
+            sm:mr-3
+            text-white text-xs
+            sm:text-base
+            leading-none
+          "
+        >
+          Dresden
+        </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          class="h-6 fill-white stroke-sogblue-dark"
+          class="
+            h-4
+            -mt-4
+            -ml-2
+            sm:h-6
+            sm:-mt-6 sm:-ml-3
+            fill-white
+            stroke-sogblue-dark stroke-2
+          "
         >
           <path
-            d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"
+            d="M12,0C7.8,0,4,3.4,4,7.6S7.5,16.8,12,24c4.5-7.2,8-12.2,8-16.4S16.2,0,12,0Z"
           />
         </svg>
       </a>
       <Map-Germany class="fill-current text-sogblue-dark" />
     </div>
-    <div v-if="selectedPlace === 'aachen-zweigverein'" class="md:w-1/2 mt-2">
+    <div
+      v-if="selectedPlace === 'aachen-zweigverein'"
+      class="md:w-1/2 mt-2 -mx-8 sm:mx-0 sm:pl-8"
+    >
       <h2 class="text-sogblue font-light text-2xl sm:text-3xl">
         Aachen (Zweigverein)
       </h2>
@@ -64,7 +88,10 @@
       <a href="https://www.facebook.com/sogaachen">Facebook</a>
       <a href="https://www.instagram.com/sog_aachen/">Instagram</a>
     </div>
-    <div v-else-if="selectedPlace === 'dresden'" class="md:w-1/2 mt-2">
+    <div
+      v-else-if="selectedPlace === 'dresden'"
+      class="md:w-1/2 mt-2 -mx-8 sm:mx-0 sm:pl-8"
+    >
       <h2 class="text-sogblue font-light text-2xl sm:text-3xl">Dresden</h2>
       <div class="my-4">
         <nuxt-picture src="lokalgruppen/dresden.jpg" />
@@ -95,6 +122,40 @@ export default {
   computed: {
     selectedPlace() {
       return this.$route.hash.slice(1)
+    },
+    positionAachen() {
+      return this.relPosGermany({ north: 50.776667, east: 6.083611 })
+    },
+    positionDresden() {
+      const flow = 'left'
+      return this.relPosGermany({ north: 51.049259, east: 13.73836 }, flow)
+    },
+  },
+  methods: {
+    relPosGermany({ north, east }, flow) {
+      /* @param {{north, east}} absolute positon within Germany as WGS84 coordinates
+       *        in degrees (minutes, seconds as decimals), e.g. Aachen: { north: 50.78, east: 6.08 }
+       * @param {flow} 'left', if the place name should be aligned left of the pin
+       * @return {{top, left}} relative position within Germany in %
+       */
+      if (
+        !north ||
+        !east ||
+        typeof north !== 'number' ||
+        typeof east !== 'number'
+      )
+        throw new Error('relPosGermany: inproper coordinates')
+      if (!flow) flow = 'right'
+      const maxNorth = 55.05864
+      const minNorth = 47.271679
+      const maxEast = 15.043611
+      const minEast = 5.866944
+      const top = Math.floor(
+        (1 - (north - minNorth) / (maxNorth - minNorth)) * 100
+      )
+      const left = Math.floor(((east - minEast) / (maxEast - minEast)) * 100)
+      if (flow === 'left') return { top: top + '%', right: 100 - left + '%' }
+      else return { top: top + '%', left: left + '%' }
     },
   },
 }
