@@ -23,8 +23,12 @@ module.exports = {
       stroke: {
         'sogblue-dark': '#007EBB',
       },
+      strokeWidth: {
+        10: 10,
+      },
       fill: {
         white: '#FFFFFF',
+        none: 'none',
       },
     },
   },

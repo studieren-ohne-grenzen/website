@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-start px-8 md:px-0 flex-wrap">
-    <div class="w-full md:w-1/2 flex-shrink-0 relative">
+    <div class="w-full md:w-1/2 xl:w-2/5 flex-shrink-0 relative">
       <a
         v-for="place in places"
         :key="place.name"
@@ -27,7 +27,6 @@
           {{ place.name }}
         </div>
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           viewBox="-1 -1 25 25"
           class="h-4 -mt-4 sm:h-6 sm:-mt-6 fill-current text-sogblue-darker"
           :class="
@@ -54,32 +53,61 @@
       </a>
       <Map-Germany class="fill-current text-sogblue-dark opacity-20 z-0" />
     </div>
-    <div v-if="selectedPlace" class="md:w-1/2 mt-2 -mx-8 sm:mx-0 sm:pl-8">
-      <h2 class="text-sogblue font-light text-2xl sm:text-3xl">
-        {{ selectedPlace.name }}
-      </h2>
-      <div v-if="selectedPlace.picture" class="my-4">
-        <nuxt-picture :src="selectedPlace.picture" />
-      </div>
-      <div>
-        {{ selectedPlace.text }}
-      </div>
-      <a
-        :href="
-          'mailto://' +
-          selectedPlace.name.toLowerCase() +
-          '@studieren-ohne-grenzen.org'
-        "
+    <transition name="fade" mode="out-in">
+      <div
+        v-if="selectedPlace"
+        :key="selectedPlace.name"
+        class="md:w-1/2 xl:w-3/5 mt-2 -mx-8 md:mx-0 sm:pl-8 lg:pl-20"
       >
-        Mail
-      </a>
-    </div>
-    <div v-else class="w-1/2">
-      <h2>
-        Studieren Ohne Grenzen gibt es in vielen Städten. Um mehr zu erfahren,
-        wähle eine Stadt aus!
-      </h2>
-    </div>
+        <h2 class="text-sogblue font-light text-2xl sm:text-3xl">
+          {{ selectedPlace.name }}
+        </h2>
+        <div v-if="selectedPlace.picture" class="my-4">
+          <nuxt-picture :src="selectedPlace.picture" />
+        </div>
+        <div>
+          {{ selectedPlace.text }}
+        </div>
+        <a
+          :href="
+            'mailto://' +
+            selectedPlace.name.toLowerCase() +
+            '@studieren-ohne-grenzen.org'
+          "
+        >
+          Mail
+        </a>
+      </div>
+      <div
+        v-else
+        class="md:w-1/2 xl:w-3/5 self-center -mx-8 mt-4 md:m-0 sm:pl-8 lg:pl-20"
+      >
+        <div class="text-gray-500">
+          Studieren Ohne Grenzen gibt es in vielen Städten. Um mehr zu erfahren,
+          wähle eine Stadt aus!
+          <svg
+            viewBox="0 0 999 465"
+            class="
+              hidden
+              md:block
+              w-1/3
+              xl:w-1/5
+              ml-8
+              mt-3
+              stroke-current stroke-10
+              fill-none
+              text-sogblue-darker
+            "
+          >
+            <path
+              d="M999,2C951,65.4,877.4,317.2,711.2,382.3S120.2,390.9,2,392.5M999,2C951,65.4,877.4,317.2,711.2,382.3S120.2,390.9,2,392.5"
+            />
+            <path d="M179,338.7,2,392.5m177-53.8L2,392.5" />
+            <path d="M172.2,465.1,2,392.5m170.2,72.6L2,392.5" />
+          </svg>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -143,3 +171,15 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss">
+/* simple fade transition */
+.fade-enter-active,
+.fade-leave-active {
+  @apply transition-opacity duration-150;
+}
+.fade-enter,
+.fade-leave-to {
+  @apply opacity-0;
+}
+</style>
