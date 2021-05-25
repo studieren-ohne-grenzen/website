@@ -1,7 +1,7 @@
 {
   "items": [
-    "transparency",
-    "contact",
-    "imprint"
+    { "name": "Transparencia", "url": "transparency"},
+    { "name": "Contacto", "url": "contact"},
+    { "name": "Pie de imprenta", "url": "imprint"}
   ]
 }

@@ -151,7 +151,7 @@ export default {
     fullSocialURI({ type, handle }) {
       switch (type) {
         case 'mail':
-          return 'mailto://' + handle + '@studieren-ohne-grenzen.org'
+          return 'mailto:' + handle + '@studieren-ohne-grenzen.org'
         case 'facebook':
           return 'https://www.facebook.com/' + handle
         case 'instagram':

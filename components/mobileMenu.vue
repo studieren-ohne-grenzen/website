@@ -56,52 +56,76 @@
           </ul>
         </li>
         <li
-          v-for="(item, index) in items"
-          :key="item"
+          v-for="item in items"
+          :key="item.url"
           class="flex-none w-full pt-4 mr-6 xl:mr-10"
         >
           <nuxt-link
             v-if="
-              menuItemExtended === item ||
-              subitems.length < index ||
-              subitems[index].length === 0
+              menuItemExtended === item.url ||
+              !item.children ||
+              item.children.length === 0
             "
-            :to="localePath(`/${item}`)"
+            :to="localePath('/' + item.url)"
             :class="
-              menuItemExtended === item ? 'border-sogblue' : 'border-white'
+              menuItemExtended === item.url ? 'border-sogblue' : 'border-white'
             "
             class="border-b-2 pb-0.5"
             @click.native="
               showMenu = false
-              menuItemExtended = item
+              menuItemExtended = item.url
             "
           >
-            {{ $t(`menu.${item}`) }}
+            {{ item.name }}
           </nuxt-link>
-          <button v-else @click="menuItemExtended = item">
-            {{ $t(`menu.${item}`) }}
+          <button v-else @click="menuItemExtended = item.url">
+            {{ item.name }}
           </button>
           <ul
             v-if="
-              menuItemExtended === item &&
-              subitems.length > index &&
-              subitems[index].length > 0
+              menuItemExtended === item.url &&
+              item.children &&
+              item.children.length > 0
             "
           >
             <li
-              v-for="subitem in subitems[index]"
-              :key="subitem.id"
-              :class="{
-                'ml-6 pt-2': subitem.depth === 2,
-                'ml-12': subitem.depth === 3,
-              }"
+              v-for="subitem in item.children"
+              :key="subitem.hash"
+              class="ml-6 pt-2"
             >
               <nuxt-link
-                :to="localePath(`/${item}#${subitem.id}`)"
+                :to="
+                  localePath(
+                    '/' +
+                      item.url +
+                      (subitem.hash !== '' ? '#' + subitem.hash : '')
+                  )
+                "
                 @click.native="showMenu = false"
               >
-                {{ subitem.text }}
+                {{ subitem.name }}
               </nuxt-link>
+              <ul class="ml-6">
+                <li
+                  v-for="subsubitem in subitem.children"
+                  :key="subsubitem.url"
+                  class="flex"
+                >
+                  <nuxt-link
+                    class="flex-grow"
+                    :to="
+                      localePath(
+                        '/' +
+                          item.url +
+                          (subsubitem.hash !== '' ? '#' + subsubitem.hash : '')
+                      )
+                    "
+                    @click.native="showMenu = false"
+                  >
+                    {{ subsubitem.name }}
+                  </nuxt-link>
+                </li>
+              </ul>
             </li>
           </ul>
         </li>

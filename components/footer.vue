@@ -23,11 +23,11 @@
       >
         <li
           v-for="item in items"
-          :key="item"
+          :key="item.url"
           class="border-sogblue-white hover:border-sogblue-lighter"
         >
           <nuxt-link
-            :to="localePath(`/${item}`)"
+            :to="localePath('/' + item.url)"
             class="
               pl-3
               pr-1
@@ -41,13 +41,13 @@
           >
             <span
               :class="
-                $route.params.slug === item
+                $route.params.slug === item.url
                   ? 'hover:border-white'
                   : 'border-transparent'
               "
               class="border-b-2"
             >
-              {{ $t(`footer.${item}`) }}
+              {{ item.name }}
             </span>
           </nuxt-link>
         </li>

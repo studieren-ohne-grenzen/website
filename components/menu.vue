@@ -11,52 +11,86 @@
         </nuxt-link>
       </li>
       <li
-        v-for="(item, index) in items"
-        :key="item"
+        v-for="item in items"
+        :key="item.url"
         class="relative flex-none pb-2 mr-2 px-2 xl:mr-4 2xl:mr-8"
-        @mouseenter="menuItemExtended = item"
+        @mouseenter="menuItemExtended = item.url"
         @mouseleave="menuItemExtended = ''"
       >
         <nuxt-link
-          :to="localePath(`/${item}`)"
+          :to="localePath('/' + item.url)"
           :class="{
             'border-sogblue':
-              $route.params.slug === item &&
-              (menuItemExtended === item || menuItemExtended === ''),
+              $route.params.slug === item.url &&
+              (menuItemExtended === item.url || menuItemExtended === ''),
             'border-gray-300':
-              $route.params.slug === item && menuItemExtended !== item,
-            'text-sogblue-dark': menuItemExtended === item,
+              $route.params.slug === item.url && menuItemExtended !== item.url,
+            'text-sogblue-dark': menuItemExtended === item.url,
             'text-gray-300':
-              menuItemExtended !== item && menuItemExtended !== '',
+              menuItemExtended !== item.url && menuItemExtended !== '',
           }"
           class="border-b-2 border-white pb-1 transition-colors duration-200"
         >
-          {{ $t(`menu.${item}`) }}
+          {{ item.name }}
         </nuxt-link>
         <ul
           v-if="
-            menuItemExtended === item &&
-            subitems.length > index &&
-            subitems[index].length > 0
+            menuItemExtended === item.url &&
+            item.children &&
+            item.children.length > 0
           "
-          class="absolute top-full left-0 z-50 pb-3.5 pt-1.5 px-4 ml-1 border rounded bg-white"
+          class="
+            absolute
+            top-full
+            left-0
+            z-50
+            pb-3.5
+            pt-1.5
+            px-4
+            ml-1
+            rounded
+            bg-white
+          "
         >
           <li
-            v-for="subitem in subitems[index]"
-            :key="subitem.id"
-            class="w-full flex"
+            v-for="subitem in item.children"
+            :key="subitem.hash"
+            class="w-full flex flex-col hover:text-sogblue-dark duration-200"
           >
             <nuxt-link
-              :class="{
-                'pt-2': subitem.depth === 2,
-                'pl-6': subitem.depth === 3,
-              }"
-              class="flex-grow whitespace-nowrap hover:text-sogblue-dark transition-colors duration-200"
-              :to="localePath(`/${item}#${subitem.id}`)"
+              class="pt-2 flex-grow whitespace-nowrap transition-colors"
+              :to="
+                localePath(
+                  '/' +
+                    item.url +
+                    (subitem.hash !== '' ? '#' + subitem.hash : '')
+                )
+              "
               @click.native="menuItemExtended = ''"
             >
-              {{ subitem.text }}
+              {{ subitem.name }}
             </nuxt-link>
+            <ul class="ml-6">
+              <li
+                v-for="subsubitem in subitem.children"
+                :key="subsubitem.url"
+                class="flex text-black hover:text-sogblue-dark"
+              >
+                <nuxt-link
+                  class="flex-grow whitespace-nowrap transition-colors"
+                  :to="
+                    localePath(
+                      '/' +
+                        item.url +
+                        (subsubitem.hash !== '' ? '#' + subsubitem.hash : '')
+                    )
+                  "
+                  @click.native="menuItemExtended = ''"
+                >
+                  {{ subsubitem.name }}
+                </nuxt-link>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>
@@ -78,7 +112,17 @@
           </svg>
         </button>
         <ul
-          class="absolute top-full right-0 z-50 px-4 py-2 border rounded bg-white"
+          class="
+            absolute
+            top-full
+            right-0
+            z-50
+            px-4
+            py-2
+            border
+            rounded
+            bg-white
+          "
           :class="selectLanguage ? 'block' : 'hidden'"
           @mouseenter="selectLanguage = true"
           @mouseleave="selectLanguage = false"
@@ -86,7 +130,13 @@
           <li
             v-for="locale in $i18n.locales"
             :key="locale.code"
-            class="flex hover:text-sogblue-dark transition-colors duration-100 leading-tight"
+            class="
+              flex
+              hover:text-sogblue-dark
+              transition-colors
+              duration-100
+              leading-tight
+            "
           >
             <nuxt-link
               :to="switchLocalePath(locale.code)"
@@ -135,7 +185,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
 .container {
   @apply text-gray-800 font-overpass mx-auto px-4 mt-4 lg:mt-10;
 }

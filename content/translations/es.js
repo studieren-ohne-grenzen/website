@@ -7,17 +7,4 @@ export default {
     availableIn: 'Está disponible en los siguientes idiomas:',
     backHome: 'Volver a la página de inicio',
   },
-  menu: {
-    our_work: 'Nuestro trabajo',
-    about_us: 'Sobre nosotros',
-    get_involved: 'Involúcrate',
-    donate: 'Donar',
-    scholarships: 'Patrocínese',
-    shop: 'Tienda',
-  },
-  footer: {
-    transparency: 'Transparencia',
-    contact: 'Contacto',
-    imprint: 'Pie de imprenta',
-  },
 }

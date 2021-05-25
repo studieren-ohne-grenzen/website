@@ -1,11 +1,7 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <Menu :items="menu.items" :subitems="submenu" class="hidden lg:block" />
-    <Mobile-Menu
-      :items="menu.items"
-      :subitems="submenu"
-      class="block lg:hidden"
-    />
+    <Menu :items="menu.items" class="hidden lg:block" />
+    <Mobile-Menu :items="menu.items" class="block lg:hidden" />
     <nuxt-child class="flex-grow"></nuxt-child>
     <Footer
       :items="footer.items"
@@ -29,19 +25,7 @@ export default {
   async asyncData({ $content, app }) {
     const menu = await $content(`${app.i18n.locale}`, 'menu').fetch()
     const footer = await $content(`${app.i18n.locale}`, 'footer').fetch()
-    const submenu = []
-    for (const i in menu.items) {
-      try {
-        const item = await $content(
-          `${app.i18n.locale}/${menu.items[i]}`,
-          'index'
-        ).fetch()
-        submenu.push(item.toc)
-      } catch {
-        submenu.push([])
-      }
-    }
-    return { menu, submenu, footer }
+    return { menu, footer }
   },
 }
 </script>

@@ -1,10 +1,34 @@
 {
   "items": [
-    "our_work",
-    "about_us",
-    "get_involved",
-    "donate",
-    "scholarships",
-    "shop"
+    {
+      "name": "Nuestro trabajo",
+      "url": "our_work",
+      "children": []
+    },
+    {
+      "name": "Sobre nosotros",
+      "url": "about_us",
+      "children": []
+    },
+    {
+      "name": "Involúcrate",
+      "url": "get_involved",
+      "children": []
+    },
+    {
+      "name": "Donar",
+      "url": "donate",
+      "children": []
+    },
+    {
+      "name": "Patrocínese",
+      "url": "scholarships",
+      "children": []
+    },
+    {
+      "name": "Tienda",
+      "url": "shop",
+      "children": []
+    }
   ]
 }

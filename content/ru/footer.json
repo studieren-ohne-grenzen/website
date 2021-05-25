@@ -1,7 +1,7 @@
 {
   "items": [
-    "transparency",
-    "contact",
-    "imprint"
+    { "name": "Прозрачность", "url": "transparency"},
+    { "name": "Контакты", "url": "contact"},
+    { "name": "Вывод", "url": "imprint"}
   ]
 }
