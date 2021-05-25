@@ -27,15 +27,21 @@
           {{ place.name }}
         </div>
         <svg
-          viewBox="-1 -1 25 25"
-          class="h-4 -mt-4 sm:h-6 sm:-mt-6 fill-current text-sogblue-darker"
+          class="
+            h-4
+            w-4
+            -mt-4
+            sm:h-6
+            sm:w-6
+            sm:-mt-6
+            fill-current
+            text-sogblue-darker
+          "
           :class="
             place.text_flow === 'left' ? '-mr-2 sm:-mr-3' : '-ml-2 sm:-ml-3'
           "
         >
-          <path
-            d="M12,0C7.8,0,4,3.4,4,7.6S7.5,16.8,12,24c4.5-7.2,8-12.2,8-16.4S16.2,0,12,0Z"
-          />
+          <use href="sprites/mapSymbols.svg#marker" />
         </svg>
         <div
           v-if="place.text_flow !== 'left'"
@@ -51,7 +57,7 @@
           {{ place.name }}
         </div>
       </a>
-      <Map-Germany class="fill-current text-sogblue-dark opacity-20 z-0" />
+      <object data="germany.svg" class="block opacity-20 z-0" />
     </div>
     <transition name="fade" mode="out-in">
       <div
@@ -86,7 +92,6 @@
           Studieren Ohne Grenzen gibt es in vielen Städten. Um mehr zu erfahren,
           wähle eine Stadt aus!
           <svg
-            viewBox="0 0 999 465"
             class="
               hidden
               md:block
@@ -99,11 +104,7 @@
               text-sogblue-darker
             "
           >
-            <path
-              d="M999,2C951,65.4,877.4,317.2,711.2,382.3S120.2,390.9,2,392.5M999,2C951,65.4,877.4,317.2,711.2,382.3S120.2,390.9,2,392.5"
-            />
-            <path d="M179,338.7,2,392.5m177-53.8L2,392.5" />
-            <path d="M172.2,465.1,2,392.5m170.2,72.6L2,392.5" />
+            <use href="sprites/mapSymbols.svg#arrow" />
           </svg>
         </div>
       </div>
@@ -112,11 +113,8 @@
 </template>
 
 <script>
-import MapGermany from './mapGermany'
-
 export default {
   name: 'SogMap',
-  components: { MapGermany },
   props: {
     placesConfig: {
       type: String,
