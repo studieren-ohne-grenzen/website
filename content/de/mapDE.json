@@ -3,10 +3,11 @@
     {
       "name": "Aachen",
       "picture": "lokalgruppen/aachen.jpg",
-      "text": "Der Zweigverein Aachen trifft ist am Stipendienprogramm Mweso beteiligt, wobei in Aachen das Bücherprojekt angesiedelt ist. Wir veranstalten zahlreiche Benefiz-Veranstaltungen, wie die Nacht der Profs und schaffen Bewusstsein für die Themen von SOG durch Podiumsdiskussionen und Filmabende. Schau doch mal vorbei!",
+      "text": "Der Zweigverein Aachen ist am Stipendienprogramm Mweso beteiligt, wobei in Aachen das Bücherprojekt angesiedelt ist. Wir veranstalten zahlreiche Benefiz-Veranstaltungen, wie die Nacht der Profs und schaffen Bewusstsein für die Themen von SOG durch Podiumsdiskussionen und Filmabende.\nSchau doch mal vorbei!",
       "social": [
-        { "instagram": "sog_aachen" },
-        { "facebook": "sogaachen" }
+        { "type": "instagram", "handle": "sog_aachen" },
+        { "type": "facebook", "handle": "sogaachen" },
+        { "type": "mail", "handle": "aachen" }
       ],
       "coordinates": {"north": 50.776667, "east": 6.083611},
       "text_flow": "left"
@@ -37,7 +38,9 @@
       "name": "Dresden",
       "picture": "lokalgruppen/dresden.jpg",
       "text": "",
-      "social": [],
+      "social": [
+        { "type": "mail", "handle": "dresden" }
+      ],
       "coordinates": {"north": 51.049259, "east": 13.73836}
     },
     {

@@ -5,7 +5,15 @@
         v-for="place in places"
         :key="place.name"
         :href="'#' + place.name.toLowerCase()"
-        class="absolute flex items-center"
+        class="
+          absolute
+          flex
+          items-center
+          text-sogblue-darker text-xs
+          sm:text-base
+          leading-none
+          z-10
+        "
         :style="
           relPosGermany(
             { north: place.coordinates.north, east: place.coordinates.east },
@@ -13,47 +21,18 @@
           )
         "
       >
-        <div
-          v-if="place.text_flow === 'left'"
-          class="
-            -mt-3
-            sm:-mt-5
-            text-sogblue-darker text-xs
-            sm:text-base
-            leading-none
-            z-10
-          "
-        >
+        <div v-if="place.text_flow === 'left'" class="-mt-3 sm:-mt-5">
           {{ place.name }}
         </div>
         <svg
-          class="
-            h-4
-            w-4
-            -mt-4
-            sm:h-6
-            sm:w-6
-            sm:-mt-6
-            fill-current
-            text-sogblue-darker
-          "
+          class="h-4 w-4 -mt-4 sm:h-6 sm:w-6 sm:-mt-6 fill-current"
           :class="
             place.text_flow === 'left' ? '-mr-2 sm:-mr-3' : '-ml-2 sm:-ml-3'
           "
         >
           <use href="sprites/mapSymbols.svg#marker" />
         </svg>
-        <div
-          v-if="place.text_flow !== 'left'"
-          class="
-            -mt-3
-            sm:-mt-5
-            text-sogblue-darker text-xs
-            sm:text-base
-            leading-none
-            z-10
-          "
-        >
+        <div v-if="place.text_flow !== 'left'" class="-mt-3 sm:-mt-5">
           {{ place.name }}
         </div>
       </a>
@@ -63,7 +42,17 @@
       <div
         v-if="selectedPlace"
         :key="selectedPlace.name"
-        class="md:w-1/2 xl:w-3/5 mt-2 -mx-8 md:mx-0 sm:pl-8 lg:pl-20"
+        class="
+          min-w-full
+          md:min-w-0
+          md:w-1/2
+          xl:w-3/5
+          mt-2
+          -mx-8
+          md:mx-0
+          sm:pl-8
+          lg:pl-20
+        "
       >
         <h2 class="text-sogblue font-light text-2xl sm:text-3xl">
           {{ selectedPlace.name }}
@@ -71,18 +60,38 @@
         <div v-if="selectedPlace.picture" class="my-4">
           <nuxt-picture :src="selectedPlace.picture" />
         </div>
-        <div>
-          {{ selectedPlace.text }}
-        </div>
-        <a
-          :href="
-            'mailto://' +
-            selectedPlace.name.toLowerCase() +
-            '@studieren-ohne-grenzen.org'
+        <div class="whitespace-pre-line">{{ selectedPlace.text }}</div>
+        <div
+          class="
+            my-4
+            text-sogblue-darker
+            hover:text-sogblue-lighter
+            flex flex-wrap
           "
         >
-          Mail
-        </a>
+          <a
+            v-for="link in selectedPlace.social"
+            :key="link.type"
+            :href="fullSocialURI(link)"
+            target="_blank"
+            class="
+              flex
+              items-center
+              leading-none
+              mb-2
+              hover:text-sogblue-darker
+              transition-colors
+              duration-200
+            "
+          >
+            <svg class="w-6 h-6 mr-2 fill-current">
+              <use :href="'sprites/socialSymbols.svg#' + link.type" />
+            </svg>
+            <div class="mr-6">
+              {{ link.handle }}{{ link.type === 'mail' ? '@' : '' }}
+            </div>
+          </a>
+        </div>
       </div>
       <div
         v-else
@@ -101,7 +110,6 @@
               mt-3
               stroke-current stroke-10
               fill-none
-              text-sogblue-darker
             "
           >
             <use href="sprites/mapSymbols.svg#arrow" />
@@ -140,6 +148,18 @@ export default {
     },
   },
   methods: {
+    fullSocialURI({ type, handle }) {
+      switch (type) {
+        case 'mail':
+          return 'mailto://' + handle + '@studieren-ohne-grenzen.org'
+        case 'facebook':
+          return 'https://www.facebook.com/' + handle
+        case 'instagram':
+          return 'https://www.instagram.com/' + handle
+        default:
+          return ''
+      }
+    },
     relPosGermany({ north, east }, textFlow) {
       /* @param {{north, east}} absolute positon within Germany as WGS84 coordinates
        *        in degrees (minutes, seconds as decimals), e.g. Aachen: { north: 50.78, east: 6.08 }
@@ -152,12 +172,19 @@ export default {
         typeof north !== 'number' ||
         typeof east !== 'number'
       )
-        throw new Error('relPosGermany: inproper coordinates')
+        throw new Error('inproper coordinates')
       if (!textFlow) textFlow = 'right'
       const maxNorth = 55.05864
       const minNorth = 47.271679
       const maxEast = 15.043611
       const minEast = 5.866944
+      if (
+        north > maxNorth ||
+        north < minNorth ||
+        east > maxEast ||
+        east < minEast
+      )
+        throw new Error('coordinates out of bounds')
       const top = Math.floor(
         (1 - (north - minNorth) / (maxNorth - minNorth)) * 100
       )

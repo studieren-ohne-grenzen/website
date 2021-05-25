@@ -19,7 +19,7 @@ title: Mitmachen
 ### Stuttgart
 ### Tübingen
 
-<sog-map></sog-map>
+<sog-map places-config="mapDE"></sog-map>
 
 ## Bundesweit
 
