@@ -78,7 +78,9 @@
             "
           >
             <svg class="w-6 h-6 inline-block fill-current mb-3">
-              <use :href="'sprites/socialSymbols.svg#' + icon.type" />
+              <use
+                :href="localePath('/sprites/socialSymbols.svg#' + icon.type)"
+              />
             </svg>
           </a>
         </li>

@@ -7,13 +7,13 @@
         :href="'#' + place.name.toLowerCase()"
         class="
           absolute
-          flex
           items-center
           text-sogblue-darker text-xs
           sm:text-base
           leading-none
           z-10
         "
+        :class="mapLoaded ? 'flex' : 'hidden'"
         :style="
           relPosGermany(
             { north: place.coordinates.north, east: place.coordinates.east },
@@ -30,17 +30,21 @@
             place.text_flow === 'left' ? '-mr-2 sm:-mr-3' : '-ml-2 sm:-ml-3'
           "
         >
-          <use href="sprites/mapSymbols.svg#marker" />
+          <use :href="localePath('/sprites/mapSymbols.svg#marker')" />
         </svg>
         <div v-if="place.text_flow !== 'left'" class="-mt-3 sm:-mt-5">
           {{ place.name }}
         </div>
       </a>
-      <object data="germany.svg" class="block opacity-20 z-0" />
+      <object
+        data="/germany.svg"
+        class="block opacity-20 z-0"
+        @load="mapLoaded = true"
+      />
     </div>
     <transition name="fade" mode="out-in">
       <div
-        v-if="selectedPlace"
+        v-if="selectedPlace && mapLoaded"
         :key="selectedPlace.name"
         class="
           min-w-full
@@ -85,7 +89,9 @@
             "
           >
             <svg class="w-6 h-6 mr-2 fill-current">
-              <use :href="'sprites/socialSymbols.svg#' + link.type" />
+              <use
+                :href="localePath('/sprites/socialSymbols.svg#' + link.type)"
+              />
             </svg>
             <div class="mr-6">
               {{ link.handle }}{{ link.type === 'mail' ? '@' : '' }}
@@ -94,7 +100,7 @@
         </div>
       </div>
       <div
-        v-else
+        v-else-if="mapLoaded"
         class="md:w-1/2 xl:w-3/5 self-center -mx-8 mt-4 md:m-0 sm:pl-8 lg:pl-20"
       >
         <div class="text-gray-500">
@@ -112,7 +118,7 @@
               fill-none
             "
           >
-            <use href="sprites/mapSymbols.svg#arrow" />
+            <use :href="localePath('/sprites/mapSymbols.svg#arrow')" />
           </svg>
         </div>
       </div>
@@ -132,6 +138,7 @@ export default {
   data() {
     return {
       places: [],
+      mapLoaded: false,
     }
   },
   async fetch() {

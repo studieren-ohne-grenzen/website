@@ -2,7 +2,7 @@
   "places": [
     {
       "name": "Aachen",
-      "picture": "lokalgruppen/aachen.jpg",
+      "picture": "/lokalgruppen/aachen.jpg",
       "text": "Der Zweigverein Aachen ist am Stipendienprogramm Mweso beteiligt, wobei in Aachen das Bücherprojekt angesiedelt ist. Wir veranstalten zahlreiche Benefiz-Veranstaltungen, wie die Nacht der Profs und schaffen Bewusstsein für die Themen von SOG durch Podiumsdiskussionen und Filmabende.\nSchau doch mal vorbei!",
       "social": [
         { "type": "instagram", "handle": "sog_aachen" },
@@ -37,7 +37,7 @@
     {
       "name": "Dresden",
       "picture": "lokalgruppen/dresden.jpg",
-      "text": "",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec malesuada dolor. Sed justo justo, ornare non cursus nec, aliquam aliquam tortor. Suspendisse feugiat metus lectus, ac blandit tortor euismod non. Vestibulum porta efficitur faucibus. In eu turpis ligula. Duis ullamcorper lacinia nisl, eu sollicitudin neque egestas vitae. Donec nec ex augue. Donec vitae diam vitae dui tempus ornare vel eget mi.\n\nEtiam purus ante, blandit id laoreet vitae, gravida vel erat. Aliquam lobortis orci dolor, vitae tincidunt nunc tempor a. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut ipsum quis sem iaculis commodo. Suspendisse maximus aliquet aliquet. Curabitur vel eros eget sapien dignissim facilisis. Nunc laoreet auctor sollicitudin. Mauris congue porta condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec accumsan tincidunt quam. Ut a dui ornare, ullamcorper elit nec, congue magna. Quisque egestas, orci vel efficitur commodo, nunc lectus congue velit, quis pulvinar lectus libero vitae odio. Etiam lacinia velit pretium nunc pretium vestibulum.",
       "social": [
         { "type": "mail", "handle": "dresden" }
       ],
