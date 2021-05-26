@@ -1,8 +1,8 @@
 {
   "items": [
-    "transparency",
-    "contact",
-    "imprint"
+    { "name": "Transparency", "url": "transparency"},
+    { "name": "Contact", "url": "contact"},
+    { "name": "Imprint", "url": "imprint"}
   ],
   "socialIcons": [
     {

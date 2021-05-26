@@ -7,17 +7,4 @@ export default {
     availableIn: 'It is available in the following languages:',
     backHome: 'Back to home page',
   },
-  menu: {
-    our_work: 'Our Work',
-    about_us: 'About Us',
-    get_involved: 'Get Involved',
-    donate: 'Donate',
-    scholarships: 'Scholarships',
-    shop: 'Shop',
-  },
-  footer: {
-    transparency: 'Transparency',
-    contact: 'Contact',
-    imprint: 'Imprint',
-  },
 }

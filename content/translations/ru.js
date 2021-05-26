@@ -7,17 +7,4 @@ export default {
     availableIn: 'Она доступна на следующих языках:',
     backHome: 'На главную страницу',
   },
-  menu: {
-    our_work: 'Наша работа',
-    about_us: 'О нас',
-    get_involved: 'Вовлекайся',
-    donate: 'Пожертвовать',
-    scholarships: 'Стипендии',
-    shop: 'Магазин',
-  },
-  footer: {
-    transparency: 'Прозрачность',
-    contact: 'Контакты',
-    imprint: 'Вывод',
-  },
 }
