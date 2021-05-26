@@ -1,26 +1,33 @@
 <template>
-  <div class="grid gap-3 grid-cols-2">
+  <div
+    class="grid grid-flow-row lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3"
+  >
     <div
       v-for="tile in tiles"
       :key="tile.name"
       class="border rounded-md border-sogblue-white hover:border-sogblue-lighter"
     >
-      <nuxt-picture
-        :src="tile.image"
-        :alt="tile.name"
-        quality="80"
-        format="webp"
-        loading="lazy"
-        sizes="sm:25vw lg:400px"
-      />
-      <!--      <img :src="data(`@/landing/tiles/2_test.jpg`)" /> -->
+      <SogLink :dest="tile.url" :alt="tile.name" class="">
+        <nuxt-picture
+          :src="tile.image"
+          :alt="tile.name"
+          quality="80"
+          format="webp"
+          loading="lazy"
+          sizes="sm:w-11/12 md:min-w-full lg:400px"
+          class=""
+        />
+      </SogLink>
     </div>
   </div>
 </template>
 
 <script>
+import SogLink from '~/components/sogLink'
+
 export default {
   name: 'LandingTiles',
+  components: { SogLink },
   props: {
     tilesConfig: {
       type: String,

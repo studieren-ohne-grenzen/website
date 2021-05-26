@@ -1,22 +1,55 @@
 {
   "imgs": [
     {
-      "name": "test1", "image": "landing/tiles/1_test.jpg", "url": ""
+      "name": "test1", "image": "landing/tiles/1_test.jpg", "url": "about_us", "text":""
     },
     {
-      "name": "test2", "image": "landing/tiles/2_test.jpg", "url": ""
+      "name": "test4", "image": "landing/tiles/4_test.png", "url": "get_involed", "text":""
     },
     {
-      "name": "test3", "image": "landing/tiles/3_test.jpg", "url": ""
+      "name": "test5", "image": "landing/tiles/5_test.jpg", "url": "our_work", "text":""
     },
     {
-      "name": "test4", "image": "landing/tiles/4_test.png", "url": ""
+      "name": "test7", "image": "landing/tiles/20test.jpg", "url": "shop", "text":""
     },
     {
-      "name": "test5", "image": "landing/tiles/5_test.jpg", "url": ""
+      "name": "test8", "image": "landing/tiles/7test.jpg", "url": "shop", "text":""
     },
     {
-      "name": "test6", "image": "landing/tiles/6_test.jpg", "url": ""
+      "name": "test9", "image": "landing/tiles/8test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test10", "image": "landing/tiles/9test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test11", "image": "landing/tiles/10test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test12", "image": "landing/tiles/11test.png", "url": "shop", "text":""
+    },
+    {
+      "name": "test13", "image": "landing/tiles/12test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test14", "image": "landing/tiles/13test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test15", "image": "landing/tiles/14test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test16", "image": "landing/tiles/15test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test17", "image": "landing/tiles/16test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test18", "image": "landing/tiles/17test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test19", "image": "landing/tiles/18test.jpg", "url": "shop", "text":""
+    },
+    {
+      "name": "test20", "image": "landing/tiles/19test.jpg", "url": "shop", "text":""
     }
   ]
 }
