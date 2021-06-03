@@ -1,6 +1,9 @@
 <template>
   <div class="flex items-start px-8 md:px-0 flex-wrap">
-    <div class="w-full md:w-1/2 xl:w-2/5 flex-shrink-0 relative">
+    <div
+      class="w-full flex-shrink-0 relative"
+      :class="mapType === 'germany' ? 'md:w-1/2 xl:w-2/5' : ''"
+    >
       <a
         v-for="place in places"
         :key="place.name"
@@ -15,7 +18,7 @@
         "
         :class="mapLoaded ? 'flex' : 'hidden'"
         :style="
-          relPosGermany(
+          relPos(
             { north: place.coordinates.north, east: place.coordinates.east },
             place.text_flow
           )
@@ -37,7 +40,7 @@
         </div>
       </a>
       <object
-        data="/germany.svg"
+        :data="'/' + mapType + '.svg'"
         class="block opacity-20 z-0"
         @load="mapLoaded = true"
       />
@@ -46,17 +49,12 @@
       <div
         v-if="selectedPlace && mapLoaded"
         :key="selectedPlace.name"
-        class="
-          min-w-full
-          md:min-w-0
-          md:w-1/2
-          xl:w-3/5
-          mt-2
-          -mx-8
-          md:mx-0
-          sm:pl-8
-          lg:pl-20
+        :class="
+          mapType === 'germany'
+            ? 'md:w-1/2 xl:w-3/5 md:min-w-0 -mx-8 md:mx-0 sm:pl-8 lg:pl-20'
+            : ''
         "
+        class="min-w-full mt-2"
       >
         <h2 class="text-sogblue font-light text-2xl sm:text-3xl">
           {{ selectedPlace.name }}
@@ -69,7 +67,7 @@
             quality="80"
           />
         </div>
-        <div class="whitespace-pre-line">{{ selectedPlace.text }}</div>
+        <p class="whitespace-pre-line">{{ selectedPlace.text }}</p>
         <div
           class="
             my-4
@@ -106,9 +104,14 @@
       </div>
       <div
         v-else-if="mapLoaded"
-        class="md:w-1/2 xl:w-3/5 self-center -mx-8 mt-4 md:m-0 sm:pl-8 lg:pl-20"
+        :class="
+          mapType === 'germany'
+            ? 'md:w-1/2 xl:w-3/5 md:min-w-0 -mx-8 md:mx-0 sm:pl-8 lg:pl-20'
+            : ''
+        "
+        class="min-w-full mt-2"
       >
-        <div class="text-gray-500">
+        <div v-if="mapType === 'germany'" class="text-gray-500">
           Studieren Ohne Grenzen gibt es in vielen Städten. Um mehr zu erfahren,
           wähle eine Stadt aus!
           <svg
@@ -126,6 +129,11 @@
             <use :href="localePath('/sprites/mapSymbols.svg#arrow')" />
           </svg>
         </div>
+        <div v-else class="text-gray-500">
+          In diesen Orten auf der Welt gibt es Programme von Studieren Ohne
+          Grenzen. Wähle einen Ort aus, um mehr über das entsprechenden Programm
+          zu erfahren.
+        </div>
       </div>
     </transition>
   </div>
@@ -139,6 +147,11 @@ export default {
       type: String,
       default: 'map',
     },
+    mapType: {
+      type: String,
+      default: 'germany',
+      validator: (s) => s === 'germany' || s === 'world',
+    },
   },
   data() {
     return {
@@ -146,6 +159,7 @@ export default {
       mapLoaded: false,
     }
   },
+  // TODO: re-fetch data, if placesConfig changes!
   async fetch() {
     this.places = await this.$content(`${this.$i18n.locale}`, this.placesConfig)
       .fetch()
@@ -172,11 +186,11 @@ export default {
           return ''
       }
     },
-    relPosGermany({ north, east }, textFlow) {
-      /* @param {{north, east}} absolute positon within Germany as WGS84 coordinates
-       *        in degrees (minutes, seconds as decimals), e.g. Aachen: { north: 50.78, east: 6.08 }
+    relPos({ north, east }, textFlow) {
+      /* @param {{north, east}} absolute positon as WGS84 coordinates in degrees (minutes, seconds as decimals)
+       * e.g. Aachen: { north: 50.78, east: 6.08 }, Mweso: {north: -1.13, east: 29.04}
        * @param {textFlow} 'left', if the place name should be aligned left of the pin
-       * @return {{top, left}} relative position within Germany in %
+       * @return {{top, left}} relative position within the map in %
        */
       if (
         !north ||
@@ -186,10 +200,17 @@ export default {
       )
         throw new Error('inproper coordinates')
       if (!textFlow) textFlow = 'right'
-      const maxNorth = 55.05864
-      const minNorth = 47.271679
-      const maxEast = 15.043611
-      const minEast = 5.866944
+
+      // convert world coordinates to range (0,360) and (0,180)
+      if (this.mapType === 'world') {
+        north += 90
+        east += 180
+      }
+      // bounds, note that our map excludes the arctics, and some of the pacific
+      const maxNorth = this.mapType === 'germany' ? 55.05864 : 170
+      const minNorth = this.mapType === 'germany' ? 47.271679 : 33
+      const maxEast = this.mapType === 'germany' ? 15.043611 : 345
+      const minEast = this.mapType === 'germany' ? 5.866944 : 45
       if (
         north > maxNorth ||
         north < minNorth ||
@@ -197,10 +218,14 @@ export default {
         east < minEast
       )
         throw new Error('coordinates out of bounds')
+
+      // calc the relative position on the map
       const top = Math.floor(
         (1 - (north - minNorth) / (maxNorth - minNorth)) * 100
       )
       const left = Math.floor(((east - minEast) / (maxEast - minEast)) * 100)
+
+      // return CSS-like attributes depending on textFlow
       if (textFlow === 'left')
         return { top: top + '%', right: 100 - left + '%' }
       else return { top: top + '%', left: left + '%' }
