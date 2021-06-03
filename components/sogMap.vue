@@ -62,7 +62,12 @@
           {{ selectedPlace.name }}
         </h2>
         <div v-if="selectedPlace.picture" class="my-4">
-          <nuxt-picture :src="selectedPlace.picture" />
+          <nuxt-picture
+            :src="selectedPlace.picture"
+            sizes="sm:100vw md:50vw lg:50vw xl:100vw"
+            format="webp"
+            quality="80"
+          />
         </div>
         <div class="whitespace-pre-line">{{ selectedPlace.text }}</div>
         <div
