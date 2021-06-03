@@ -1,24 +1,32 @@
 <template>
   <div
-    class="grid grid-flow-row lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3"
+    class="
+      grid grid-flow-row
+      xl:grid-cols-4
+      lg:grid-cols-3
+      md:grid-cols-2
+      sm:grid-cols-1
+      gap-3
+    "
   >
-    <div
+    <SogLink
       v-for="tile in tiles"
       :key="tile.name"
-      class="border rounded-md border-sogblue-white hover:border-sogblue-lighter"
+      :dest="tile.url"
+      :alt="tile.name"
     >
-      <SogLink :dest="tile.url" :alt="tile.name" class="">
-        <nuxt-picture
-          :src="tile.image"
-          :alt="tile.name"
-          quality="80"
-          format="webp"
-          loading="lazy"
-          sizes="sm:w-11/12 md:min-w-full lg:400px"
-          class=""
-        />
-      </SogLink>
-    </div>
+      <nuxt-picture
+        :src="tile.image"
+        :alt="tile.name"
+        quality="80"
+        format="webp"
+        loading="lazy"
+        sizes="sm:70vw md:100vw lg:100vw"
+        width="1000px"
+        height="1000px"
+        class="hover:opacity-20 transition-opacity"
+      />
+    </SogLink>
   </div>
 </template>
 
