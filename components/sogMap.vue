@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-start px-8 md:px-0 flex-wrap">
+  <div class="flex items-start flex-wrap">
     <div
       class="w-full flex-shrink-0 relative"
       :class="mapType === 'germany' ? 'md:w-1/2 xl:w-2/5' : ''"
@@ -13,6 +13,7 @@
           items-center
           text-sogblue-darker text-xs
           sm:text-base
+          xl:text-xl
           leading-none
           z-10
         "
@@ -24,18 +25,31 @@
           )
         "
       >
-        <div v-if="place.text_flow === 'left'" class="-mt-3 sm:-mt-5">
+        <div v-if="place.text_flow === 'left'" class="-mt-3 sm:-mt-5 xl:-mt-7">
           {{ place.name }}
         </div>
         <svg
-          class="h-4 w-4 -mt-4 sm:h-6 sm:w-6 sm:-mt-6 fill-current"
+          class="
+            h-4
+            w-4
+            -mt-4
+            sm:h-6
+            sm:w-6
+            sm:-mt-6
+            xl:h-8
+            xl:w-8
+            xl:-mt-8
+            fill-current
+          "
           :class="
-            place.text_flow === 'left' ? '-mr-2 sm:-mr-3' : '-ml-2 sm:-ml-3'
+            place.text_flow === 'left'
+              ? '-mr-2 sm:-mr-3 xl:-mr-4'
+              : '-ml-2 sm:-ml-3 xl:-ml-4'
           "
         >
           <use :href="localePath('/sprites/mapSymbols.svg#marker')" />
         </svg>
-        <div v-if="place.text_flow !== 'left'" class="-mt-3 sm:-mt-5">
+        <div v-if="place.text_flow !== 'left'" class="-mt-3 sm:-mt-5 xl:-mt-7">
           {{ place.name }}
         </div>
       </a>
@@ -51,7 +65,7 @@
         :key="selectedPlace.name"
         :class="
           mapType === 'germany'
-            ? 'md:w-1/2 xl:w-3/5 md:min-w-0 -mx-8 md:mx-0 sm:pl-8 lg:pl-20'
+            ? 'md:w-1/2 xl:w-3/5 md:min-w-0 sm:pl-8 lg:pl-20'
             : ''
         "
         class="min-w-full mt-2"
@@ -106,12 +120,15 @@
         v-else-if="mapLoaded"
         :class="
           mapType === 'germany'
-            ? 'md:w-1/2 xl:w-3/5 md:min-w-0 -mx-8 md:mx-0 sm:pl-8 lg:pl-20'
+            ? 'md:w-1/2 xl:w-3/5 md:min-w-0 md:pl-8 lg:pl-20 self-center'
             : ''
         "
         class="min-w-full mt-2"
       >
-        <div v-if="mapType === 'germany'" class="text-gray-500">
+        <div
+          v-if="mapType === 'germany'"
+          class="text-gray-500 mb-20 mt-8 lg:my-0"
+        >
           Studieren Ohne Grenzen gibt es in vielen Städten. Um mehr zu erfahren,
           wähle eine Stadt aus!
           <svg
@@ -129,10 +146,11 @@
             <use :href="localePath('/sprites/mapSymbols.svg#arrow')" />
           </svg>
         </div>
-        <div v-else class="text-gray-500">
+        <div v-else class="text-gray-500 mb-20 mt-8 lg:mt-20 md:text-center">
           In diesen Orten auf der Welt gibt es Programme von Studieren Ohne
-          Grenzen. Wähle einen Ort aus, um mehr über das entsprechenden Programm
-          zu erfahren.
+          Grenzen.<br />
+          Wähle einen Ort aus, um mehr über das entsprechenden Programm zu
+          erfahren.
         </div>
       </div>
     </transition>
@@ -204,13 +222,13 @@ export default {
       // convert world coordinates to range (0,360) and (0,180)
       if (this.mapType === 'world') {
         north += 90
-        east += 180
+        east += 171
       }
-      // bounds, note that our map excludes the arctics, and some of the pacific
-      const maxNorth = this.mapType === 'germany' ? 55.05864 : 170
-      const minNorth = this.mapType === 'germany' ? 47.271679 : 33
-      const maxEast = this.mapType === 'germany' ? 15.043611 : 345
-      const minEast = this.mapType === 'germany' ? 5.866944 : 45
+      // bounds, note that our map excludes antarctica
+      const maxNorth = this.mapType === 'germany' ? 55.05864 : 175
+      const minNorth = this.mapType === 'germany' ? 47.271679 : 28
+      const maxEast = this.mapType === 'germany' ? 15.043611 : 360
+      const minEast = this.mapType === 'germany' ? 5.866944 : 0
       if (
         north > maxNorth ||
         north < minNorth ||
@@ -220,10 +238,8 @@ export default {
         throw new Error('coordinates out of bounds')
 
       // calc the relative position on the map
-      const top = Math.floor(
-        (1 - (north - minNorth) / (maxNorth - minNorth)) * 100
-      )
-      const left = Math.floor(((east - minEast) / (maxEast - minEast)) * 100)
+      const top = (1 - (north - minNorth) / (maxNorth - minNorth)) * 100
+      const left = ((east - minEast) / (maxEast - minEast)) * 100
 
       // return CSS-like attributes depending on textFlow
       if (textFlow === 'left')

@@ -9,8 +9,7 @@
         { "type": "facebook", "handle": "sogaachen" },
         { "type": "mail", "handle": "aachen" }
       ],
-      "coordinates": {"north": 50.776667, "east": 6.083611},
-      "text_flow": "left"
+      "coordinates": {"north": 50.776667, "east": 6.083611}
     },
     {
       "name": "Bayreuth",

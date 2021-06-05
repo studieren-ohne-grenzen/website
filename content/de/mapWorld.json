@@ -13,7 +13,7 @@
       "coordinates": {"north": -3.666667, "east": 29.816667}
     },
     {
-      "name": "Mweso",
+      "name": "DR Kongo - Mweso",
       "picture": "",
       "text": "In Mweso, im Osten der Demokratischen Republik Kongo, ermöglicht Studieren Ohne Grenzen engagierten Kongolesinnen und Kongolesen ein agronomisches Studium. Zum Wiederaufbau der kriegszerstörten Region und zur Bekämpfung von Armut und Hunger werden dringend qualifizierte Landwirtinnen und Landwirte gebraucht. Wir kümmern uns dabei um alle Bereiche des Projekts – von der Auswahl der Stipendiat_innen über die Werbung neuer Förderer bis hin zur Organisation von Events in Deutschland.",
       "coordinates": {"north": -1.12743, "east": 29.04259},
@@ -36,13 +36,15 @@
       "name": "Tschetschenien",
       "picture": "",
       "text": "Wir wollen die Gestalter_innen von morgen fördern. Deswegen vergibt „Studieren Ohne Grenzen“ Stipendien für einen studienvorbereitenden Aufenthalt in Deutschland an leistungsbereite und zu sozialem Engagement motivierte Tschetschen_innen. Das Stipendium umfasst die Deckung des Lebensunterhalts sowie alle anfallenden Kosten für Sprachkurse und Studium und ist zunächst auf ein Jahr angelegt. Die Stipendiat_innen werden auch bei der Suche nach Praktikumsplätzen und anderen Weiterbildungsmöglichkeiten im NGO-Bereich unterstützt. So können sie alle Fähigkeiten erlangen, um nach der Rückkehr in ihre Heimat ihre geplanten Projekte umsetzen zu können.",
-      "coordinates": {"north": 43.272356, "east": 45.75184}
+      "coordinates": {"north": 43.272356, "east": 45.75184},
+      "text_flow": "left"
     },
     {
       "name": "Westbank",
       "picture": "",
       "text": "Das Stipendienprogramm für Studierende in der Westbank wurde 2019 neu gegründet. In Kooperation mit unserer Partnerorganisation ESNAD haben wir ein dreistufiges Auswahlverfahren durchlaufen. Inzwischen haben wir uns für die erste Stipendiatin entschieden, die wir ab Herbst 2020 in ihren Studium finanziell sowie ideell unterstützen werden.",
-      "coordinates": {"north": 31.966667, "east": 35.3}
+      "coordinates": {"north": 31.966667, "east": 35.3},
+      "text_flow": "left"
     }
   ]
 }

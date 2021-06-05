@@ -10,9 +10,9 @@
           "children": [
             { "name": "Afghanistan", "hash": "afghanistan" },
             { "name": "Burundi", "hash": "burundi" },
-            { "name": "DR Kongo - Mweso", "hash": "mweso" },
+            { "name": "DR Kongo - Mweso", "hash": "dr kongo - mweso" },
             { "name": "Guatemala", "hash": "guatemala" },
-            { "name": "Sri Lanka", "hash": "sri-lanka" },
+            { "name": "Sri Lanka", "hash": "sri lanka" },
             { "name": "Tschetschenien", "hash": "tschetschenien" },
             { "name": "Westbank", "hash": "westbank" }
           ]
