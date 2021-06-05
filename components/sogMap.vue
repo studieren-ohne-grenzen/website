@@ -17,12 +17,17 @@
           leading-none
           z-10
         "
-        :class="mapLoaded ? 'flex' : 'hidden'"
+        :class="mapLoaded && configLoaded ? 'flex' : 'hidden'"
         :style="
-          relPos(
-            { north: place.coordinates.north, east: place.coordinates.east },
-            place.text_flow
-          )
+          configLoaded
+            ? relPos(
+                {
+                  north: place.coordinates.north,
+                  east: place.coordinates.east,
+                },
+                place.text_flow
+              )
+            : ''
         "
       >
         <div v-if="place.text_flow === 'left'" class="-mt-3 sm:-mt-5 xl:-mt-7">
@@ -175,13 +180,11 @@ export default {
     return {
       places: [],
       mapLoaded: false,
+      configLoaded: false,
     }
   },
-  // TODO: re-fetch data, if placesConfig changes!
   async fetch() {
-    this.places = await this.$content(`${this.$i18n.locale}`, this.placesConfig)
-      .fetch()
-      .then((jsonFile) => jsonFile.places)
+    await this.fetchPlaces()
   },
   computed: {
     selectedPlace() {
@@ -191,7 +194,22 @@ export default {
       )
     },
   },
+  watch: {
+    async placesConfig() {
+      await this.fetchPlaces()
+    },
+  },
   methods: {
+    async fetchPlaces() {
+      this.configLoaded = false
+      this.places = await this.$content(
+        `${this.$i18n.locale}`,
+        this.placesConfig
+      )
+        .fetch()
+        .then((jsonFile) => jsonFile.places)
+      this.configLoaded = true
+    },
     fullSocialURI({ type, handle }) {
       switch (type) {
         case 'mail':
