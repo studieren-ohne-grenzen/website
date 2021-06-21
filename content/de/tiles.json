@@ -1,55 +1,55 @@
 {
   "imgs": [
     {
-      "name": "test1", "image": "landing/tiles/1_test.jpg", "url": "about_us", "text":""
+      "name": "test1", "image": "landing/tiles/1_test.jpg", "url": "about_us", "text":"Beispiel Text 1"
     },
     {
-      "name": "test4", "image": "landing/tiles/4_test.png", "url": "get_involed", "text":""
+      "name": "test4", "image": "landing/tiles/4_test.png", "url": "get_involed", "text":"Beispiel Text 2"
     },
     {
-      "name": "test5", "image": "landing/tiles/5_test.jpg", "url": "our_work", "text":""
+      "name": "test5", "image": "landing/tiles/5_test.jpg", "url": "our_work", "text":"Beispiel Text 3"
     },
     {
-      "name": "test7", "image": "landing/tiles/20test.jpg", "url": "shop", "text":""
+      "name": "test7", "image": "landing/tiles/20test.jpg", "url": "shop", "text":"Beispiel Text 4"
     },
     {
-      "name": "test8", "image": "landing/tiles/7test.jpg", "url": "shop", "text":""
+      "name": "test8", "image": "landing/tiles/7test.jpg", "url": "shop", "text":"Beispiel Text 5"
     },
     {
-      "name": "test9", "image": "landing/tiles/8test.jpg", "url": "shop", "text":""
+      "name": "test9", "image": "landing/tiles/8test.jpg", "url": "shop", "text":"Beispiel Text 6"
     },
     {
-      "name": "test10", "image": "landing/tiles/9test.jpg", "url": "shop", "text":""
+      "name": "test10", "image": "landing/tiles/9test.jpg", "url": "shop", "text":"Beispiel Text 7"
     },
     {
-      "name": "test11", "image": "landing/tiles/10test.jpg", "url": "shop", "text":""
+      "name": "test11", "image": "landing/tiles/10test.jpg", "url": "shop", "text":"Beispiel Text 8"
     },
     {
-      "name": "test12", "image": "landing/tiles/11test.png", "url": "shop", "text":""
+      "name": "test12", "image": "landing/tiles/11test.png", "url": "shop", "text":"Beispiel Text 9"
     },
     {
-      "name": "test13", "image": "landing/tiles/12test.jpg", "url": "shop", "text":""
+      "name": "test13", "image": "landing/tiles/12test.jpg", "url": "shop", "text":"Beispiel Text 10"
     },
     {
-      "name": "test14", "image": "landing/tiles/13test.jpg", "url": "shop", "text":""
+      "name": "test14", "image": "landing/tiles/13test.jpg", "url": "shop", "text":"Beispiel Text 11"
     },
     {
-      "name": "test15", "image": "landing/tiles/14test.jpg", "url": "shop", "text":""
+      "name": "test15", "image": "landing/tiles/14test.jpg", "url": "shop", "text":"Beispiel Text 12"
     },
     {
-      "name": "test16", "image": "landing/tiles/15test.jpg", "url": "shop", "text":""
+      "name": "test16", "image": "landing/tiles/15test.jpg", "url": "shop", "text":"Beispiel Text 13"
     },
     {
-      "name": "test17", "image": "landing/tiles/16test.jpg", "url": "shop", "text":""
+      "name": "test17", "image": "landing/tiles/16test.jpg", "url": "shop", "text":"Beispiel Text 14"
     },
     {
-      "name": "test18", "image": "landing/tiles/17test.jpg", "url": "shop", "text":""
+      "name": "test18", "image": "landing/tiles/17test.jpg", "url": "shop", "text":"Beispiel Text 15"
     },
     {
-      "name": "test19", "image": "landing/tiles/18test.jpg", "url": "shop", "text":""
+      "name": "test19", "image": "landing/tiles/18test.jpg", "url": "shop", "text":"Beispiel Text 16"
     },
     {
-      "name": "test20", "image": "landing/tiles/19test.jpg", "url": "shop", "text":""
+      "name": "test20", "image": "landing/tiles/19test.jpg", "url": "shop", "text":"Beispiel Text 17"
     }
   ]
 }
