@@ -1,6 +1,13 @@
 <template>
   <div
-    class="grid grid-flow-row xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3"
+    class="
+      grid grid-flow-row
+      xl:grid-cols-4
+      lg:grid-cols-3
+      md:grid-cols-2
+      sm:grid-cols-1
+      gap-3
+    "
   >
     <SogLink
       v-for="tile in tiles"
@@ -10,7 +17,13 @@
     >
       <div class="absolute box-content h-32 w-4/12 p-4 border-4">
         <span
-          class="flex opacity-20 hover:opacity-100 transition-opacity justify-center"
+          class="
+            flex
+            opacity-20
+            hover:opacity-100
+            transition-opacity
+            justify-center
+          "
           >{{ tile.text }}</span
         >
       </div>
@@ -24,7 +37,7 @@
         sizes="sm:70vw md:100vw lg:100vw"
         width="1000px"
         height="1000px"
-        class="hover:opacity-20 transition-opacity"
+        class="tile-picture"
       />
     </SogLink>
   </div>
@@ -54,3 +67,9 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss">
+.tile-picture > img {
+  @apply hover:opacity-20 transition-opacity;
+}
+</style>
