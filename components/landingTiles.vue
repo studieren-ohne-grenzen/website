@@ -1,13 +1,6 @@
 <template>
   <div
-    class="
-      grid grid-flow-row
-      xl:grid-cols-4
-      lg:grid-cols-3
-      md:grid-cols-2
-      sm:grid-cols-1
-      gap-3
-    "
+    class="grid grid-flow-row xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3"
   >
     <SogLink
       v-for="tile in tiles"
@@ -15,6 +8,13 @@
       :dest="tile.url"
       :alt="tile.name"
     >
+      <div class="absolute box-content h-32 w-4/12 p-4 border-4">
+        <span
+          class="flex opacity-20 hover:opacity-100 transition-opacity justify-center"
+          >{{ tile.text }}</span
+        >
+      </div>
+
       <nuxt-picture
         :src="tile.image"
         :alt="tile.name"
