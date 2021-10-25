@@ -11,3 +11,7 @@ Mit unserer ehrenamtlichen Arbeit möchten wir junge Menschen dabei unterstütze
 Components must be addressed in kebab, not camel case – see [Wiki](https://content.nuxtjs.org/writing#vue-components)
 
 <test-component text="Hello World!">This is _inside_ the <b>TestComponent</b></test-component>
+
+## Timeline Component
+
+<timeline timeline-config="timeline"></timeline>
