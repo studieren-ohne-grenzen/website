@@ -1,108 +1,115 @@
 <template>
-  <div class="md:container md:mx-auto sm:w-full h-full">
+  <div
+    class="
+      p-1
+      w-full
+      md:overflow-x-scroll md:p-5
+      lg:overflow-x-scroll lg:p-5
+      whitespace-nowrap
+    "
+  >
     <div
+      v-for="(item, index) in timelines"
+      :key="index"
       class="
-        relative
-        wrap
         h-full
-        md:flex
-        lg:flex
-        md:items-center
-        lg:items-center
+        md:w-1/5 md:inline-block md:align-top
+        lg:w-1/5 lg:align-top lg:inline-block
       "
     >
-      <div
-        class="
-          absolute
-          border border-gray-700
-          h-full
-          left-2/4
-          lg:w-full lg:h-0 lg:left-0 lg:self-center
-          md:w-full md:h-0 md:left-0 md:self-center
-        "
-      ></div>
-      <div
-        v-for="(item, index) in timelines"
-        :key="index"
-        class="
-          mb-8
-          flex
-          justify-between
-          items-center
-          w-full
-          lg:h-full lg:mb-0
-          md:h-full md:mb-0
-        "
-        :class="
-          modulo(index) === 0
-            ? `md:flex-col lg:flex-col flex-row lg:w-1/${timelines.length} md:w-1/${timelines.length}`
-            : `md:flex-col-reverse lg:flex-col-reverse flex-row-reverse lg:w-1/${timelines.length} md:w-1/${timelines.length}`
-        "
-      >
-        <div class="order-1 md:h-28 lg:h-28 w-20"></div>
-        <div class="order-1 h-2 w-2"></div>
-        <div class="order-1 md:h-20 lg:h-20 w-10"></div>
+      <div class="h-40 relative md:h-full flex items-center">
         <div
           class="
-            z-40
-            flex
-            items-center
-            justify-center
-            order-1
-            border-2 border-gray-700
-            w-8
-            h-8
-            rounded-full
+            h-full
+            left-3.5
+            absolute
+            border border-gray-700
+            lg:w-full lg:h-0 lg:left-0 lg:self-center
+            md:w-full md:h-0 md:left-0 md:self-center
+          "
+        ></div>
+        <div
+          class="flex justify-between items-center w-full lg:h-full md:h-full"
+          :class="
+            modulo(index) === 0
+              ? `md:flex-col lg:flex-col flex-row}`
+              : `md:flex-col-reverse lg:flex-col-reverse`
           "
         >
+          <div class="hidden order-1 md:block md:h-20 lg:block lg:h-20"></div>
+          <div class="hidden order-1 md:block lg:block"></div>
           <div
             class="
-              z-50
+              hidden
               order-1
-              bg-gray-800
-              w-4
-              h-4
-              border-2 border
-              rounded-full
+              md:h-20 md:w-full md:block
+              lg:block lg:h-20 lg:w-full
             "
           ></div>
-        </div>
-        <div
-          class="order-1 w-10 md:h-20 md:w-0 border-2-2 border-gray-700 border"
-        ></div>
-        <div class="order-1 h-2 w-2 bg-gray-800 rounded-full"></div>
-        <div
-          :id="`text${index}`"
-          class="
-            order-1
-            md:h-28 md:w-full
-            lg:h-28 lg:w-full
-            w-20
-            px-6
-            py-4
-            md:p-2
-            cursor-pointer
-            collapse
-          "
-          @click="moreInfo(`${index}`)"
-        >
-          <div class="flex justify-center items-center p-1 text-2xl">
-            {{ item.date }}
-          </div>
-          <div class="flex justify-center items-center pt-0 pb-1">
-            {{ item.title }}
-          </div>
-          <div class="hidden" :class="`content${index}`">
-            <p
+          <div
+            class="
+              w-7
+              h-7
+              z-40
+              flex
+              order-1
+              rounded-full
+              items-center
+              justify-center
+              border-2 border-gray-700
+            "
+          >
+            <div
               class="
-                text-sm
-                leading-snug
-                tracking-wide
-                text-gray-900 text-opacity-100
+                w-3
+                h-3
+                z-50
+                order-1
+                bg-gray-800
+                rounded-full
+                border-2 border
               "
+            ></div>
+          </div>
+          <div
+            class="
+              w-2/7
+              order-1
+              md:h-20 md:w-0
+              border-2-2 border-gray-700 border
+            "
+          ></div>
+          <div class="h-1.5 w-1.5 order-1 bg-gray-800 rounded-full"></div>
+          <div
+            class="
+              py-4
+              w-3/5
+              md:p-2
+              order-1
+              relative
+              cursor-pointer
+              md:h-20 md:w-full
+              lg:h-20 lg:w-full
+            "
+            @click="moreInfo(`${index}`)"
+          >
+            <div class="p-1 text-2xl flex justify-center items-center">
+              {{ item.date }}
+            </div>
+            <div class="pt-0 pb-1 flex justify-center items-center">
+              {{ item.title }}
+            </div>
+            <div
+              class="absolute z-50 hidden bg-white"
+              :class="
+                modulo(index) === 0
+                  ? `content${index} md:bottom-full lg:bottom-full`
+                  : `content${index}`
+              "
+              style="white-space: break-spaces"
             >
-              {{ item.text }}
-            </p>
+              <p class="break-words text-sm">{{ item.text }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -136,27 +143,14 @@ export default {
     modulo(key) {
       return key % 2
     },
-    textHeight(textId) {
-      console.log(document.getElementById(textId).clientHeight)
-      // return document.getElementById(textId).clientHeight
-    },
     moreInfo(index) {
-      const element = document
-        .getElementById(`text${index}`)
-        .getElementsByClassName(`content${index}`)
-      console.log(element)
-      element[0].classList.remove('hidden')
+      const element = document.getElementsByClassName(`content${index}`)
+      if (element[0].classList.contains('hidden')) {
+        element[0].classList.remove('hidden')
+      } else {
+        element[0].classList.add('hidden')
+      }
     },
   },
 }
 </script>
-
-<style lang="postcss">
-.moreinfo {
-  display: true !important;
-}
-
-.timeline {
-  width: 100%;
-}
-</style>

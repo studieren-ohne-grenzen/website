@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   theme: {
     extend: {
       fontFamily: {
@@ -29,6 +30,12 @@ module.exports = {
       fill: {
         white: '#FFFFFF',
         none: 'none',
+      },
+      width: {
+        '2/7': '33%',
+      },
+      inset: {
+        '1/100': '5%',
       },
     },
   },
