@@ -3,9 +3,8 @@
     class="
       p-1
       w-full
-      md:overflow-x-scroll md:p-5
-      lg:overflow-x-scroll lg:p-5
-      whitespace-nowrap
+      md:whitespace-nowrap md:overflow-x-scroll md:p-5
+      lg:whitespace-nowrap lg:overflow-x-scroll lg:p-5
     "
   >
     <div
@@ -17,79 +16,82 @@
         lg:w-1/5 lg:align-top lg:inline-block
       "
     >
-      <div class="h-40 relative md:h-full flex items-center">
+      <div class="relative md:h-full md:flex md:items-center">
         <div
           class="
             h-full
             left-3.6
             absolute
-            border border-gray-700
+            bg-gray-500
+            border border-gray-500
             lg:w-full lg:h-0 lg:left-0 lg:self-center
             md:w-full md:h-0 md:left-0 md:self-center
           "
         ></div>
         <div
-          class="flex justify-between items-center w-full lg:h-full md:h-full"
+          class="
+            flex
+            items-start
+            w-full
+            lg:h-full
+            md:items-center md:justify-between md:h-full
+          "
           :class="
             modulo(index) === 0
-              ? `md:flex-col lg:flex-col flex-row}`
+              ? `md:flex-col lg:flex-col flex-row`
               : `md:flex-col-reverse lg:flex-col-reverse`
           "
         >
-          <div class="hidden order-1 md:block md:h-20 lg:block lg:h-20"></div>
-          <div class="hidden order-1 md:block lg:block h-2"></div>
+          <div class="hidden order-1 md:block md:h-43 lg:block lg:h-43"></div>
+
           <div
-            class="
-              hidden
-              order-1
-              md:h-20 md:w-full md:block
-              lg:block lg:h-20 lg:w-full
-            "
-          ></div>
-          <div
-            class="
-              w-7
-              h-7
-              z-40
-              flex
-              order-1
-              rounded-full
-              items-center
-              justify-center
-              border-2 border-gray-700
+            class="w-2/5 flex items-center order-1"
+            :class="
+              modulo(index) === 0
+                ? `md:flex-col lg:flex-col`
+                : `md:flex-col-reverse lg:flex-col-reverse`
             "
           >
             <div
               class="
-                w-3
-                h-3
-                z-50
+                w-7
+                h-7
+                z-40
+                flex
                 order-1
-                bg-gray-800
                 rounded-full
-                border-2 border
+                items-center
+                justify-center
+                border-2
               "
+              :class="
+                modulo(index) === 0 ? 'border-sogorange' : 'border-sogblue'
+              "
+            >
+              <div
+                class="w-3 h-3 z-50 order-1 bg-gray-800 rounded-full"
+                :class="modulo(index) === 0 ? 'bg-sogorange' : 'bg-sogblue'"
+              ></div>
+            </div>
+            <div
+              class="w-2/3 order-1 bg-gray-700 md:h-20 md:w-0 border-2-2 border"
+              :class="
+                modulo(index) === 0 ? 'border-sogorange' : 'border-sogblue'
+              "
+            ></div>
+            <div
+              class="h-1.5 w-1.5 order-1 rounded-full"
+              :class="modulo(index) === 0 ? 'bg-sogorange' : 'bg-sogblue'"
             ></div>
           </div>
           <div
             class="
-              w-2/7
-              order-1
-              md:h-20 md:w-0
-              border-2-2 border-gray-700 border
-            "
-          ></div>
-          <div class="h-1.5 w-1.5 order-1 bg-gray-800 rounded-full"></div>
-          <div
-            class="
               py-4
               w-3/5
-              md:p-2
               order-1
-              relative
               cursor-pointer
-              md:h-20 md:w-full
-              lg:h-20 lg:w-full
+              md:relative md:h-20 md:p-2 md:w-full
+              lg:relative lg:h-20 lg:p-2 lg:w-full
             "
             @click="moreInfo(`${index}`)"
           >
@@ -100,7 +102,7 @@
               {{ item.title }}
             </div>
             <div
-              class="absolute z-50 hidden bg-white"
+              class="px-2 md:absolute lg:absolute z-50 hidden bg-white"
               :class="
                 modulo(index) === 0
                   ? `content${index} md:bottom-full lg:bottom-full`
