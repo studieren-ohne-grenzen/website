@@ -37,7 +37,7 @@
           "
         >
           <div class="hidden order-1 md:block md:h-20 lg:block lg:h-20"></div>
-          <div class="hidden order-1 md:block lg:block"></div>
+          <div class="hidden order-1 md:block lg:block h-2"></div>
           <div
             class="
               hidden
