@@ -21,7 +21,7 @@
         <div
           class="
             h-full
-            left-3.5
+            left-3.6
             absolute
             border border-gray-700
             lg:w-full lg:h-0 lg:left-0 lg:self-center
