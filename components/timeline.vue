@@ -45,7 +45,7 @@
           <div class="hidden order-1 md:block md:h-43 lg:block lg:h-43"></div>
 
           <div
-            class="w-2/5 flex items-center order-1"
+            class="pt-6 md:pt-0 w-2/5 flex items-center order-1"
             :class="
               modulo(index) === 0
                 ? `md:flex-col lg:flex-col`
@@ -54,6 +54,7 @@
           >
             <div
               class="
+              bg-white
                 w-7
                 h-7
                 z-40
@@ -69,7 +70,7 @@
               "
             >
               <div
-                class="w-3 h-3 z-50 order-1 bg-gray-800 rounded-full"
+                class="w-3 h-3 z-50 order-1 rounded-full"
                 :class="modulo(index) === 0 ? 'bg-sogorange' : 'bg-sogblue'"
               ></div>
             </div>
