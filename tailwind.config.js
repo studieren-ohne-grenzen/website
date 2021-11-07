@@ -26,6 +26,10 @@ module.exports = {
       strokeWidth: {
         10: 10,
       },
+      maxWidth: {
+        '1/4': '25%',
+        '1/2': '50%',
+      },
       fill: {
         white: '#FFFFFF',
         none: 'none',
