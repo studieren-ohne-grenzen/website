@@ -75,9 +75,9 @@
               ></div>
             </div>
             <div
-              class="w-2/3 order-1 bg-gray-700 md:h-20 md:w-0 border-2-2 border"
+              class="w-2/3 order-1 md:h-20 md:w-0 border-2-2 border"
               :class="
-                modulo(index) === 0 ? 'border-sogorange' : 'border-sogblue'
+                modulo(index) === 0 ? 'border-sogorange bg-sogorange' : 'border-sogblue bg-sogblue'
               "
             ></div>
             <div
@@ -96,10 +96,10 @@
             "
             @click="moreInfo(`${index}`)"
           >
-            <div class="p-1 text-2xl flex justify-center items-center">
+            <div class="px-2 py-1 md:p1 text-2xl md:flex md:justify-center md:items-center">
               {{ item.date }}
             </div>
-            <div class="pt-0 pb-1 flex justify-center items-center">
+            <div class="px-2 pb-1 md:flex md:justify-center md:items-center">
               {{ item.title }}
             </div>
             <div
