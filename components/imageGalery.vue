@@ -10,9 +10,9 @@
     ></div>
 
     <!-- Modal -->
-    <div class="absolute">
+    <div class="absolute p-2">
       <div
-        class="p-4 absolute text-white cursor-pointer"
+        class="p-4 absolute text-white cursor-pointer right-0"
         @click="$emit('close')"
       >
         <svg

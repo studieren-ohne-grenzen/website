@@ -1,9 +1,15 @@
 <template>
   <div
-    class="inline-block"
-    :class="`md:float-${position} lg:float-${position} md:max-w-${fetchSize()}`"
+    :class="
+      position === 'center'
+        ? `md:my-0 md:mx-auto md:max-w-${fetchSize()} lg:my-0 lg:mx-auto lg:max-w-${fetchSize()}`
+        : `md:float-${position} lg:float-${position} md:max-w-${fetchSize()} lg:max-w-${fetchSize()}`
+    "
   >
-    <div class="p-4 absolute text-white cursor-pointer" @click="galery = true">
+    <div
+      class="p-4 absolute text-white cursor-pointer right-0"
+      @click="galery = true"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-7 w-7"
@@ -19,16 +25,34 @@
         />
       </svg>
     </div>
-    <SogLink :dest="`${imgUrl}`" :alt="`${imgAlt}`" class="p-2">
+    <SogLink
+      v-if="imgUrl !== '/'"
+      :dest="`${imgUrl}`"
+      :alt="`${imgAlt}`"
+      class="p-2"
+    >
       <nuxt-img
         :src="`${imgSrc}`"
         :alt="`${imgAlt}`"
         format="webp jpeg"
-        quality="100"
+        quality="80"
         loading="lazy"
+        sizes="sm:100vw md:100vw lg:100vw"
+        class="p-1"
       />
     </SogLink>
-    <div v-show="imgSub != null" class="py-3 font-semibold text-center text-xl">
+    <div v-else @click="galery = true" class="cursor-pointer">
+      <nuxt-img
+        :src="`${imgSrc}`"
+        :alt="`${imgAlt}`"
+        format="webp jpeg"
+        quality="80"
+        loading="lazy"
+        sizes="sm:100vw md:100vw lg:100vw"
+        class="p-1"
+      />
+    </div>
+    <div v-show="imgSub != null" class="py-1 pl-1 font-semibold text-left">
       {{ imgSub }}
     </div>
     <image-galery
