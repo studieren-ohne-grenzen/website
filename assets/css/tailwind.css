@@ -4,20 +4,19 @@
 
 @font-face {
   font-family: Overpass;
-  src: url("../fonts/overpass/Overpass-Black.ttf");
+  src: url('../fonts/overpass/Overpass-Black.ttf');
   font-weight: 900;
 }
 
-
 @font-face {
   font-family: Overpass;
-  src: url("../fonts/overpass/Overpass-BlackItalic.ttf");
+  src: url('../fonts/overpass/Overpass-BlackItalic.ttf');
   font-weight: 900;
   font-style: italic;
 }
 
-@font-face{
-  font-family: Overpass; 
+@font-face {
+  font-family: Overpass;
   src: url('../fonts/overpass/Overpass-Bold.ttf');
   font-weight: 700;
 }
@@ -82,7 +81,6 @@
   font-style: italic;
 }
 
-
 @font-face {
   font-family: Overpass;
   src: url('../fonts/overpass/Overpass-SemiBold.ttf');
@@ -107,4 +105,36 @@
   src: url('../fonts/overpass/Overpass-ThinItalic.ttf');
   font-weight: 100;
   font-style: italic;
+}
+
+/* CSS Global */
+
+.nuxt-content {
+  @apply text-gray-800 font-overpass;
+}
+
+.nuxt-content h1,
+.nuxt-content h2,
+.nuxt-content h3,
+.nuxt-content h4 {
+  @apply text-sogblue font-light mt-6 mb-3;
+}
+
+.nuxt-content h1 {
+  @apply text-4xl;
+}
+
+.nuxt-content h2 {
+  @apply text-2xl;
+}
+
+.nuxt-content h3 {
+  @apply text-xl;
+}
+
+.nuxt-content a {
+}
+
+.nuxt-content a:hover {
+  @apply text-sogblue;
 }
