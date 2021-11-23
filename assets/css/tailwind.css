@@ -1,111 +1,9 @@
+/* Font face */
+@import url('./overpass-fontface.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-Black.ttf');
-  font-weight: 900;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-BlackItalic.ttf');
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-Bold.ttf');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-BoldItalic.ttf');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-ExtraBold.ttf');
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-ExtraBoldItalic.ttf');
-  font-weight: 800;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-ExtraLight.ttf');
-  font-weight: 200;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-ExtraLightItalic.ttf');
-  font-weight: 200;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-Light.ttf');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-LightItalic.ttf');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-Regular.ttf');
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-Italic.ttf');
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-SemiBold.ttf');
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-SemiBoldItalic.ttf');
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-Thin.ttf');
-  font-weight: 100;
-}
-
-@font-face {
-  font-family: Overpass;
-  src: url('../fonts/overpass/Overpass-ThinItalic.ttf');
-  font-weight: 100;
-  font-style: italic;
-}
 
 /* CSS Global */
 
@@ -132,9 +30,85 @@
   @apply text-xl;
 }
 
+/* Links */
+
 .nuxt-content a {
+  @apply text-sogorange;
 }
 
 .nuxt-content a:hover {
   @apply text-sogblue;
+}
+
+/* Tables */
+
+.nuxt-content table {
+  @apply border-collapse w-full;
+}
+
+.nuxt-content table td,
+table th {
+  @apply p-2 border-solid border border-gray-700 text-left;
+}
+
+.nuxt-content table th {
+  @apply pt-3 pb-3 bg-sogblue text-white;
+}
+
+.nuxt-content table tr:nth-child(even) {
+  @apply bg-gray-200;
+}
+
+.nuxt-content table tr:hover {
+  @apply bg-gray-400;
+}
+
+/* Quote */
+
+.nuxt-content blockquote {
+  @apply left-10 ml-10 border-l-8 border-sogblue bg-gray-200;
+  quotes: '\201C''\201D''\2018''\2019';
+}
+
+.nuxt-content blockquote p {
+  @apply p-3;
+}
+
+/* Unordered Lists */
+.nuxt-content ul li {
+  @apply list-disc list-inside;
+}
+
+.nuxt-content ul li::marker {
+  @apply text-sogblue text-2xl;
+}
+
+.nuxt-content ul ul li {
+  @apply list-circle ml-8;
+}
+
+.nuxt-content ul ul ul li {
+  @apply list-square ml-8;
+}
+
+/* Ordered Lists */
+.nuxt-content ol {
+  list-style: none;
+  counter-reset: my-counter;
+}
+.nuxt-content ol li {
+  counter-increment: my-counter;
+}
+
+.nuxt-content ol li::before {
+  content: counter(my-counter) '.';
+  @apply w-8 inline-block text-left;
+}
+
+.nuxt-content ol ol li {
+  @apply ml-8;
+}
+
+.nuxt-content ol ol ol li {
+  @apply ml-8;
 }
