@@ -6,7 +6,6 @@
 @tailwind utilities;
 
 /* CSS Global */
-
 .nuxt-content {
   @apply text-gray-800 font-overpass;
 }
@@ -30,8 +29,12 @@
   @apply text-xl;
 }
 
-/* Links */
+/* Text */
+.nuxt-content p {
+  @apply max-w-prose;
+}
 
+/* Links */
 .nuxt-content a {
   @apply text-sogorange;
 }
@@ -41,7 +44,6 @@
 }
 
 /* Tables */
-
 .nuxt-content table {
   @apply border-collapse w-full;
 }
@@ -64,7 +66,6 @@ table th {
 }
 
 /* Quote */
-
 .nuxt-content blockquote {
   @apply left-10 ml-10 border-l-8 border-sogblue bg-gray-200;
   quotes: '\201C''\201D''\2018''\2019';
@@ -100,6 +101,10 @@ table th {
   counter-increment: my-counter;
 }
 
+.nuxt-content ol li:first-child::before {
+  @apply pl-1;
+}
+
 .nuxt-content ol li::before {
   content: counter(my-counter) '.';
   @apply w-8 inline-block text-left;
@@ -111,4 +116,14 @@ table th {
 
 .nuxt-content ol ol ol li {
   @apply ml-8;
+}
+
+/* Line */
+.nuxt-content hr {
+  @apply border border-sogblue;
+}
+
+/* Checkbox */
+.nuxt-content .task-list-item {
+  list-style: none;
 }
