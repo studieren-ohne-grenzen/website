@@ -22,7 +22,7 @@ props:
   - size: image size -> Options: small, medium, full (nuxt-img)
  -->
 
-<inline-picture img-src="/lokalgruppen/aachen.jpg" img-alt="Aachen"  img-sub="Aachen Students" position="right" size="medium"></inline-picture>
+<inline-picture img-src="/lokalgruppen/aachen.jpg" img-alt="Aachen"  img-sub="Aachen Students" position="center" size="medium"></inline-picture>
 
 Duis eu laborum velit esse non nostrud qui qui velit. Exercitation ad consectetur ea aliqua aliqua ex. Sit mollit non reprehenderit consequat cupidatat sunt velit laborum tempor proident cillum ullamco cillum.
 
