@@ -3,14 +3,40 @@ export default {
   target: 'static',
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
-  head: {
-    title: '',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  head() {
+    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
+    console.log(i18nHead)
+    return {
+      title: i18nHead.title,
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          hid: 'description',
+          name: 'description',
+          content: i18nHead.description,
+        },
+        { hid: 'og-type', property: 'og:type', content: 'website' },
+        { hid: 'og-title', property: 'og:title', content: i18nHead.title },
+        {
+          hid: 'og-desc',
+          property: 'og:description',
+          content: i18nHead.description,
+        },
+        {
+          hid: 'og-image',
+          property: 'og:image',
+          content: '/Logo.png',
+        },
+        {
+          hid: 'og-url',
+          property: 'og:url',
+          content: '',
+        },
+        ,
+      ],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    }
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
