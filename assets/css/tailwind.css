@@ -13,8 +13,16 @@
 .nuxt-content h1,
 .nuxt-content h2,
 .nuxt-content h3,
+.nuxt-content h4,
+.nuxt-content p {
+  @apply max-w-prose lg:ml-24 xl:ml-24 2xl:ml-40;
+}
+
+.nuxt-content h1,
+.nuxt-content h2,
+.nuxt-content h3,
 .nuxt-content h4 {
-  @apply text-sogblue font-light mt-6 mb-3;
+  @apply text-sogblue-dark font-light mt-6 mb-3;
 }
 
 .nuxt-content h1 {
@@ -29,18 +37,13 @@
   @apply text-xl;
 }
 
-/* Text */
-.nuxt-content p {
-  @apply max-w-prose;
-}
-
 /* Links */
 .nuxt-content a {
   @apply text-sogorange;
 }
 
 .nuxt-content a:hover {
-  @apply text-sogblue;
+  @apply text-sogblue-dark;
 }
 
 /* Tables */
@@ -50,29 +53,29 @@
 
 .nuxt-content table td,
 table th {
-  @apply p-2 border-solid border border-gray-700 text-left;
+  @apply p-2 border-solid border-4 border-white text-left;
 }
 
 .nuxt-content table th {
-  @apply pt-3 pb-3 bg-sogblue text-white;
+  @apply pt-3 pb-3 bg-sogblue-dark text-white;
 }
 
 .nuxt-content table tr:nth-child(even) {
-  @apply bg-gray-200;
+  @apply bg-gray-100;
 }
 
 .nuxt-content table tr:hover {
-  @apply bg-gray-400;
+  @apply bg-gray-200;
 }
 
 /* Quote */
 .nuxt-content blockquote {
-  @apply left-10 ml-10 border-l-8 border-sogblue bg-gray-200;
+  @apply left-10 ml-10 border-l-8 border-sogblue-dark bg-gray-100;
   quotes: '\201C''\201D''\2018''\2019';
 }
 
 .nuxt-content blockquote p {
-  @apply p-3;
+  @apply p-3 ml-0;
 }
 
 /* Unordered Lists */
@@ -81,11 +84,11 @@ table th {
 }
 
 .nuxt-content ul li::marker {
-  @apply text-sogblue text-2xl;
+  @apply text-sogblue-dark text-2xl;
 }
 
 .nuxt-content ul ul li {
-  @apply list-circle ml-8;
+  @apply list-circle ml-8 leading-4;
 }
 
 .nuxt-content ul ul ul li {
@@ -99,6 +102,7 @@ table th {
 }
 .nuxt-content ol li {
   counter-increment: my-counter;
+  @apply leading-8;
 }
 
 .nuxt-content ol li:first-child::before {
@@ -111,7 +115,7 @@ table th {
 }
 
 .nuxt-content ol ol li {
-  @apply ml-8;
+  @apply ml-8 leading-6;
 }
 
 .nuxt-content ol ol ol li {
@@ -120,7 +124,7 @@ table th {
 
 /* Line */
 .nuxt-content hr {
-  @apply border border-sogblue;
+  @apply border border-sogblue-dark;
 }
 
 /* Checkbox */
