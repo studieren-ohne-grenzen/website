@@ -1,30 +1,41 @@
 <template>
-  <div class="w-auto h-full">
+  <div class="flex items-center h-full">
     <!-- Protection -->
     <div
-      v-if="confirm"
-      class="w-1/2 p-4 my-auto mx-auto border border-gray-400"
+      v-if="!confirm"
+      class="
+        w-full
+        md:w-1/2
+        lg:w-1/2
+        p-4
+        my-auto
+        mx-auto
+        border border-gray-400
+      "
     >
-      <p class="pb-4">
+      <div class="pb-4">
         {{ message }}
-      </p>
-      <input
-        type="button"
-        class="button"
-        value="Zustimmen"
-        @click="confirm = !confirm"
-      />
+      </div>
+      <div class="w-full flex items-center justify-center">
+        <input
+          type="button"
+          class="button"
+          :value="`${$t('accept')}`"
+          @click="confirm = !confirm"
+        />
+      </div>
     </div>
 
     <!-- IFrame -->
     <iframe
-      v-if="!confirm"
+      v-if="confirm"
       ref="myIframe"
       :src="`${url}`"
       :width="`${width}`"
       :height="`${height}`"
       title="Iframe Example"
-      class="my-auto mx-auto border border-gray-400"
+      :scrolling="scrollBar === 'yes' ? '' : 'no'"
+      class="border border-gray-400 my-0 mx-auto"
     ></iframe>
   </div>
 </template>
@@ -48,17 +59,18 @@ export default {
       type: String,
       default: '',
     },
+    scrollBar: {
+      type: String,
+      default: 'yes',
+    },
   },
   data: () => ({
     confirm: false,
   }),
-  beforeMount() {
-    this.confirm = true
-  },
 }
 </script>
 <style lang="postcss">
 .nuxt-content .button {
-  @apply bg-sogblue border-0 text-white px-4 py-2 text-center cursor-pointer inline-block;
+  @apply bg-sogblue-dark border-0 text-white px-4 py-2 text-center cursor-pointer inline-block;
 }
 </style>
