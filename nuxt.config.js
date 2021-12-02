@@ -6,7 +6,11 @@ export default {
   head() {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     return {
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+      },
       title: i18nHead.title,
+      description: i18nHead.description,
       meta: [
         { charset: 'utf-8' },
         {
@@ -17,27 +21,6 @@ export default {
           hid: 'description',
           name: 'description',
           content: i18nHead.description,
-        },
-        { hid: 'og-type', property: 'og:type', content: 'website' },
-        {
-          hid: 'og-title',
-          property: 'og:title',
-          content: i18nHead.title,
-        },
-        {
-          hid: 'og-desc',
-          property: 'og:description',
-          content: i18nHead.description,
-        },
-        {
-          hid: 'og-image',
-          property: 'og:image',
-          content: '/Logo.png',
-        },
-        {
-          hid: 'og-url',
-          property: 'og:url',
-          content: '',
         },
         ,
       ],
@@ -63,6 +46,10 @@ export default {
     // https://image.nuxtjs.org/
     '@nuxt/image',
   ],
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+  },
 
   i18n: {
     baseUrl: 'http://localhost:3000/',
