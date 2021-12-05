@@ -2,7 +2,7 @@
   <div class="flex items-center h-full">
     <!-- Protection -->
     <div
-      v-if="!confirm"
+      v-if="!contentAccepted"
       class="
         w-full
         md:w-1/2
@@ -21,14 +21,14 @@
           type="button"
           class="button"
           :value="`${$t('accept')}`"
-          @click="confirm = !confirm"
+          @click="accept"
         />
       </div>
     </div>
 
     <!-- IFrame -->
     <iframe
-      v-if="confirm"
+      v-if="contentAccepted"
       ref="myIframe"
       :src="`${url}`"
       :width="`${width}`"
@@ -40,6 +40,7 @@
   </div>
 </template>
 <script>
+import { mapMutations, mapState } from 'vuex'
 export default {
   name: 'ExternalContent',
   props: {
@@ -64,9 +65,12 @@ export default {
       default: 'yes',
     },
   },
-  data: () => ({
-    confirm: false,
-  }),
+  computed: {
+    ...mapState(['contentAccepted']),
+  },
+  methods: {
+    ...mapMutations(['accept']),
+  },
 }
 </script>
 <style lang="postcss">
