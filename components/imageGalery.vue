@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="open"
-    class="fixed z-10 inset-0 overflow-y-auto flex justify-center items-center"
+    class="fixed z-50 inset-0 flex justify-center items-center"
   >
     <!--Overlay  -->
     <div
@@ -33,7 +33,7 @@
       <nuxt-picture
         :src="`${currentImg.src}`"
         :alt="`${currentImg.alt}`"
-        format="webp jpeg"
+        format="webp"
         quality="100"
         loading="lazy"
       />

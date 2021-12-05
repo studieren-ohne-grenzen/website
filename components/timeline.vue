@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative">
     <div
       ref="left"
       class="
@@ -252,7 +252,6 @@ export default {
       }
     },
     showArrows() {
-      console.log('val')
       this.isFarRight =
         this.$refs.timeline.scrollWidth ===
         this.$refs.timeline.scrollLeft + this.$refs.timeline.clientWidth

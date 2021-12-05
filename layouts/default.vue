@@ -9,7 +9,6 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head() {
     if (this.$nuxtI18nHead === null) return
-    console.log(this.$nuxtI18nHead)
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     return {
       htmlAttrs: {
