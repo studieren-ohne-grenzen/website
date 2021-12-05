@@ -67,6 +67,8 @@
           <a
             :href="icon.url"
             target="_blank"
+            :aria-label="icon.type"
+            rel="noopener"
             class="
               pl-3
               pr-1

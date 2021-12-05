@@ -2,6 +2,8 @@
 title: Mitmachen
 ---
 
+# Mitmachen
+
 <sog-map places-config="mapDE"></sog-map>
 
 ## Bundesweit

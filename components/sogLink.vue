@@ -11,6 +11,7 @@
       v-else-if="dest !== '' && external"
       :href="dest"
       :alt="alt"
+      rel="noopener"
       target="_blank"
     >
       <slot></slot>

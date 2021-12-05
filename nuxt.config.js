@@ -52,7 +52,7 @@ export default {
   },
 
   i18n: {
-    baseUrl: 'http://localhost:3000/',
+    baseUrl: process.env.BASE_URL,
     locales: [
       {
         code: 'de',
