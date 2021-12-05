@@ -29,6 +29,7 @@ module.exports = {
       maxWidth: {
         '1/4': '25%',
         '1/2': '50%',
+        '3/4': '80%',
       },
       fill: {
         white: '#FFFFFF',
@@ -38,8 +39,6 @@ module.exports = {
         circle: 'circle',
         square: 'square',
       },
-      maxWidth: {
-        '3/4': '80%',
       width: {
         '2/7': '33%',
       },

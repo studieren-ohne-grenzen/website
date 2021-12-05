@@ -7,7 +7,7 @@
 
 /* CSS Global */
 .nuxt-content {
-  @apply text-gray-800 font-overpass;
+  @apply text-gray-800 font-overpass lg:ml-24 xl:ml-24 2xl:ml-40;
 }
 
 .nuxt-content h1,
@@ -15,8 +15,9 @@
 .nuxt-content h3,
 .nuxt-content h4,
 .nuxt-content p {
-  @apply max-w-prose lg:ml-24 xl:ml-24 2xl:ml-40;
+  @apply max-w-prose;
 }
+/* lg:ml-24 xl:ml-24 2xl:ml-40 */
 
 .nuxt-content h1,
 .nuxt-content h2,

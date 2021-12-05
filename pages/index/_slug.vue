@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'slug_',
   async asyncData({ $content, params, app, error }) {
     try {
       const slug = params.slug || 'landing_page'

@@ -1,11 +1,14 @@
 <template>
   <div
     class="relative"
-    :class="
-      position === 'center'
-        ? `md:my-0 md:mx-auto md:max-w-${fetchSize()} lg:my-0 lg:mx-auto lg:max-w-${fetchSize()}`
-        : `md:float-${position} lg:float-${position} md:max-w-${fetchSize()} lg:max-w-${fetchSize()}`
-    "
+    :class="{
+      'md:my-0 md:mx-auto': position == 'center',
+      'md:float-left lg:float-left': position == 'left',
+      'md:float-right lg:float-right': position == 'right',
+      'md:max-w-1/4 lg:my-0 lg:mx-auto lg:max-w-1/4': size == 'small',
+      'md:max-w-1/2 lg:my-0 lg:mx-auto lg:max-w-1/2': size == 'medium',
+      'md:max-w-full lg:my-0 lg:mx-auto lg:max-w-full': size == 'full',
+    }"
   >
     <div>
       <div
@@ -89,13 +92,6 @@ export default {
   methods: {
     closeGalery() {
       this.galery = false
-    },
-    fetchSize() {
-      return this.size === 'small'
-        ? '1/4'
-        : this.size === 'medium'
-        ? '1/2'
-        : 'full'
     },
   },
 }

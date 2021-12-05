@@ -4,7 +4,6 @@
       ref="left"
       class="
         absolute
-        left-0
         z-30
         cursor-pointer
         p-2
@@ -14,6 +13,7 @@
         lg:block
       "
       @click="horizontalScroll('left')"
+      v-if="!isFarLeft"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +44,7 @@
         lg:block
       "
       @click="horizontalScroll('right')"
+      v-if="!isFarRight"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -69,6 +70,7 @@
         lg:whitespace-nowrap lg:overflow-x-scroll lg:p-0
       "
       style="scroll-behavior: smooth"
+      @scroll="showArrows"
     >
       <div
         v-for="(item, index) in timelines"
@@ -159,8 +161,7 @@
                 md:hover:text-sogblue-dark md:relative md:h-20 md:p-2 md:w-full
                 lg:hover:text-sogblue-dark lg:relative lg:h-20 lg:p-2 lg:w-full
               "
-              @mouseover="moreInfo(`${index}`)"
-              @mouseout="moreInfo(`${index}`)"
+              @click="moreInfo(`${index}`)"
             >
               <div
                 class="
@@ -193,7 +194,7 @@
                 "
                 style="white-space: break-spaces"
               >
-                <p class="break-words text-sm">{{ item.text }}</p>
+                <p class="break-words text-sm m-0">{{ item.text }}</p>
               </div>
             </div>
           </div>
@@ -216,6 +217,8 @@ export default {
     return {
       timelines: [],
       timelineWidth: 0,
+      isFarLeft: true,
+      isFarRight: false,
     }
   },
   async fetch() {
@@ -247,6 +250,14 @@ export default {
       } else {
         this.$refs.timeline.scrollLeft -= this.timelineWidth
       }
+    },
+    showArrows() {
+      console.log('val')
+      this.isFarRight =
+        this.$refs.timeline.scrollWidth ===
+        this.$refs.timeline.scrollLeft + this.$refs.timeline.clientWidth
+
+      this.isFarLeft = this.$refs.timeline.scrollLeft === 0
     },
   },
 }

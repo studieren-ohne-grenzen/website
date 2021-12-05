@@ -28,11 +28,8 @@ props:
   - size: image size -> Options: small, medium, full (nuxt-img)
  -->
 
-<inline-picture img-src="/lokalgruppen/aachen.jpg" img-alt="Aachen"  img-sub="Aachen Students" position="center" size="medium"></inline-picture>
-
-Duis eu laborum velit esse non nostrud qui qui velit. Exercitation ad consectetur ea aliqua aliqua ex. Sit mollit non reprehenderit consequat cupidatat sunt velit laborum tempor proident cillum ullamco cillum.
-
-Exercitation deserunt culpa tempor culpa. Velit exercitation culpa officia tempor adipisicing sunt. Ipsum voluptate duis proident dolor et mollit consectetur. Amet occaecat ut ad ipsum eu proident aliqua exercitation adipisicing do aliquip tempor eu velit. Dolore duis pariatur nisi officia laborum aute incididunt. Nisi ad ut est magna ipsum culpa minim ullamco sunt in anim. Reprehenderit excepteur aliqua labore velit voluptate exercitation ut aliquip proident anim ut occaecat.
+<inline-picture img-src="/lokalgruppen/aachen.jpg" img-alt="Aachen"  img-sub="Aachen Students" position="right" size="small"></inline-picture>
+Duis eu laborum velit esse non nostrud qui qui velit. Exercitation ad consectetur ea aliqua aliqua ex. Sit mollit non reprehenderit consequat cupidatat sunt velit laborum tempor proident cillum ullamco cillum. Exercitation deserunt culpa tempor culpa. Velit exercitation culpa officia tempor adipisicing sunt. Ipsum voluptate duis proident dolor et mollit consectetur. Amet occaecat ut ad ipsum eu proident aliqua exercitation adipisicing do aliquip tempor eu velit. Dolore duis pariatur nisi officia laborum aute incididunt. Nisi ad ut est magna ipsum culpa minim ullamco sunt in anim. Reprehenderit excepteur aliqua labore velit voluptate exercitation ut aliquip proident anim ut occaecat.
 <a href="needletothepoint.shop">testing of link</a>
 
 <table>
