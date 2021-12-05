@@ -50,7 +50,7 @@
         <nuxt-img
           :src="`${imgSrc}`"
           :alt="`${imgAlt}`"
-          format="webp jpeg"
+          format="webp"
           quality="80"
           loading="lazy"
           sizes="sm:100vw md:100vw lg:100vw"
