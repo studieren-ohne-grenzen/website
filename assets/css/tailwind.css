@@ -1,0 +1,133 @@
+/* Font face */
+@import url('./overpass-fontface.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Global */
+.nuxt-content {
+  @apply text-gray-800 font-overpass;
+}
+
+.nuxt-content h1,
+.nuxt-content h2,
+.nuxt-content h3,
+.nuxt-content h4,
+.nuxt-content p {
+  @apply max-w-prose lg:ml-24 xl:ml-24 2xl:ml-40;
+}
+
+.nuxt-content h1,
+.nuxt-content h2,
+.nuxt-content h3,
+.nuxt-content h4 {
+  @apply text-sogblue-dark font-light mt-6 mb-3;
+}
+
+.nuxt-content h1 {
+  @apply text-4xl;
+}
+
+.nuxt-content h2 {
+  @apply text-2xl;
+}
+
+.nuxt-content h3 {
+  @apply text-xl;
+}
+
+/* Links */
+.nuxt-content a {
+  @apply text-sogorange;
+}
+
+.nuxt-content a:hover {
+  @apply text-sogblue-dark;
+}
+
+/* Tables */
+.nuxt-content table {
+  @apply border-collapse w-full;
+}
+
+.nuxt-content table td,
+table th {
+  @apply p-2 border-solid border-4 border-white text-left;
+}
+
+.nuxt-content table th {
+  @apply pt-3 pb-3 bg-sogblue-dark text-white;
+}
+
+.nuxt-content table tr:nth-child(even) {
+  @apply bg-gray-100;
+}
+
+.nuxt-content table tr:hover {
+  @apply bg-gray-200;
+}
+
+/* Quote */
+.nuxt-content blockquote {
+  @apply left-10 ml-10 border-l-8 border-sogblue-dark bg-gray-100;
+  quotes: '\201C''\201D''\2018''\2019';
+}
+
+.nuxt-content blockquote p {
+  @apply p-3 ml-0;
+}
+
+/* Unordered Lists */
+.nuxt-content ul li {
+  @apply list-disc list-inside;
+}
+
+.nuxt-content ul li::marker {
+  @apply text-sogblue-dark text-2xl;
+}
+
+.nuxt-content ul ul li {
+  @apply list-circle ml-8 leading-4;
+}
+
+.nuxt-content ul ul ul li {
+  @apply list-square ml-8;
+}
+
+/* Ordered Lists */
+.nuxt-content ol {
+  list-style: none;
+  counter-reset: my-counter;
+}
+.nuxt-content ol li {
+  counter-increment: my-counter;
+  @apply leading-8;
+}
+
+.nuxt-content ol li:first-child::before {
+  @apply pl-1;
+}
+
+.nuxt-content ol li::before {
+  content: counter(my-counter) '.';
+  @apply w-8 inline-block text-left;
+}
+
+.nuxt-content ol ol li {
+  @apply ml-8 leading-6;
+}
+
+.nuxt-content ol ol ol li {
+  @apply ml-8;
+}
+
+/* Line */
+.nuxt-content hr {
+  @apply border border-sogblue-dark;
+}
+
+/* Checkbox */
+.nuxt-content .task-list-item {
+  list-style: none;
+}
