@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   theme: {
     mode: 'JIT',
     extend: {
@@ -39,6 +40,15 @@ module.exports = {
       },
       maxWidth: {
         '3/4': '80%',
+      width: {
+        '2/7': '33%',
+      },
+      height: {
+        43: '10.5rem',
+      },
+      inset: {
+        '1/100': '5%',
+        3.6: '0.8rem',
       },
     },
   },

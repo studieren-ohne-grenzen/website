@@ -132,3 +132,7 @@ Exercitation deserunt culpa tempor culpa. Velit exercitation culpa officia tempo
 <br>
 
 ---
+
+## Timeline Component
+
+<timeline timeline-config="timeline"></timeline>
