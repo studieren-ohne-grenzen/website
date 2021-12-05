@@ -2,32 +2,6 @@ export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
-  // Global page headers (https://go.nuxtjs.dev/config-head)
-  head() {
-    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
-    return {
-      htmlAttrs: {
-        lang: this.$i18n.locale,
-      },
-      title: i18nHead.title,
-      description: i18nHead.description,
-      meta: [
-        { charset: 'utf-8' },
-        {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1',
-        },
-        {
-          hid: 'description',
-          name: 'description',
-          content: i18nHead.description,
-        },
-        ,
-      ],
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    }
-  },
-
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [],
 
@@ -41,9 +15,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     //'@nuxtjs/eslint-module',
-    // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    // https://image.nuxtjs.org/
     '@nuxt/image',
   ],
 
@@ -93,11 +65,7 @@ export default {
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/content
-    '@nuxt/content',
-    '@nuxtjs/i18n',
-  ],
+  modules: ['@nuxtjs/i18n', '@nuxt/content'],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
