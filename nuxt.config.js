@@ -24,7 +24,7 @@ export default {
   },
 
   i18n: {
-    baseUrl: process.env.BASE_URL,
+    baseUrl: 'https://sog-kf7uj.ondigitalocean.app',
     locales: [
       {
         code: 'de',

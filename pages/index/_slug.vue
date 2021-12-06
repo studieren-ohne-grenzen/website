@@ -61,8 +61,49 @@ export default {
           }`,
         },
         {
+          hid: 'og-image-width',
+          property: 'og:image:width',
+          content: '1200',
+        },
+        {
+          hid: 'og-image-height',
+          property: 'og:image:height',
+          content: '630',
+        },
+        {
           hid: 'og-url',
           property: 'og:url',
+          content: `${process.env.baseUrl}${this.$route.path}`,
+        },
+        {
+          hid: 'twitter-card',
+          name: 'twitter:card',
+          content: 'summary',
+        },
+        {
+          hid: 'twitter-title',
+          name: 'twitter:title',
+          content: this.page.title
+            ? `${this.page.title} – ${this.$t('sog')}`
+            : this.$t('sog'),
+        },
+        {
+          hid: 'twitter-image',
+          name: 'twitter:image',
+          content: `${process.env.baseUrl}${
+            this.page.image ? this.page.image : this.seo.image
+          }`,
+        },
+        {
+          hid: 'twitter-description',
+          name: 'twitter:description',
+          content: `${
+            this.page.description ? this.page.description : this.seo.description
+          }`,
+        },
+        {
+          hid: 'twitter-url',
+          name: 'twitter:url',
           content: `${process.env.baseUrl}${this.$route.path}`,
         },
       ],
