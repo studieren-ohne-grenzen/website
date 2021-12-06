@@ -46,7 +46,9 @@ export default {
         {
           hid: 'og-image',
           property: 'og:image',
-          content: `${process.env.baseUrl}${this.page.image}`,
+          content: `${process.env.baseUrl}${
+            this.page.image ? this.page.image : '/Logo.png'
+          }`,
         },
         {
           hid: 'og-url',
