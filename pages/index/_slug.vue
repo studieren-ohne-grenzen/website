@@ -19,6 +19,14 @@ export default {
       })
     }
   },
+  async fetch() {
+    this.seo = await this.$content(`${this.$i18n.locale}`, 'seo')
+      .fetch()
+      .then((jsonFile) => jsonFile)
+  },
+  data: () => ({
+    seo: {},
+  }),
   head() {
     return {
       title: this.page.title
@@ -41,13 +49,15 @@ export default {
         {
           hid: 'og-desc',
           property: 'og:description',
-          content: this.page.description,
+          content: `${
+            this.page.description ? this.page.description : this.seo.description
+          }`,
         },
         {
           hid: 'og-image',
           property: 'og:image',
           content: `${process.env.baseUrl}${
-            this.page.image ? this.page.image : '/Logo.png'
+            this.page.image ? this.page.image : this.seo.image
           }`,
         },
         {
