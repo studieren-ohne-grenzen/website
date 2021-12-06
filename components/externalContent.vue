@@ -73,8 +73,3 @@ export default {
   },
 }
 </script>
-<style lang="postcss">
-.nuxt-content .button {
-  @apply bg-sogblue-dark border-0 text-white px-4 py-2 text-center cursor-pointer inline-block;
-}
-</style>

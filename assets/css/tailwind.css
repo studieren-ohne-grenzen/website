@@ -7,7 +7,16 @@
 
 /* CSS Global */
 .nuxt-content {
-  @apply text-gray-800 font-overpass lg:mx-24  xl:mx-24 2xl:mx-40;
+  @apply text-gray-800 font-overpass;
+}
+
+/*  Text */
+.nuxt-content > h1,
+.nuxt-content > h2,
+.nuxt-content > h3,
+.nuxt-content > h4,
+.nuxt-content > p {
+  @apply lg:mx-24  xl:mx-24 2xl:mx-40;
 }
 
 /*  Image */
@@ -44,7 +53,7 @@
 
 /* Links */
 .nuxt-content a {
-  @apply text-sogorange;
+  @apply text-sogorange transition-colors duration-200;
 }
 
 .nuxt-content a:hover {
@@ -135,4 +144,9 @@ table th {
 /* Checkbox */
 .nuxt-content .task-list-item {
   list-style: none;
+}
+
+/* Button */
+.nuxt-content .button {
+  @apply bg-sogblue-dark border-0 text-white px-4 py-2 text-center cursor-pointer inline-block transition duration-200 hover:bg-sogblue-darker;
 }

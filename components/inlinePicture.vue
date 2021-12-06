@@ -12,7 +12,18 @@
   >
     <div>
       <div
-        class="p-4 absolute text-white cursor-pointer right-0"
+        class="
+          p-4
+          absolute
+          text-white
+          cursor-pointer
+          right-0
+          transition
+          duration-200
+          ease-in-out
+          transform
+          hover:scale-125
+        "
         @click="galery = true"
       >
         <svg

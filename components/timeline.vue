@@ -3,14 +3,19 @@
     <div
       ref="left"
       class="
-        absolute
-        z-30
-        cursor-pointer
         p-2
-        text-sogblue-dark
+        z-30
         hidden
+        absolute
         md:block
         lg:block
+        transition
+        duration-200
+        ease-in-out
+        transform
+        hover:scale-125
+        cursor-pointer
+        text-sogblue-dark
       "
       @click="horizontalScroll('left')"
       v-if="!isFarLeft"
@@ -42,6 +47,11 @@
         hidden
         md:block
         lg:block
+        transition
+        duration-200
+        ease-in-out
+        transform
+        hover:scale-125
       "
       @click="horizontalScroll('right')"
       v-if="!isFarRight"
@@ -136,7 +146,9 @@
               >
                 <div
                   class="w-3 h-3 z-10 order-1 rounded-full"
-                  :class="modulo(index) === 0 ? 'bg-sogorange' : 'bg-sogblue'"
+                  :class="
+                    modulo(index) === 0 ? 'bg-sogorange' : 'bg-sogblue-dark'
+                  "
                 ></div>
               </div>
               <div
@@ -158,6 +170,8 @@
                 w-3/5
                 order-1
                 cursor-pointer
+                transition-colors
+                duration-200
                 md:hover:text-sogblue-dark md:relative md:h-20 md:p-2 md:w-full
                 lg:hover:text-sogblue-dark lg:relative lg:h-20 lg:p-2 lg:w-full
               "
@@ -180,12 +194,14 @@
               <div
                 class="
                   px-2
-                  md:absolute
-                  lg:absolute
                   z-20
                   hidden
                   bg-white
+                  md:absolute
+                  lg:absolute
                   text-gray-800
+                  transition-all
+                  duration-200
                 "
                 :class="
                   modulo(index) === 0
