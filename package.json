@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@nuxt/content": "^1.9.0",
-    "nuxt": "^2.14.6",
-    "nuxt-i18n": "^6.17.0"
+    "@nuxtjs/i18n": "^7.2.0",
+    "nuxt": "^2.14.6"
   },
   "devDependencies": {
     "@nuxt/image": "^0.6",

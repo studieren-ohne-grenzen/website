@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col min-h-screen">
     <Menu :items="menu.items" class="hidden lg:block" />
-    <Mobile-Menu :items="menu.items" class="block lg:hidden" />
+    <MobileMenu :items="menu.items" class="block lg:hidden" />
     <nuxt-child class="flex-grow"></nuxt-child>
     <Footer
       :items="footer.items"
@@ -17,6 +17,7 @@ import MobileMenu from '~/components/mobileMenu'
 import Footer from '~/components/footer'
 
 export default {
+  name: 'index',
   components: {
     Menu,
     MobileMenu,

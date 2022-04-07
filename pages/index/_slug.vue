@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'slug_',
   async asyncData({ $content, params, app, error }) {
     try {
       const slug = params.slug || 'landing_page'
@@ -18,6 +19,14 @@ export default {
       })
     }
   },
+  async fetch() {
+    this.seo = await this.$content(`${this.$i18n.locale}`, 'seo')
+      .fetch()
+      .then((jsonFile) => jsonFile)
+  },
+  data: () => ({
+    seo: {},
+  }),
   head() {
     return {
       title: this.page.title
@@ -29,31 +38,76 @@ export default {
           name: 'description',
           content: this.page.description,
         },
+        { hid: 'og-type', property: 'og:type', content: 'website' },
+        {
+          hid: 'og-title',
+          property: 'og:title',
+          content: this.page.title
+            ? `${this.page.title} – ${this.$t('sog')}`
+            : this.$t('sog'),
+        },
+        {
+          hid: 'og-desc',
+          property: 'og:description',
+          content: `${
+            this.page.description ? this.page.description : this.seo.description
+          }`,
+        },
+        {
+          hid: 'og-image',
+          property: 'og:image',
+          content: `${process.env.baseUrl}${
+            this.page.image ? this.page.image : this.seo.image
+          }`,
+        },
+        {
+          hid: 'og-image-width',
+          property: 'og:image:width',
+          content: '1200',
+        },
+        {
+          hid: 'og-image-height',
+          property: 'og:image:height',
+          content: '630',
+        },
+        {
+          hid: 'og-url',
+          property: 'og:url',
+          content: `${process.env.baseUrl}${this.$route.path}`,
+        },
+        {
+          hid: 'twitter-card',
+          name: 'twitter:card',
+          content: 'summary',
+        },
+        {
+          hid: 'twitter-title',
+          name: 'twitter:title',
+          content: this.page.title
+            ? `${this.page.title} – ${this.$t('sog')}`
+            : this.$t('sog'),
+        },
+        {
+          hid: 'twitter-image',
+          name: 'twitter:image',
+          content: `${process.env.baseUrl}${
+            this.page.image ? this.page.image : this.seo.image
+          }`,
+        },
+        {
+          hid: 'twitter-description',
+          name: 'twitter:description',
+          content: `${
+            this.page.description ? this.page.description : this.seo.description
+          }`,
+        },
+        {
+          hid: 'twitter-url',
+          name: 'twitter:url',
+          content: `${process.env.baseUrl}${this.$route.path}`,
+        },
       ],
     }
   },
 }
 </script>
-
-<style lang="postcss">
-.nuxt-content {
-  @apply text-gray-800 font-overpass;
-}
-
-.nuxt-content h1,
-.nuxt-content h2,
-.nuxt-content h3,
-.nuxt-content h4 {
-  @apply text-sogblue font-light mt-6 mb-3;
-}
-
-.nuxt-content h1 {
-  @apply text-4xl;
-}
-.nuxt-content h2 {
-  @apply text-2xl;
-}
-.nuxt-content h3 {
-  @apply text-xl;
-}
-</style>

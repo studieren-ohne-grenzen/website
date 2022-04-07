@@ -95,7 +95,7 @@
         </ul>
       </li>
       <li class="flex-none flex">
-        <button
+        <div
           class="pb-2 pl-2"
           @mouseenter="selectLanguage = true"
           @mouseleave="selectLanguage = false"
@@ -107,7 +107,7 @@
           >
             <use :href="localePath('/sprites/navSymbols.svg#language')" />
           </svg>
-        </button>
+        </div>
         <ul
           class="absolute top-full right-0 z-50 px-4 py-2 rounded bg-white"
           :class="selectLanguage ? 'block' : 'hidden'"

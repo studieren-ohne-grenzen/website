@@ -39,6 +39,7 @@
       <object
         data="/germany.svg"
         class="block opacity-20 z-0"
+        alt="Gemany MAP"
         @load="mapLoaded = true"
       />
     </div>
@@ -48,8 +49,7 @@
         :key="selectedPlace.name"
         class="
           min-w-full
-          md:min-w-0
-          md:w-1/2
+          md:min-w-0 md:w-1/2
           xl:w-3/5
           mt-2
           -mx-8
@@ -62,7 +62,10 @@
           {{ selectedPlace.name }}
         </h2>
         <div v-if="selectedPlace.picture" class="my-4">
-          <nuxt-picture :src="selectedPlace.picture" />
+          <nuxt-picture
+            :src="selectedPlace.picture"
+            :alt="`${selectedPlace.name}`"
+          />
         </div>
         <div class="whitespace-pre-line">{{ selectedPlace.text }}</div>
         <div
@@ -78,6 +81,7 @@
             :key="link.type"
             :href="fullSocialURI(link)"
             target="_blank"
+            rel="noopener"
             class="
               flex
               items-center

@@ -7,4 +7,5 @@ export default {
     availableIn: 'Она доступна на следующих языках:',
     backHome: 'На главную страницу',
   },
+  accept: 'согласен',
 }
