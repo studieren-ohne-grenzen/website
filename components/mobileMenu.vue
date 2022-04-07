@@ -7,18 +7,18 @@
         </nuxt-link>
       </li>
       <li class="flex items-center">
-        <button class="mx-6" @click="selectLanguage = true">
+        <div class="mx-6" @click="selectLanguage = true">
           <svg class="h-6 w-6 fill-current text-gray-600">
             <use :href="localePath('/sprites/navSymbols.svg#language')" />
           </svg>
-        </button>
+        </div>
       </li>
       <li class="flex items-center">
-        <button @click="showMenu = true">
+        <div @click="showMenu = true">
           <svg class="h-8 w-8 fill-current text-gray-700">
             <use :href="localePath('/sprites/navSymbols.svg#burger')" />
           </svg>
-        </button>
+        </div>
       </li>
     </ul>
     <div
@@ -40,11 +40,11 @@
               </nuxt-link>
             </li>
             <li class="flex">
-              <button @click="showMenu = false">
+              <div @click="showMenu = false">
                 <svg class="h-8 w-8 fill-current text-gray-700">
                   <use :href="localePath('/sprites/navSymbols.svg#cross')" />
                 </svg>
-              </button>
+              </div>
             </li>
           </ul>
         </li>

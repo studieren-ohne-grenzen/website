@@ -61,6 +61,7 @@
       <object
         :data="'/' + mapType + '.svg'"
         class="block opacity-20 z-0"
+        alt="Gemany MAP"
         @load="mapLoaded = true"
       />
     </div>
@@ -73,7 +74,7 @@
             ? 'md:w-1/2 xl:w-3/5 md:min-w-0 sm:pl-8 lg:pl-20'
             : ''
         "
-        class="min-w-full mt-2"
+        class="min-w-full mt-2 md:mx-0 -mx-8"
       >
         <h2 class="text-sogblue font-light text-2xl sm:text-3xl">
           {{ selectedPlace.name }}
@@ -84,6 +85,7 @@
             sizes="sm:100vw md:50vw lg:50vw xl:100vw"
             format="webp"
             quality="80"
+            :alt="`${selectedPlace.name}`"
           />
         </div>
         <p class="whitespace-pre-line">{{ selectedPlace.text }}</p>
@@ -100,6 +102,7 @@
             :key="link.type"
             :href="fullSocialURI(link)"
             target="_blank"
+            rel="noopener"
             class="
               flex
               items-center

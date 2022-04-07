@@ -2,8 +2,6 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        // TODO: add necessary overpass weights to /static
-        // TODO: include cyrillic overpass font
         overpass:
           'overpass, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
       },
@@ -26,9 +24,28 @@ module.exports = {
       strokeWidth: {
         10: 10,
       },
+      maxWidth: {
+        '1/4': '25%',
+        '1/2': '50%',
+        '3/4': '80%',
+      },
       fill: {
         white: '#FFFFFF',
         none: 'none',
+      },
+      listStyleType: {
+        circle: 'circle',
+        square: 'square',
+      },
+      width: {
+        '2/7': '33%',
+      },
+      height: {
+        43: '10.5rem',
+      },
+      inset: {
+        '1/100': '5%',
+        3.6: '0.8rem',
       },
     },
   },
