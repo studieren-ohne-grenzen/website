@@ -4,7 +4,9 @@ title: Mitmachen
 
 # Mitmachen
 
-<sog-map places-config="mapDE"></sog-map>
+<sog-map map-type="germany" places-config="get_involved/mapDE"></sog-map>
+
+---
 
 ## Bundesweit
 

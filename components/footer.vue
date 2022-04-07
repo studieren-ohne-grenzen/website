@@ -1,9 +1,7 @@
 <template>
   <footer
     class="
-      bg-gradient-to-tr
-      from-sogblue-dark
-      to-sogblue-darker
+      bg-sogblue-darker
       pb-10
       pt-6
       mt-6

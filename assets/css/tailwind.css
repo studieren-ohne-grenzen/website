@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* dark blue overscroll background */
+html {
+  @apply bg-sogblue-darker;
+}
+.canvas {
+  @apply bg-white;
+}
+
 /* CSS Global */
 .nuxt-content {
   @apply text-gray-800 font-overpass;
@@ -16,7 +24,7 @@
 .nuxt-content > h3,
 .nuxt-content > h4,
 .nuxt-content > p {
-  @apply lg:mx-24  xl:mx-24 2xl:mx-40;
+  @apply lg:mx-24 xl:mx-24 2xl:mx-40;
 }
 
 /*  Image */
@@ -36,7 +44,7 @@
 .nuxt-content h2,
 .nuxt-content h3,
 .nuxt-content h4 {
-  @apply text-sogblue-dark font-light mt-6 mb-3;
+  @apply text-sogblue-dark font-light my-6;
 }
 
 .nuxt-content h1 {
@@ -138,7 +146,7 @@ table th {
 
 /* Line */
 .nuxt-content hr {
-  @apply border border-sogblue-dark;
+  @apply border border-sogblue-dark my-6;
 }
 
 /* Checkbox */
