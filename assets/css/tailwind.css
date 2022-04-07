@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* dark blue overscroll background */
+html {
+  @apply bg-sogblue-darker;
+}
+.canvas {
+  @apply bg-white;
+}
+
 /* CSS Global */
 .nuxt-content {
   @apply text-gray-800 font-overpass;

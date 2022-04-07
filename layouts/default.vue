@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="canvas">
     <Nuxt />
   </div>
 </template>
