@@ -89,7 +89,9 @@
               mapType === 'world'
                 ? 'medium'
                 : 'full'
-            ">
+            "
+            :margin-left="false"
+          >
           </inline-picture>
         </div>
         <p class="whitespace-pre-line">{{ selectedPlace.text }}</p>

@@ -10,7 +10,7 @@
       'md:max-w-full lg:my-0 lg:mx-auto lg:max-w-full': size == 'full',
     }"
   >
-    <div class="mb-4 lg:mb-6">
+    <div class="mb-4 lg:mb-6" :class="marginLeft ? 'ml-4 lg:ml-6' : 'ml-0'">
       <div
         class="
           p-4
@@ -94,6 +94,7 @@ export default {
     imgUrl: { type: String, default: '/' },
     position: { type: String, default: 'left' },
     size: { type: String, default: 'full' },
+    marginLeft: { type: Boolean, default: true }
   },
   data: () => ({
     galery: false,
