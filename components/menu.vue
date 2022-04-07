@@ -39,18 +39,7 @@
             item.children &&
             item.children.length > 0
           "
-          class="
-            absolute
-            top-full
-            left-0
-            z-50
-            pb-3.5
-            pt-1.5
-            px-4
-            ml-1
-            rounded
-            bg-white
-          "
+          class="absolute top-full left-0 z-50 pb-3.5 pt-1.5 px-4 ml-1 rounded bg-white"
         >
           <li
             v-for="subitem in item.children"
@@ -117,13 +106,7 @@
           <li
             v-for="locale in $i18n.locales"
             :key="locale.code"
-            class="
-              flex
-              hover:text-sogblue-dark
-              transition-colors
-              duration-100
-              leading-tight
-            "
+            class="flex hover:text-sogblue-dark transition-colors duration-100 leading-tight"
           >
             <nuxt-link
               :to="switchLocalePath(locale.code)"
@@ -141,7 +124,7 @@
 
 <script>
 export default {
-  name: 'Menu',
+  name: 'MenuComponent',
   props: {
     items: {
       type: Array,

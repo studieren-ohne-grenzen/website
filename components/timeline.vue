@@ -1,24 +1,10 @@
 <template>
   <div class="relative">
     <div
-      ref="left"
-      class="
-        p-2
-        z-30
-        hidden
-        absolute
-        md:block
-        lg:block
-        transition
-        duration-200
-        ease-in-out
-        transform
-        hover:scale-125
-        cursor-pointer
-        text-sogblue-dark
-      "
-      @click="horizontalScroll('left')"
       v-if="!isFarLeft"
+      ref="left"
+      class="p-2 z-30 hidden absolute md:block lg:block transition duration-200 ease-in-out transform hover:scale-125 cursor-pointer text-sogblue-dark"
+      @click="horizontalScroll('left')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -36,25 +22,10 @@
       </svg>
     </div>
     <div
-      ref="right"
-      class="
-        absolute
-        right-0
-        z-30
-        cursor-pointer
-        p-2
-        text-sogblue-dark
-        hidden
-        md:block
-        lg:block
-        transition
-        duration-200
-        ease-in-out
-        transform
-        hover:scale-125
-      "
-      @click="horizontalScroll('right')"
       v-if="!isFarRight"
+      ref="right"
+      class="absolute right-0 z-30 cursor-pointer p-2 text-sogblue-dark hidden md:block lg:block transition duration-200 ease-in-out transform hover:scale-125"
+      @click="horizontalScroll('right')"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -73,44 +44,21 @@
     </div>
     <div
       ref="timeline"
-      class="
-        p-1
-        w-full
-        md:whitespace-nowrap md:overflow-x-scroll md:p-0
-        lg:whitespace-nowrap lg:overflow-x-scroll lg:p-0
-      "
+      class="p-1 w-full md:whitespace-nowrap md:overflow-x-scroll md:p-0 lg:whitespace-nowrap lg:overflow-x-scroll lg:p-0"
       style="scroll-behavior: smooth"
       @scroll="showArrows"
     >
       <div
         v-for="(item, index) in timelines"
         :key="index"
-        class="
-          h-full
-          md:w-1/5 md:inline-block md:align-top
-          lg:w-1/5 lg:align-top lg:inline-block
-        "
+        class="h-full md:w-1/5 md:inline-block md:align-top lg:w-1/5 lg:align-top lg:inline-block"
       >
         <div class="relative md:h-full md:flex md:items-center">
           <div
-            class="
-              h-full
-              left-3.6
-              absolute
-              bg-gray-500
-              border border-gray-500
-              lg:w-full lg:h-0 lg:left-0 lg:self-center
-              md:w-full md:h-0 md:left-0 md:self-center
-            "
+            class="h-full left-3.6 absolute bg-gray-500 border border-gray-500 lg:w-full lg:h-0 lg:left-0 lg:self-center md:w-full md:h-0 md:left-0 md:self-center"
           ></div>
           <div
-            class="
-              flex
-              items-start
-              w-full
-              lg:h-full
-              md:items-center md:justify-between md:h-full
-            "
+            class="flex items-start w-full lg:h-full md:items-center md:justify-between md:h-full"
             :class="
               modulo(index) === 0
                 ? `md:flex-col lg:flex-col flex-row`
@@ -128,18 +76,7 @@
               "
             >
               <div
-                class="
-                  bg-white
-                  w-7
-                  h-7
-                  z-10
-                  flex
-                  order-1
-                  rounded-full
-                  items-center
-                  justify-center
-                  border-2
-                "
+                class="bg-white w-7 h-7 z-10 flex order-1 rounded-full items-center justify-center border-2"
                 :class="
                   modulo(index) === 0 ? 'border-sogorange' : 'border-sogblue'
                 "
@@ -165,26 +102,11 @@
               ></div>
             </div>
             <div
-              class="
-                py-4
-                w-3/5
-                order-1
-                cursor-pointer
-                transition-colors
-                duration-200
-                md:hover:text-sogblue-dark md:relative md:h-20 md:p-2 md:w-full
-                lg:hover:text-sogblue-dark lg:relative lg:h-20 lg:p-2 lg:w-full
-              "
+              class="py-4 w-3/5 order-1 cursor-pointer transition-colors duration-200 md:hover:text-sogblue-dark md:relative md:h-20 md:p-2 md:w-full lg:hover:text-sogblue-dark lg:relative lg:h-20 lg:p-2 lg:w-full"
               @click="moreInfo(`${index}`)"
             >
               <div
-                class="
-                  px-2
-                  py-1
-                  md:p1
-                  text-2xl
-                  md:flex md:justify-center md:items-center
-                "
+                class="px-2 py-1 md:p1 text-2xl md:flex md:justify-center md:items-center"
               >
                 {{ item.date }}
               </div>
@@ -192,17 +114,7 @@
                 {{ item.title }}
               </div>
               <div
-                class="
-                  px-2
-                  z-20
-                  hidden
-                  bg-white
-                  md:absolute
-                  lg:absolute
-                  text-gray-800
-                  transition-all
-                  duration-200
-                "
+                class="px-2 z-20 hidden bg-white md:absolute lg:absolute text-gray-800 transition-all duration-200"
                 :class="
                   modulo(index) === 0
                     ? `content${index} md:bottom-full lg:bottom-full`
@@ -222,7 +134,7 @@
 
 <script>
 export default {
-  name: 'Timeline',
+  name: 'TimelineComponent',
   props: {
     timelineConfig: {
       type: String,

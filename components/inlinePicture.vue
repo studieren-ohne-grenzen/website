@@ -12,18 +12,7 @@
   >
     <div class="mb-4 lg:mb-6" :class="marginLeft ? 'ml-4 lg:ml-6' : 'ml-0'">
       <div
-        class="
-          p-4
-          absolute
-          text-white
-          cursor-pointer
-          right-0
-          transition
-          duration-200
-          ease-in-out
-          transform
-          hover:scale-125
-        "
+        class="p-4 absolute text-white cursor-pointer right-0 transition duration-200 ease-in-out transform hover:scale-125"
         @click="galery = true"
       >
         <svg
@@ -56,7 +45,7 @@
           sizes="sm:100vw md:100vw lg:100vw"
         />
       </SogLink>
-      <div v-else @click="galery = true" class="cursor-pointer">
+      <div v-else class="cursor-pointer" @click="galery = true">
         <nuxt-img
           :src="`${imgSrc}`"
           :alt="`${imgAlt}`"
@@ -72,9 +61,9 @@
     </div>
     <image-galery
       :open="galery"
-      :currentImg="{
-        src: this.imgSrc,
-        alt: this.imgAlt,
+      :current-img="{
+        src: imgSrc,
+        alt: imgAlt,
       }"
       @close="closeGalery"
     ></image-galery>
@@ -94,7 +83,7 @@ export default {
     imgUrl: { type: String, default: '/' },
     position: { type: String, default: 'left' },
     size: { type: String, default: 'full' },
-    marginLeft: { type: Boolean, default: true }
+    marginLeft: { type: Boolean, default: true },
   },
   data: () => ({
     galery: false,

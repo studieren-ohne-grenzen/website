@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'slug_',
+  name: 'SlugPage',
   async asyncData({ $content, params, app, error }) {
     try {
       const slug = params.slug || 'landing_page'
@@ -19,14 +19,14 @@ export default {
       })
     }
   },
+  data: () => ({
+    seo: {},
+  }),
   async fetch() {
     this.seo = await this.$content(`${this.$i18n.locale}`, 'seo')
       .fetch()
       .then((jsonFile) => jsonFile)
   },
-  data: () => ({
-    seo: {},
-  }),
   head() {
     return {
       title: this.page.title

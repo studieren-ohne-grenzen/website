@@ -1,4 +1,4 @@
 {
-    "eslint.format.enable": true,
-    "editor.tabSize": 2
+  "eslint.format.enable": true,
+  "editor.tabSize": 2
 }

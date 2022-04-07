@@ -1,7 +1,8 @@
 ---
 title: Unsere Arbeit
 ---
-# Unsere Arbeit 
+
+# Unsere Arbeit
 
 <sog-map map-type="world" places-config="our_work/mapWorld"></sog-map>
 

@@ -12,18 +12,7 @@
     <!-- Modal -->
     <div class="absolute p-2">
       <div
-        class="
-          p-4
-          absolute
-          text-white
-          cursor-pointer
-          right-0
-          transition
-          duration-200
-          ease-in-out
-          transform
-          hover:scale-125
-        "
+        class="p-4 absolute text-white cursor-pointer right-0 transition duration-200 ease-in-out transform hover:scale-125"
         @click="$emit('close')"
       >
         <svg
@@ -57,7 +46,7 @@ export default {
   name: 'InlineGalery',
   props: {
     open: { type: Boolean, default: false },
-    currentImg: { type: Object, default: {} },
+    currentImg: { type: Object, default: () => {} },
   },
 }
 </script>

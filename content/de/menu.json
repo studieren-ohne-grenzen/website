@@ -21,9 +21,12 @@
           "name": "Vision und Ansatz",
           "hash": "vision-und-ansatz",
           "children": [
-            { "name": "Bildungsqualität verbessern", "hash": "bildungsqualität-verbessern"},
-            { "name": "Engagement fördern", "hash": "engagement-fördern"},
-            { "name": "Bewusstsein schaffen", "hash": "bewusstsein-schaffen"}
+            {
+              "name": "Bildungsqualität verbessern",
+              "hash": "bildungsqualität-verbessern"
+            },
+            { "name": "Engagement fördern", "hash": "engagement-fördern" },
+            { "name": "Bewusstsein schaffen", "hash": "bewusstsein-schaffen" }
           ]
         }
       ]

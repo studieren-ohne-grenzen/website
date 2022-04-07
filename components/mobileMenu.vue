@@ -168,7 +168,7 @@
 
 <script>
 export default {
-  name: 'MobileMenu',
+  name: 'MobileMenuComponent',
   props: {
     items: {
       type: Array,

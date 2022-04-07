@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: 'default',
+  name: 'DefaultLayout',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head() {
     if (this.$nuxtI18nHead === null) return
@@ -27,7 +27,6 @@ export default {
           name: 'description',
           content: i18nHead.description,
         },
-        ,
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     }

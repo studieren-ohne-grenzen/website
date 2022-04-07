@@ -3,15 +3,7 @@
     <!-- Protection -->
     <div
       v-if="!contentAccepted"
-      class="
-        w-full
-        md:w-1/2
-        lg:w-1/2
-        p-4
-        my-auto
-        mx-auto
-        border border-gray-400
-      "
+      class="w-full md:w-1/2 lg:w-1/2 p-4 my-auto mx-auto border border-gray-400"
     >
       <div class="pb-4">
         {{ message }}

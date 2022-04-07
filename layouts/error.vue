@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <Menu :items="menu.items" class="hidden lg:block" />
+    <Menu-Component :items="menu.items" class="hidden lg:block" />
     <Mobile-Menu :items="menu.items" class="block lg:hidden" />
     <div class="container mt-20 text-4xl font-overpass font-light flex-grow">
       <div
@@ -37,25 +37,26 @@
       </div>
       <div v-else>{{ $t('error.default') }}</div>
     </div>
-    <Footer
+    <Footer-Component
       :items="footer.items"
       :social-icons="footer.socialIcons"
       :awards="footer.awards"
     >
-    </Footer>
+    </Footer-Component>
   </div>
 </template>
 
 <script>
-import Menu from '~/components/menu'
+import MenuComponent from '~/components/menu'
 import MobileMenu from '~/components/mobileMenu'
-import Footer from '~/components/footer'
+import FooterComponent from '~/components/footer'
 
 export default {
+  name: 'ErrorLayout',
   components: {
-    Menu,
+    MenuComponent,
     MobileMenu,
-    Footer,
+    FooterComponent,
   },
   props: {
     error: {

@@ -1,6 +1,9 @@
 <template>
   <!-- paddings are needed for Aachen and Dresden to be properly displayed on the map -->
-  <div class="flex items-start flex-wrap" :class="mapType === 'germany' ? 'pl-8 pr-2' : 'px-0'">
+  <div
+    class="flex items-start flex-wrap"
+    :class="mapType === 'germany' ? 'pl-8 pr-2' : 'px-0'"
+  >
     <div
       class="w-full flex-shrink-0 relative"
       :class="mapType === 'germany' ? 'md:w-1/2 xl:w-2/5' : ''"
@@ -9,15 +12,7 @@
         v-for="place in places"
         :key="place.name"
         :href="'#' + place.name.toLowerCase()"
-        class="
-          absolute
-          items-center
-          text-sogblue-darker text-xs
-          sm:text-base
-          xl:text-lg
-          leading-none
-          z-10
-        "
+        class="absolute items-center text-sogblue-darker text-xs sm:text-base xl:text-lg leading-none z-10"
         :class="mapLoaded && configLoaded ? 'flex' : 'hidden'"
         :style="
           configLoaded
@@ -35,18 +30,7 @@
           {{ place.name }}
         </div>
         <svg
-          class="
-            h-4
-            w-4
-            -mt-4
-            sm:h-6
-            sm:w-6
-            sm:-mt-6
-            xl:h-8
-            xl:w-8
-            xl:-mt-8
-            fill-current
-          "
+          class="h-4 w-4 -mt-4 sm:h-6 sm:w-6 sm:-mt-6 xl:h-8 xl:w-8 xl:-mt-8 fill-current"
           :class="
             place.text_flow === 'left'
               ? '-mr-2 sm:-mr-3 xl:-mr-4'
@@ -85,23 +69,14 @@
             :img-src="selectedPlace.picture"
             :img-alt="selectedPlace.name"
             position="right"
-            :size="
-              mapType === 'world'
-                ? 'medium'
-                : 'full'
-            "
+            :size="mapType === 'world' ? 'medium' : 'full'"
             :margin-left="false"
           >
           </inline-picture>
         </div>
         <p class="whitespace-pre-line">{{ selectedPlace.text }}</p>
         <div
-          class="
-            my-4
-            text-sogblue-darker
-            hover:text-sogblue-lighter
-            flex flex-wrap
-          "
+          class="my-4 text-sogblue-darker hover:text-sogblue-lighter flex flex-wrap"
         >
           <a
             v-for="link in selectedPlace.social"
@@ -109,15 +84,7 @@
             :href="fullSocialURI(link)"
             target="_blank"
             rel="noopener"
-            class="
-              flex
-              items-center
-              leading-none
-              mb-2
-              hover:text-sogblue-darker
-              transition-colors
-              duration-200
-            "
+            class="flex items-center leading-none mb-2 hover:text-sogblue-darker transition-colors duration-200"
           >
             <svg class="w-6 h-6 mr-2 fill-current">
               <use
@@ -141,21 +108,12 @@
       >
         <div
           v-if="mapType === 'germany'"
-          class="text-gray-500 mb-20 mt-8 lg:my-0 -ml-8 -mr-2 "
+          class="text-gray-500 mb-20 mt-8 lg:my-0 -ml-8 -mr-2"
         >
           Studieren Ohne Grenzen gibt es in vielen Städten. Um mehr zu erfahren,
           wähle eine Stadt aus!
           <svg
-            class="
-              hidden
-              md:block
-              w-1/3
-              xl:w-1/5
-              ml-8
-              mt-3
-              stroke-current stroke-10
-              fill-none
-            "
+            class="hidden md:block w-1/3 xl:w-1/5 ml-8 mt-3 stroke-current stroke-10 fill-none"
           >
             <use :href="localePath('/sprites/mapSymbols.svg#arrow')" />
           </svg>
@@ -174,8 +132,8 @@
 <script>
 import inlinePicture from './inlinePicture.vue'
 export default {
-  components: { inlinePicture },
   name: 'SogMap',
+  components: { inlinePicture },
   props: {
     placesConfig: {
       type: String,
