@@ -24,7 +24,7 @@ html {
 .nuxt-content > h3,
 .nuxt-content > h4,
 .nuxt-content > p {
-  @apply lg:mx-24  xl:mx-24 2xl:mx-40;
+  @apply lg:mx-24 xl:mx-24 2xl:mx-40;
 }
 
 /*  Image */
@@ -44,7 +44,14 @@ html {
 .nuxt-content h2,
 .nuxt-content h3,
 .nuxt-content h4 {
-  @apply text-sogblue-dark font-light mt-6 mb-3;
+  @apply text-sogblue-dark font-light;
+}
+
+.nuxt-content > h1,
+.nuxt-content > h2,
+.nuxt-content > h3,
+.nuxt-content > h4 {
+  @apply my-6;
 }
 
 .nuxt-content h1 {
@@ -146,7 +153,7 @@ table th {
 
 /* Line */
 .nuxt-content hr {
-  @apply border border-sogblue-dark;
+  @apply border border-sogblue-dark my-6;
 }
 
 /* Checkbox */

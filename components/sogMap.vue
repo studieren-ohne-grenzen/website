@@ -72,21 +72,24 @@
         :class="
           mapType === 'germany'
             ? 'md:w-1/2 xl:w-3/5 md:min-w-0 sm:pl-8 lg:pl-20'
-            : ''
+            : 'lg:px-24 xl:px-24 2xl:px-40'
         "
-        class="min-w-full mt-2 md:mx-0 -mx-8"
+        class="min-w-full mt-2 md:mx-0"
       >
         <h2 class="text-sogblue font-light text-2xl sm:text-3xl">
           {{ selectedPlace.name }}
         </h2>
-        <div v-if="selectedPlace.picture" class="my-4">
-          <nuxt-picture
-            :src="selectedPlace.picture"
-            sizes="sm:100vw md:50vw lg:50vw xl:100vw"
-            format="webp"
-            quality="80"
-            :alt="`${selectedPlace.name}`"
-          />
+        <div v-if="selectedPlace.picture">
+          <inline-picture
+            :img-src="selectedPlace.picture"
+            :img-alt="selectedPlace.name"
+            position="right"
+            :size="
+              mapType === 'world'
+                ? 'medium'
+                : 'full'
+            ">
+          </inline-picture>
         </div>
         <p class="whitespace-pre-line">{{ selectedPlace.text }}</p>
         <div
@@ -166,7 +169,9 @@
 </template>
 
 <script>
+import inlinePicture from './inlinePicture.vue'
 export default {
+  components: { inlinePicture },
   name: 'SogMap',
   props: {
     placesConfig: {

@@ -10,7 +10,7 @@
       'md:max-w-full lg:my-0 lg:mx-auto lg:max-w-full': size == 'full',
     }"
   >
-    <div>
+    <div class="my-6">
       <div
         class="
           p-4
@@ -54,7 +54,6 @@
           quality="80"
           loading="lazy"
           sizes="sm:100vw md:100vw lg:100vw"
-          class="p-1"
         />
       </SogLink>
       <div v-else @click="galery = true" class="cursor-pointer">
@@ -65,7 +64,6 @@
           quality="80"
           loading="lazy"
           sizes="sm:100vw md:100vw lg:100vw"
-          class="p-1"
         />
       </div>
       <div v-show="imgSub != null" class="py-1 pl-1 font-semibold text-left">
