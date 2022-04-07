@@ -1,7 +1,5 @@
 module.exports = {
-  mode: 'jit',
   theme: {
-    mode: 'JIT',
     extend: {
       fontFamily: {
         overpass:

@@ -20,11 +20,11 @@ export default {
   ],
 
   env: {
-    baseUrl: 'https://sog-kf7uj.ondigitalocean.app',
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
   },
 
   i18n: {
-    baseUrl: 'https://sog-kf7uj.ondigitalocean.app',
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     locales: [
       {
         code: 'de',
