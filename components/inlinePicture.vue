@@ -10,7 +10,7 @@
       'md:max-w-full lg:my-0 lg:mx-auto lg:max-w-full': size == 'full',
     }"
   >
-    <div class="my-6">
+    <div class="mb-4 lg:mb-6">
       <div
         class="
           p-4

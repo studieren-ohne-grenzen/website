@@ -1,5 +1,6 @@
 <template>
-  <div class="flex items-start flex-wrap">
+  <!-- paddings are needed for Aachen and Dresden to be properly displayed on the map -->
+  <div class="flex items-start flex-wrap" :class="mapType === 'germany' ? 'pl-8 pr-2' : 'px-0'">
     <div
       class="w-full flex-shrink-0 relative"
       :class="mapType === 'germany' ? 'md:w-1/2 xl:w-2/5' : ''"
@@ -13,7 +14,7 @@
           items-center
           text-sogblue-darker text-xs
           sm:text-base
-          xl:text-xl
+          xl:text-lg
           leading-none
           z-10
         "
@@ -71,7 +72,7 @@
         :key="selectedPlace.name"
         :class="
           mapType === 'germany'
-            ? 'md:w-1/2 xl:w-3/5 md:min-w-0 sm:pl-8 lg:pl-20'
+            ? '-ml-8 -mr-2 md:w-1/2 xl:w-3/5 md:min-w-0 sm:pl-8 lg:pl-20'
             : 'lg:px-24 xl:px-24 2xl:px-40'
         "
         class="min-w-full mt-2 md:mx-0"
@@ -138,7 +139,7 @@
       >
         <div
           v-if="mapType === 'germany'"
-          class="text-gray-500 mb-20 mt-8 lg:my-0"
+          class="text-gray-500 mb-20 mt-8 lg:my-0 -ml-8 -mr-2 "
         >
           Studieren Ohne Grenzen gibt es in vielen Städten. Um mehr zu erfahren,
           wähle eine Stadt aus!
