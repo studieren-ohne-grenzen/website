@@ -3,7 +3,7 @@ title: Unsere Arbeit
 ---
 # Unsere Arbeit 
 
-<sog-map map-type="world" places-config="mapWorld"></sog-map>
+<sog-map map-type="world" places-config="our_work/mapWorld"></sog-map>
 
 ## Vision und Ansatz
 

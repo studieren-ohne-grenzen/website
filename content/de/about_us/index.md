@@ -8,6 +8,8 @@ image: /lokalgruppen/aachen.jpg
 
 ## Vereinsgeschichte
 
+<timeline timeline-config="about_us/timeline"></timeline>
+
 ## Studieren Ohne Grenzen in Zahlen
 
 ## Vorstand und Beirat
