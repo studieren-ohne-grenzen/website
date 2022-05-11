@@ -1,2 +1,3 @@
 [submodule "content"]
 	url = git@git.esf-international.org:website/content.git
+	path = content
