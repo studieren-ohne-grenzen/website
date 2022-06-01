@@ -1,4 +1,4 @@
 [submodule "content"]
-	url = git@git.esf-international.org:web/site.git
+	url = git@github.com:studieren-ohne-grenzen/website-content.git
 	path = content
 	branch = main
