@@ -4,6 +4,7 @@
 
 ```bash
 # copy static folder
+$ git submodule update --remote
 $ cp -r content/static/ static/
 
 # install dependencies
