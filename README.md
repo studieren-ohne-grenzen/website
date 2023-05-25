@@ -3,6 +3,9 @@
 ## Build Setup
 
 ```bash
+# copy static folder
+$ cp -r content/static/ static/
+
 # install dependencies
 $ yarn install
 
