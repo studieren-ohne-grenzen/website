@@ -74,7 +74,7 @@
           >
           </inline-picture>
         </div>
-        <p class="whitespace-pre-line">{{ selectedPlace.text }}</p>
+        <span class="whitespace-pre-line" v-html="selectedPlace.text"></span>
         <div
           class="my-4 text-sogblue-darker hover:text-sogblue-lighter flex flex-wrap"
         >
