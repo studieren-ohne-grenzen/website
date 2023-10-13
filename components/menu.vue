@@ -29,7 +29,7 @@
             'text-gray-300':
               menuItemExtended !== item.url && menuItemExtended !== '',
           }"
-          class="border-b-2 border-white pb-1 transition-colors duration-200"
+          class="border-b-2 border-black pb-1 transition-colors duration-200"
         >
           {{ item.name }}
         </nuxt-link>
