@@ -13,22 +13,22 @@
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix"
   },
   "dependencies": {
-    "@nuxt/content": "^1.9.0",
-    "@nuxtjs/i18n": "^7.2.0",
-    "nuxt": "^2.15.8"
+    "@nuxt/content": "^1.15.1",
+    "@nuxtjs/i18n": "^7.3.1",
+    "nuxt": "^2.17.2"
   },
   "devDependencies": {
-    "@nuxt/image": "^0.6",
-    "@nuxtjs/eslint-config": "^8",
-    "@nuxtjs/eslint-module": "^3",
-    "@nuxtjs/tailwindcss": "^5",
-    "eslint": "^8.4.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-nuxt": "^3.1.0",
-    "eslint-plugin-vue": "^8.2.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.5.1",
     "@babel/eslint-parser": "^7.16.3",
-    "postcss": "^8.4.4"
+    "@nuxt/image": "^0.7.1",
+    "@nuxtjs/eslint-config": "^12.0.0",
+    "@nuxtjs/eslint-module": "^3.1.0",
+    "@nuxtjs/tailwindcss": "^5.3.5",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-vue": "^8.2.0",
+    "postcss": "^8.4.31",
+    "prettier": "^3.0.3"
   }
 }

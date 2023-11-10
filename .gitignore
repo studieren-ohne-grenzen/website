@@ -44,6 +44,9 @@ typings/
 # Optional npm cache directory
 .npm
 
+# YARN cache directory
+.yarn/
+
 # Optional eslint cache
 .eslintcache
 
