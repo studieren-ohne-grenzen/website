@@ -43,7 +43,7 @@
         >
           <li
             v-for="subitem in item.children"
-            :key="subitem.hash"
+            :key="subitem.url ?? subitem.hash"
             class="w-full flex flex-col hover:text-sogblue-dark duration-200"
           >
             <nuxt-link
@@ -51,8 +51,7 @@
               :to="
                 localePath(
                   '/' +
-                    item.url +
-                    (subitem.hash !== '' ? '#' + subitem.hash : '')
+                    (subitem.url ? subitem.url : item.url + '#' + subitem.hash ?? '')
                 )
               "
               @click.native="menuItemExtended = ''"
@@ -62,7 +61,7 @@
             <ul class="ml-6">
               <li
                 v-for="subsubitem in subitem.children"
-                :key="subsubitem.url"
+                :key="subsubitem.url ?? subsubitem.hash"
                 class="flex text-black hover:text-sogblue-dark"
               >
                 <nuxt-link
@@ -70,8 +69,7 @@
                   :to="
                     localePath(
                       '/' +
-                        item.url +
-                        (subsubitem.hash !== '' ? '#' + subsubitem.hash : '')
+                        (subsubitem.url ? subsubitem.url : item.url + '#' + subsubitem.hash ?? '')
                     )
                   "
                   @click.native="menuItemExtended = ''"
@@ -94,7 +92,7 @@
             :class="selectLanguage ? 'text-sogblue-dark' : 'text-gray-600'"
             class="h-6 w-6 fill-current transition-colors duration-100"
           >
-            <use :href="localePath('/sprites/navSymbols.svg#language')" />
+            <use href="~/static/sprites/navSymbols.svg#language" />
           </svg>
         </div>
         <ul

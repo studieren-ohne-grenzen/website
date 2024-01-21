@@ -38,7 +38,7 @@
             place.active ? 'fill-current' : 'fill-gray-400',
           ]"
         >
-          <use :href="localePath('/sprites/mapSymbols.svg#marker')" />
+          <use href="~/static/sprites/mapSymbols.svg#marker" />
         </svg>
         <div v-if="place.text_flow !== 'left'" class="-mt-3 sm:-mt-5 xl:-mt-7" :class="place.active ? '' : 'text-gray-400'">
           {{ place.name }}
@@ -89,7 +89,7 @@
           >
             <svg class="w-6 h-6 mr-2 fill-current">
               <use
-                :href="localePath('/sprites/socialSymbols.svg#' + link.type)"
+                :href="'~/static/sprites/socialSymbols.svg#' + link.type"
               />
             </svg>
             <div class="mr-6">
@@ -116,7 +116,7 @@
           <svg
             class="hidden md:block w-1/3 xl:w-1/5 ml-8 mt-3 stroke-current stroke-10 fill-none"
           >
-            <use :href="localePath('/sprites/mapSymbols.svg#arrow')" />
+            <use href="~/static/sprites/mapSymbols.svg#arrow" />
           </svg>
         </div>
         <div v-else class="text-gray-500 mb-20 mt-8 lg:mt-20 md:text-center">
