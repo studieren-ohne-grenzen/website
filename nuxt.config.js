@@ -67,6 +67,10 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ['@nuxtjs/i18n', '@nuxt/content'],
 
+  dir: {
+    static: 'content/static',
+  },
+
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
 

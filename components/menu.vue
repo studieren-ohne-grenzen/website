@@ -4,7 +4,7 @@
       <li class="flex-grow flex-shrink-0">
         <nuxt-link :to="localePath('/')">
           <img
-            src="~/static/Logo.png"
+            src="~/content/static/Logo.png"
             alt="Start"
             class="h-14 lg:h-20 xl:h-24"
           />
@@ -92,7 +92,7 @@
             :class="selectLanguage ? 'text-sogblue-dark' : 'text-gray-600'"
             class="h-6 w-6 fill-current transition-colors duration-100"
           >
-            <use href="~/static/sprites/navSymbols.svg#language" />
+            <use href="~/content/static/sprites/navSymbols.svg#language" />
           </svg>
         </div>
         <ul
