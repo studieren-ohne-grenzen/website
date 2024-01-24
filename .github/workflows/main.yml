@@ -1,0 +1,39 @@
+name: Auto deploy
+
+on:
+  push:
+
+jobs:
+  website:
+    name: Website build and deploy
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Update content submodule to latest commit
+      run: git submodule update --remote --checkout
+
+    - name: Setup NodeJS
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install Yarn packages
+      run: yarn install --immutable
+
+    - name: Build static website
+      run: yarn run generate
+
+      # I chose rclone because it supports synchronization like rsync, supports SFTP,
+      # and is 4 times faster than https://github.com/Dylan700/sftp-upload-action
+      # -Daniel Lerch
+
+    - name: Install rclone
+      run: sudo DEBIAN_FRONTEND=noninteractive apt-get update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq rclone
+      if: github.ref == 'refs/heads/master'
+
+    - name: Deploy to kueken.studieren-ohne-grenzen.org
+      run: rclone sync ./dist :sftp:/html --sftp-host=${{ vars.SFTP_HOST }} --sftp-user=${{ vars.SFTP_USERNAME }} --sftp-pass=${{ secrets.SFTP_PASSWORD_OBSCURED }} --sftp-disable-hashcheck=true --progress --stats-one-line --stats=5s
+      if: github.ref == 'refs/heads/master'
