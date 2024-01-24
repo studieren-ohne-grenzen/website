@@ -21,25 +21,26 @@
                   north: place.coordinates.north,
                   east: place.coordinates.east,
                 },
-                place.text_flow
+                place.text_flow,
               )
             : ''
         "
       >
-        <div v-if="place.text_flow === 'left'" class="-mt-3 sm:-mt-5 xl:-mt-7">
+        <div v-if="place.text_flow === 'left'" class="-mt-3 sm:-mt-5 xl:-mt-7" :class="place.active ? '' : 'text-gray-400'">
           {{ place.name }}
         </div>
         <svg
-          class="h-4 w-4 -mt-4 sm:h-6 sm:w-6 sm:-mt-6 xl:h-8 xl:w-8 xl:-mt-8 fill-current"
-          :class="
+          class="h-4 w-4 -mt-4 sm:h-6 sm:w-6 sm:-mt-6 xl:h-8 xl:w-8 xl:-mt-8"
+          :class="[
             place.text_flow === 'left'
               ? '-mr-2 sm:-mr-3 xl:-mr-4'
-              : '-ml-2 sm:-ml-3 xl:-ml-4'
-          "
+              : '-ml-2 sm:-ml-3 xl:-ml-4',
+            place.active ? 'fill-current' : 'fill-gray-400',
+          ]"
         >
           <use :href="localePath('/sprites/mapSymbols.svg#marker')" />
         </svg>
-        <div v-if="place.text_flow !== 'left'" class="-mt-3 sm:-mt-5 xl:-mt-7">
+        <div v-if="place.text_flow !== 'left'" class="-mt-3 sm:-mt-5 xl:-mt-7" :class="place.active ? '' : 'text-gray-400'">
           {{ place.name }}
         </div>
       </a>
@@ -48,7 +49,7 @@
         class="block opacity-20 z-0"
         alt="Gemany MAP"
         @load="mapLoaded = true"
-      />
+      ></object>
     </div>
     <transition name="fade" mode="out-in">
       <div
@@ -159,7 +160,7 @@ export default {
     selectedPlace() {
       const hash = this.$route.hash.slice(1)
       return this.places.find(
-        (place) => place.name.toLowerCase() === decodeURI(hash)
+        (place) => place.name.toLowerCase() === decodeURI(hash),
       )
     },
   },
@@ -173,7 +174,7 @@ export default {
       this.configLoaded = false
       this.places = await this.$content(
         `${this.$i18n.locale}`,
-        this.placesConfig
+        this.placesConfig,
       )
         .fetch()
         .then((jsonFile) => jsonFile.places)
