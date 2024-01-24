@@ -5,12 +5,21 @@
 </template>
 
 <script>
+// This page only supports two levels content pages, e.g. /imprint or /our_work/sri_lanka
+//
+// Supporting arbitrary levels would require Unknown Dynamic Nested Routes
+// (https://v2.nuxt.com/docs/features/file-system-routing/#unknown-dynamic-nested-routes)
+// which are not supported by nuxt-i18n out of the box.
+//
+// If a page is not available that would not offer a switch to another locale.
 export default {
   name: 'SlugPage',
   async asyncData({ $content, params, app, error }) {
     try {
       const slug = params.slug || 'landing_page'
-      const page = await $content(`${app.i18n.locale}/${slug}`, 'index').fetch()
+      const page = params.subslug
+        ? await $content(`${app.i18n.locale}/${slug}/${params.subslug}`, 'index').fetch()
+        : await $content(`${app.i18n.locale}/${slug}`, 'index').fetch()
       return { page }
     } catch (err) {
       error({

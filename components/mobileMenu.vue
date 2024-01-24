@@ -3,20 +3,20 @@
     <ul class="flex mb-8">
       <li class="flex-grow flex-shrink-0">
         <nuxt-link :to="localePath('/')">
-          <img src="~/static/Logo.png" alt="Start" class="h-14" />
+          <img src="~/content/static/Logo.png" alt="Start" class="h-14" />
         </nuxt-link>
       </li>
       <li class="flex items-center">
         <div class="mx-6" @click="selectLanguage = true">
           <svg class="h-6 w-6 fill-current text-gray-600">
-            <use :href="localePath('/sprites/navSymbols.svg#language')" />
+            <use href="~/content/static/sprites/navSymbols.svg#language" />
           </svg>
         </div>
       </li>
       <li class="flex items-center">
         <div @click="showMenu = true">
           <svg class="h-8 w-8 fill-current text-gray-700">
-            <use :href="localePath('/sprites/navSymbols.svg#burger')" />
+            <use href="~/content/static/sprites/navSymbols.svg#burger" />
           </svg>
         </div>
       </li>
@@ -36,13 +36,13 @@
                   menuItemExtended = ''
                 "
               >
-                <img src="~/static/Logo.png" alt="Start" class="h-14" />
+                <img src="~/content/static/Logo.png" alt="Start" class="h-14" />
               </nuxt-link>
             </li>
             <li class="flex">
               <div @click="showMenu = false">
                 <svg class="h-8 w-8 fill-current text-gray-700">
-                  <use :href="localePath('/sprites/navSymbols.svg#cross')" />
+                  <use href="~/content/static/sprites/navSymbols.svg#cross" />
                 </svg>
               </div>
             </li>
@@ -83,15 +83,14 @@
           >
             <li
               v-for="subitem in item.children"
-              :key="subitem.hash"
+              :key="subitem.url ?? subitem.hash"
               class="ml-6 pt-2"
             >
               <nuxt-link
                 :to="
                   localePath(
                     '/' +
-                      item.url +
-                      (subitem.hash !== '' ? '#' + subitem.hash : '')
+                      (subitem.url ? subitem.url : item.url + '#' + subitem.hash ?? '')
                   )
                 "
                 @click.native="showMenu = false"
@@ -101,7 +100,7 @@
               <ul class="ml-6">
                 <li
                   v-for="subsubitem in subitem.children"
-                  :key="subsubitem.url"
+                  :key="subsubitem.url ?? subsubitem.hash"
                   class="flex"
                 >
                   <nuxt-link
@@ -109,8 +108,7 @@
                     :to="
                       localePath(
                         '/' +
-                          item.url +
-                          (subsubitem.hash !== '' ? '#' + subsubitem.hash : '')
+                        (subsubitem.url ? subsubitem.url : item.url + '#' + subsubitem.hash ?? '')
                       )
                     "
                     @click.native="showMenu = false"
@@ -136,13 +134,13 @@
                 :to="localePath('/')"
                 @click.native="selectLanguage = false"
               >
-                <img src="~/static/Logo.png" alt="Start" class="h-14" />
+                <img src="~/content/static/Logo.png" alt="Start" class="h-14" />
               </nuxt-link>
             </li>
             <li class="flex">
               <button @click="selectLanguage = false">
                 <svg class="h-8 w-8 fill-current text-gray-700">
-                  <use :href="localePath('/sprites/navSymbols.svg#cross')" />
+                  <use href="~/content/static/sprites/navSymbols.svg#cross" />
                 </svg>
               </button>
             </li>
