@@ -31,10 +31,10 @@
             <li class="flex-grow flex-shrink-0">
               <nuxt-link
                 :to="localePath('/')"
-                @click.native="
+                @click.native="() => {
                   showMenu = false
                   menuItemExtended = ''
-                "
+                }"
               >
                 <img src="~/content/static/Logo.png" alt="Start" class="h-14" />
               </nuxt-link>
@@ -64,10 +64,10 @@
               menuItemExtended === item.url ? 'border-sogblue' : 'border-white'
             "
             class="border-b-2 pb-0.5"
-            @click.native="
+            @click.native="() => {
               showMenu = false
               menuItemExtended = item.url
-            "
+            }"
           >
             {{ item.name }}
           </nuxt-link>

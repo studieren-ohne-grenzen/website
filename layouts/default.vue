@@ -1,6 +1,6 @@
 <template>
   <div class="canvas">
-    <Nuxt />
+    <slot />
   </div>
 </template>
 <script>
