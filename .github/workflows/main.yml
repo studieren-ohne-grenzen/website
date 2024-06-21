@@ -19,7 +19,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-
+    - name: Enable corepack for yarn
+      run: corepack enable
     - name: Install Yarn packages
       run: yarn install --immutable
 

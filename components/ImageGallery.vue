@@ -7,7 +7,7 @@
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
       @click="$emit('close')"
-    ></div>
+    />
 
     <!-- Modal -->
     <div class="absolute p-2">
@@ -30,7 +30,7 @@
           />
         </svg>
       </div>
-      <nuxt-picture
+      <NuxtPicture
         :src="`${currentImg.src}`"
         :alt="`${currentImg.alt}`"
         format="webp"
@@ -41,13 +41,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'InlineGalery',
-  props: {
-    open: { type: Boolean, default: false },
-    currentImg: { type: Object, default: () => {} },
-  },
-}
+<script setup lang="ts">
+defineProps<{
+  open: boolean
+  currentImg: { src: string; alt: string }
+}>()
+
+defineEmits(['close'])
 </script>
-<style></style>

@@ -36,7 +36,7 @@
         :alt="`${imgAlt}`"
         class="p-2"
       >
-        <nuxt-img
+        <NuxtImg
           :src="`${imgSrc}`"
           :alt="`${imgAlt}`"
           format="webp"
@@ -46,7 +46,7 @@
         />
       </SogLink>
       <div v-else class="cursor-pointer" @click="galery = true">
-        <nuxt-img
+        <NuxtImg
           :src="`${imgSrc}`"
           :alt="`${imgAlt}`"
           format="webp"
@@ -59,41 +59,31 @@
         {{ imgSub }}
       </div>
     </div>
-    <image-galery
+    <ImageGallery
       :open="galery"
       :current-img="{
         src: imgSrc,
         alt: imgAlt,
       }"
-      @close="closeGalery"
-    ></image-galery>
+      @close="closeGallery"
+    />
   </div>
 </template>
 
-<script>
-import SogLink from '~/components/sogLink'
-import ImageGalery from '~/components/imageGalery.vue'
-export default {
-  name: 'InlinePicture',
-  components: { SogLink, ImageGalery },
-  props: {
-    imgSrc: { type: String, default: '' },
-    imgAlt: { type: String, default: '' },
-    imgSub: { type: String, default: null },
-    imgUrl: { type: String, default: '/' },
-    position: { type: String, default: 'left' },
-    size: { type: String, default: 'full' },
-    marginLeft: { type: Boolean, default: true },
-  },
-  data: () => ({
-    galery: false,
-  }),
-  methods: {
-    closeGalery() {
-      this.galery = false
-    },
-  },
+<script setup lang="ts">
+defineProps({
+  imgSrc: { type: String, default: '' },
+  imgAlt: { type: String, default: '' },
+  imgSub: { type: String, default: null },
+  imgUrl: { type: String, default: '/' },
+  position: { type: String, default: 'left' },
+  size: { type: String, default: 'full' },
+  marginLeft: { type: Boolean, default: true },
+})
+
+const gallery = ref(false)
+
+const closeGallery = () => {
+  gallery.value = false
 }
 </script>
-
-<style></style>
