@@ -121,7 +121,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MenuItem } from '~/types/Menu'
+import type { MenuItem } from '~/types/menu'
 
 withDefaults(defineProps<{ items: MenuItem[] }>(), {
   items: () => [],

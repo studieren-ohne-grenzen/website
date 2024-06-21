@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FooterItem, SocialIcon, Award } from '~/types/Footer'
+import type { FooterItem, SocialIcon, Award } from '~/types/footer'
 
 withDefaults(defineProps<{ items: FooterItem[], socialIcons: SocialIcon[], awards: Award[] }>(), {
   items: () => [],
