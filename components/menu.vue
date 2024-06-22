@@ -39,7 +39,7 @@
             item.children &&
             item.children.length > 0
           "
-          class="absolute top-full left-0 z-50 pb-3.5 pt-1.5 px-4 ml-1 rounded bg-white"
+          class="absolute top-full left-0 z-50 pb-3.5 pt-1.5 px-4 ml-1 rounded bg-white shadow-lg"
         >
           <li
             v-for="subitem in item.children"
@@ -96,7 +96,7 @@
           </svg>
         </div>
         <ul
-          class="absolute top-full right-0 z-50 px-4 py-2 rounded bg-white"
+          class="absolute top-full right-0 z-50 px-4 py-2 rounded bg-white shadow-lg"
           :class="selectLanguage ? 'block' : 'hidden'"
           @mouseenter="selectLanguage = true"
           @mouseleave="selectLanguage = false"

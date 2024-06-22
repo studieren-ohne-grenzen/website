@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <Menu-Component :items="menu.items" class="hidden lg:block" />
-    <Mobile-Menu-Component :items="menu.items" class="block lg:hidden" />
+    <Menu-Component :items="menu.items" class="hidden md:block" />
+    <Mobile-Menu-Component :items="menu.items" class="block md:hidden" />
     <nuxt-child class="flex-grow"></nuxt-child>
     <Footer-Component
       :items="footer.items"
