@@ -16,10 +16,15 @@ export default {
   name: 'SlugPage',
   async asyncData({ $content, params, app, error }) {
     try {
-      const slug = params.slug || 'landing_page'
-      const page = params.subslug
-        ? await $content(`${app.i18n.locale}/${slug}/${params.subslug}`, 'index').fetch()
-        : await $content(`${app.i18n.locale}/${slug}`, 'index').fetch()
+      let path
+      if (!params.slug)
+        path = app.i18n.locale
+      else if (!params.subslug)
+        path = `${app.i18n.locale}/${params.slug}`
+      else
+        path = `${app.i18n.locale}/${params.slug}/${params.subslug}`
+
+      const page = await $content(path, 'index').fetch()
       return { page }
     } catch (err) {
       error({
