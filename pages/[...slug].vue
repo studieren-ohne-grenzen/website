@@ -15,7 +15,7 @@
 const route = useRoute()
 const { locale, t } = useI18n()
 
-const page = await queryContent(`${locale.value}/${route.params.slug}`, 'index').findOne().catch(() => {
+const page = await queryContent(`${locale.value}/${route.params.slug}`).findOne().catch(() => {
   throw createError({
     statusCode: 404,
     message: 'Page could not be found',
