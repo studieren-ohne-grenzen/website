@@ -13,7 +13,7 @@
     <div class="mb-4 lg:mb-6" :class="marginLeft ? 'ml-4 lg:ml-6' : 'ml-0'">
       <div
         class="p-4 absolute text-white cursor-pointer right-0 transition duration-200 ease-in-out transform hover:scale-125"
-        @click="galery = true"
+        @click="gallery = true"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@
           sizes="sm:100vw md:100vw lg:100vw"
         />
       </SogLink>
-      <div v-else class="cursor-pointer" @click="galery = true">
+      <div v-else class="cursor-pointer" @click="gallery = true">
         <NuxtImg
           :src="`${imgSrc}`"
           :alt="`${imgAlt}`"
@@ -60,7 +60,7 @@
       </div>
     </div>
     <ImageGallery
-      :open="galery"
+      :open="gallery"
       :current-img="{
         src: imgSrc,
         alt: imgAlt,
