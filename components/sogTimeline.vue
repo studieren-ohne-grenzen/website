@@ -134,7 +134,7 @@
 
 <script>
 export default {
-  name: 'TimelineComponent',
+  name: 'SogTimeline',
   props: {
     timelineConfig: {
       type: String,
