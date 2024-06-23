@@ -14,14 +14,14 @@
         {{ $t('error.language') }}
         <div class="text-lg text-gray-800 mt-2 font-normal">
           {{ $t('error.availableIn') }}
-          <nuxt-link
+          <NuxtLink
             v-for="availableLocale in availableLocales"
             :key="availableLocale.code"
             :to="switchLocalePath(availableLocale.code)"
             class="hover:text-sogblue-dark transition-colors duration-100"
           >
             {{ availableLocale.name }}
-          </nuxt-link>
+          </NuxtLink>
         </div>
       </div>
       <div v-else-if="error.statusCode === 404" class="text-sogblue">
@@ -67,8 +67,7 @@ const lookupAvailableLocales = async () => {
     for (const locale in locales.value) {
       try {
         await queryContent(
-          `${locales.value[locale].code}/${route.params.slug}`,
-          'index'
+          `${locales.value[locale].code}/${route.params.slug}`
         ).findOne()
         availableLocales.push(locales.value[locale])
       } catch {

@@ -1,5 +1,5 @@
 <template>
-  <div class="canvas flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen">
     <DesktopMenu :items="menu.items" class="hidden lg:block" />
     <MobileMenu :items="menu.items" class="block lg:hidden" />
     <NuxtPage class="flex-grow"/>
