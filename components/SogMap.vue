@@ -49,7 +49,7 @@
         class="block opacity-20 z-0"
         alt="Gemany MAP"
         @load="mapLoaded = true"
-      ></object>
+      />
     </div>
     <transition name="fade" mode="out-in">
       <div
@@ -66,16 +66,15 @@
           {{ selectedPlace.name }}
         </h2>
         <div v-if="selectedPlace.picture">
-          <inline-picture
+          <InlinePicture
             :img-src="selectedPlace.picture"
             :img-alt="selectedPlace.name"
             position="right"
             :size="mapType === 'world' ? 'medium' : 'full'"
             :margin-left="false"
-          >
-          </inline-picture>
+          />
         </div>
-        <span class="whitespace-pre-line" v-html="selectedPlace.text"></span>
+        <span class="whitespace-pre-line" v-html="selectedPlace.text"/>
         <div
           class="my-4 text-sogblue-darker hover:text-sogblue-lighter flex flex-wrap"
         >
@@ -121,7 +120,7 @@
         </div>
         <div v-else class="text-gray-500 mb-20 mt-8 lg:mt-20 md:text-center">
           In diesen Orten auf der Welt gibt es Programme von Studieren Ohne
-          Grenzen.<br />
+          Grenzen.<br>
           Wähle einen Ort aus, um mehr über das entsprechenden Programm zu
           erfahren.
         </div>
@@ -130,112 +129,93 @@
   </div>
 </template>
 
-<script>
-import inlinePicture from './inlinePicture.vue'
-export default {
-  name: 'SogMap',
-  components: { inlinePicture },
-  props: {
-    placesConfig: {
-      type: String,
-      default: 'map',
-    },
-    mapType: {
-      type: String,
-      default: 'germany',
-      validator: (s) => s === 'germany' || s === 'world',
-    },
-  },
-  data() {
-    return {
-      places: [],
-      mapLoaded: false,
-      configLoaded: false,
-    }
-  },
-  async fetch() {
-    await this.fetchPlaces()
-  },
-  computed: {
-    selectedPlace() {
-      const hash = this.$route.hash.slice(1)
-      return this.places.find(
-        (place) => place.name.toLowerCase() === decodeURI(hash),
-      )
-    },
-  },
-  watch: {
-    async placesConfig() {
-      await this.fetchPlaces()
-    },
-  },
-  methods: {
-    async fetchPlaces() {
-      this.configLoaded = false
-      this.places = await this.$content(
-        `${this.$i18n.locale}`,
-        this.placesConfig,
-      )
-        .fetch()
-        .then((jsonFile) => jsonFile.places)
-      this.configLoaded = true
-    },
-    fullSocialURI({ type, handle }) {
-      switch (type) {
-        case 'mail':
-          return 'mailto:' + handle + '@studieren-ohne-grenzen.org'
-        case 'facebook':
-          return 'https://www.facebook.com/' + handle
-        case 'instagram':
-          return 'https://www.instagram.com/' + handle
-        default:
-          return ''
-      }
-    },
-    relPos({ north, east }, textFlow) {
-      /* @param {{north, east}} absolute positon as WGS84 coordinates in degrees (minutes, seconds as decimals)
-       * e.g. Aachen: { north: 50.78, east: 6.08 }, Mweso: {north: -1.13, east: 29.04}
-       * @param {textFlow} 'left', if the place name should be aligned left of the pin
-       * @return {{top, left}} relative position within the map in %
-       */
-      if (
-        !north ||
-        !east ||
-        typeof north !== 'number' ||
-        typeof east !== 'number'
-      )
-        throw new Error('inproper coordinates')
-      if (!textFlow) textFlow = 'right'
+<script setup lang="ts">
+import type { Place, SocialUrl, Location } from '~/types/map'
 
-      // convert world coordinates to range (0,360) and (0,180)
-      if (this.mapType === 'world') {
-        north += 90
-        east += 171
-      }
-      // bounds, note that our map excludes antarctica
-      const maxNorth = this.mapType === 'germany' ? 55.05864 : 175
-      const minNorth = this.mapType === 'germany' ? 47.271679 : 28
-      const maxEast = this.mapType === 'germany' ? 15.043611 : 360
-      const minEast = this.mapType === 'germany' ? 5.866944 : 0
-      if (
-        north > maxNorth ||
-        north < minNorth ||
-        east > maxEast ||
-        east < minEast
-      )
-        throw new Error('coordinates out of bounds')
-
-      // calc the relative position on the map
-      const top = (1 - (north - minNorth) / (maxNorth - minNorth)) * 100
-      const left = ((east - minEast) / (maxEast - minEast)) * 100
-
-      // return CSS-like attributes depending on textFlow
-      if (textFlow === 'left')
-        return { top: top + '%', right: 100 - left + '%' }
-      else return { top: top + '%', left: left + '%' }
-    },
+const props = defineProps({
+  placesConfig: {
+    type: String,
+    default: 'map',
   },
+  mapType: {
+    type: String,
+    default: 'germany',
+    validator: (s) => s === 'germany' || s === 'world',
+  },
+})
+
+const route = useRoute()
+const { locale } = useI18n()
+
+const places = ref<Place[]>([])
+const mapLoaded = ref(false)
+const configLoaded = ref(false)
+
+const selectedPlace = computed(() => {
+  const hash = route.hash.slice(1)
+  return places.value.find(
+    (place) => place.name.toLowerCase() === decodeURI(hash),
+  )
+})
+
+const fetchPlaces = async () => {
+  configLoaded.value = false
+  places.value = await queryContent(
+    locale.value,
+    props.placesConfig,
+  ).find() as unknown as Place[]
+  configLoaded.value = true
 }
+    
+const fullSocialURI = (socialUrl: SocialUrl) => {
+  switch (socialUrl.type) {
+    case 'mail':
+      return 'mailto:' + socialUrl.handle + '@studieren-ohne-grenzen.org'
+    case 'facebook':
+      return 'https://www.facebook.com/' + socialUrl.handle
+    case 'instagram':
+      return 'https://www.instagram.com/' + socialUrl.handle
+    default:
+      return ''
+  }
+}
+
+const relPos = (coordinates: Location, textFlow: 'left' | 'right') => {
+  // convert world coordinates to range (0,360) and (0,180)
+  if (props.mapType === 'world') {
+    coordinates.north += 90
+    coordinates.east += 171
+  }
+  // bounds, note that our map excludes antarctica
+  const maxNorth = props.mapType === 'germany' ? 55.05864 : 175
+  const minNorth = props.mapType === 'germany' ? 47.271679 : 28
+  const maxEast = props.mapType === 'germany' ? 15.043611 : 360
+  const minEast = props.mapType === 'germany' ? 5.866944 : 0
+  if (
+    coordinates.north > maxNorth ||
+    coordinates.north < minNorth ||
+    coordinates.east > maxEast ||
+    coordinates.east < minEast
+  )
+    throw new Error('coordinates out of bounds')
+
+  // calc the relative position on the map
+  const top = (1 - (coordinates.north - minNorth) / (maxNorth - minNorth)) * 100
+  const left = ((coordinates.east - minEast) / (maxEast - minEast)) * 100
+
+  // return CSS-like attributes depending on textFlow
+  if (textFlow === 'left')
+    return { top: top + '%', right: 100 - left + '%' }
+  else
+    return { top: top + '%', left: left + '%' }
+}
+
+watch(
+  () => props.placesConfig,
+  async () => await fetchPlaces()
+)
+
+await fetchPlaces()
 </script>
 
 <style lang="postcss">
