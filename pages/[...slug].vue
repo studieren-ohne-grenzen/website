@@ -1,30 +1,48 @@
 <template>
   <article v-if="page" class="container mx-auto">
+    <div v-if="fallback" class="bg-yellow-100 border rounded px-3 py-2 border-yellow-500 text-yellow-900">{{ t("error.language") }}</div>
     <ContentRenderer :value="page" class="nuxt-content" />
   </article>
 </template>
 
 <script setup lang="ts">
-// This page only supports two levels content pages, e.g. /imprint or /our_work/sri_lanka
-//
-// Supporting arbitrary levels would require Unknown Dynamic Nested Routes
-// (https://v2.nuxt.com/docs/features/file-system-routing/#unknown-dynamic-nested-routes)
-// which are not supported by nuxt-i18n out of the box.
-//
-// If a page is not available that would not offer a switch to another locale.
-const route = useRoute()
-const { locale, t } = useI18n()
+import { useData } from '@/types/composables'
 
-const page = await queryContent(locale.value, ...route.params.slug).findOne().catch(() => {
+const route = useRoute()
+const { defaultLocale, locale, t } = useI18n()
+
+const { data, error } = await useAsyncData(`page-${[...route.params.slug].join("-")}`, async () => {
+  try {
+    return {
+      page: await queryContent(locale.value, ...route.params.slug).findOne(),
+      fallback: false,
+    }
+  } catch (error) {
+    if (locale.value !== defaultLocale) {
+      return {
+        page: await queryContent(defaultLocale, ...route.params.slug).findOne(),
+        fallback: true,
+      }
+    } else {
+      throw error
+    }
+  }
+})
+
+if (data.value === null || error.value) {
   throw createError({
     statusCode: 404,
     message: 'Page could not be found',
   })
-})
+}
 
-const seo = await queryContent(locale.value, 'seo').findOne()
+const { page, fallback } = data.value
+const { value: seo } = await useData(`seo-${locale.value}`, () => queryContent(locale.value, 'seo').findOne())
 
 useHead({
+  htmlAttrs: {
+    lang: fallback ? defaultLocale : locale.value,
+  },
   title: page.title
     ? `${page.title} – ${t('sog')}`
     : t('sog'),
