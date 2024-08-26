@@ -21,32 +21,32 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'de',
-        iso: 'de-DE',
+        language: 'de-DE',
         name: 'Deutsch',
         file: 'de.js',
       },
       {
         code: 'en',
-        iso: 'en-US',
+        language: 'en-US',
         name: 'English',
         file: 'en.js',
       },
       // Disabled locales without any translated content
       //{
       //  code: 'fr',
-      //  iso: 'fr-FR',
+      //  language: 'fr-FR',
       //  name: 'Français',
       //  file: 'fr.js',
       //},
       //{
       //  code: 'es',
-      //  iso: 'es-ES',
+      //  language: 'es-ES',
       //  name: 'Español',
       //  file: 'es.js',
       //},
       //{
       //  code: 'ru',
-      //  iso: 'ru-RU',
+      //  language: 'ru-RU',
       //  name: 'Русский',
       //  file: 'ru.js',
       //},
