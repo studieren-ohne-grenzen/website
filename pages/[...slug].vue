@@ -12,21 +12,13 @@ const route = useRoute()
 const { defaultLocale, locale, t } = useI18n()
 
 const { data, error } = await useAsyncData(`page-${[...route.params.slug].join("-")}`, async () => {
-  try {
-    return {
-      page: await queryContent(locale.value, ...route.params.slug).findOne(),
-      fallback: false,
-    }
-  } catch (error) {
-    if (locale.value !== defaultLocale) {
-      return {
-        page: await queryContent(defaultLocale, ...route.params.slug).findOne(),
-        fallback: true,
-      }
-    } else {
-      throw error
-    }
+  let pages = await queryContent(locale.value, ...route.params.slug).where({ _path: ['', locale.value, ...route.params.slug].join('/')}).limit(1).find()
+  let fallback = false
+  if (pages.length === 0 && locale.value !== defaultLocale) {
+    pages = await queryContent(defaultLocale, ...route.params.slug).where({ _path: ['', defaultLocale, ...route.params.slug].join('/')}).limit(1).find()
+    fallback = true
   }
+  return { page: pages[0], fallback }
 })
 
 if (data.value === null || error.value) {
