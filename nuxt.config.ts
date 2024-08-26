@@ -1,5 +1,4 @@
 export default defineNuxtConfig({
-
   runtimeConfig: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
   },
@@ -57,4 +56,5 @@ export default defineNuxtConfig({
     lazy: true,
   },
 
+  compatibilityDate: '2024-08-26',
 })

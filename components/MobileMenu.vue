@@ -90,7 +90,7 @@
                 :to="
                   localePath(
                     '/' +
-                      (subitem.url ? subitem.url : item.url + '#' + subitem.hash ?? '')
+                      (subitem.url ? subitem.url : item.url + '#' + subitem.hash)
                   )
                 "
                 @click="showMenu = false"
@@ -108,7 +108,7 @@
                     :to="
                       localePath(
                         '/' +
-                        (subsubitem.url ? subsubitem.url : item.url + '#' + subsubitem.hash ?? '')
+                        (subsubitem.url ? subsubitem.url : item.url + '#' + subsubitem.hash)
                       )
                     "
                     @click="showMenu = false"
