@@ -15,7 +15,7 @@
           >
             <span
               :class="
-                $route.params.slug === item.url
+                route.params.slug === item.url
                   ? 'hover:border-white'
                   : 'border-transparent'
               "
@@ -39,7 +39,7 @@
           >
             <svg class="w-6 h-6 inline-block fill-current mb-3">
               <use
-                :href="localePath('/sprites/socialSymbols.svg#' + icon.type)"
+                :href="'/sprites/socialSymbols.svg#' + icon.type"
               />
             </svg>
           </a>
@@ -78,6 +78,7 @@ withDefaults(defineProps<{ items: FooterItem[], socialIcons: SocialIcon[], award
   awards: () => [],
 })
 
+const route = useRoute()
 const localePath = useLocalePath()
 </script>
 

@@ -3,20 +3,20 @@
     <ul class="flex mb-8">
       <li class="flex-grow flex-shrink-0">
         <NuxtLink :to="localePath('/')">
-          <img src="~/content/static/Logo.png" alt="Start" class="h-14">
+          <img src="/Logo.png" alt="Start" class="h-14">
         </NuxtLink>
       </li>
       <li class="flex items-center">
         <div class="mx-6" @click="selectLanguage = true">
           <svg class="h-6 w-6 fill-current text-gray-600">
-            <use href="~/content/static/sprites/navSymbols.svg#language" />
+            <use href="/sprites/navSymbols.svg#language" />
           </svg>
         </div>
       </li>
       <li class="flex items-center">
         <div @click="showMenu = true">
           <svg class="h-8 w-8 fill-current text-gray-700">
-            <use href="~/content/static/sprites/navSymbols.svg#burger" />
+            <use href="/sprites/navSymbols.svg#burger" />
           </svg>
         </div>
       </li>
@@ -36,13 +36,13 @@
                   menuItemExtended = ''
                 }"
               >
-                <img src="~/content/static/Logo.png" alt="Start" class="h-14">
+                <img src="/Logo.png" alt="Start" class="h-14">
               </NuxtLink>
             </li>
             <li class="flex">
               <div @click="showMenu = false">
                 <svg class="h-8 w-8 fill-current text-gray-700">
-                  <use href="~/content/static/sprites/navSymbols.svg#cross" />
+                  <use href="/sprites/navSymbols.svg#cross" />
                 </svg>
               </div>
             </li>
@@ -134,13 +134,13 @@
                 :to="localePath('/')"
                 @click="selectLanguage = false"
               >
-                <img src="~/content/static/Logo.png" alt="Start" class="h-14" >
+                <img src="/Logo.png" alt="Start" class="h-14" >
               </NuxtLink>
             </li>
             <li class="flex">
               <button @click="selectLanguage = false">
                 <svg class="h-8 w-8 fill-current text-gray-700">
-                  <use href="~/content/static/sprites/navSymbols.svg#cross" />
+                  <use href="/sprites/navSymbols.svg#cross" />
                 </svg>
               </button>
             </li>

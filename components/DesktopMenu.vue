@@ -4,7 +4,7 @@
       <li class="flex-grow flex-shrink-0">
         <NuxtLink :to="localePath('/')">
           <img
-            src="~/content/static/Logo.png"
+            src="/Logo.png"
             alt="Start"
             class="h-14 lg:h-20 xl:h-24"
           >
@@ -21,10 +21,10 @@
           :to="localePath('/' + item.url)"
           :class="{
             'border-sogblue':
-              $route.params.slug === item.url &&
+              route.params.slug === item.url &&
               (menuItemExtended === item.url || menuItemExtended === ''),
             'border-gray-300':
-              $route.params.slug === item.url && menuItemExtended !== item.url,
+              route.params.slug === item.url && menuItemExtended !== item.url,
             'text-sogblue-dark': menuItemExtended === item.url,
             'text-gray-300':
               menuItemExtended !== item.url && menuItemExtended !== '',
@@ -92,7 +92,7 @@
             :class="selectLanguage ? 'text-sogblue-dark' : 'text-gray-600'"
             class="h-6 w-6 fill-current transition-colors duration-100"
           >
-            <use href="~/content/static/sprites/navSymbols.svg#language" />
+            <use href="/sprites/navSymbols.svg#language" />
           </svg>
         </div>
         <ul
@@ -127,6 +127,7 @@ withDefaults(defineProps<{ items: MenuItem[] }>(), {
   items: () => [],
 })
 
+const route = useRoute()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 
