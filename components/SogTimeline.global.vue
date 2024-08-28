@@ -133,19 +133,23 @@
 </template>
 
 <script setup lang="ts">
+import { useData } from '~/types/composables'
+import type { ParsedTimelineContent } from '~/types/timeline'
+
 const { locale } = useI18n()
 
 const props = defineProps({
   timelineConfig: {
     type: String,
-    default: '',
+    required: true,
   },
 })
 
-const timelines = await queryContent(
-  locale.value,
-  props.timelineConfig
-).find()
+const { value: timelines } = await useData(`timeline-${locale}-${props.timelineConfig.replaceAll('/', '-')}`, async () => {
+  const content = await queryContent(locale.value, ...props.timelineConfig.split('/')).findOne()
+  return (content as ParsedTimelineContent).timelines
+})
+
 const timeline = ref<HTMLElement | null>(null)
 const timelineWidth = ref(0)
 const isFarLeft = ref(true)
