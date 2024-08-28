@@ -36,5 +36,5 @@ jobs:
       if: github.ref == 'refs/heads/master'
 
     - name: Deploy to kueken.studieren-ohne-grenzen.org
-      run: rclone sync ./dist :sftp:/html --sftp-host=${{ vars.SFTP_HOST }} --sftp-user=${{ vars.SFTP_USERNAME }} --sftp-pass=${{ secrets.SFTP_PASSWORD_OBSCURED }} --sftp-disable-hashcheck=true --progress --stats-one-line --stats=5s
+      run: rclone sync ./.output/public :sftp:/html --sftp-host=${{ vars.SFTP_HOST }} --sftp-user=${{ vars.SFTP_USERNAME }} --sftp-pass=${{ secrets.SFTP_PASSWORD_OBSCURED }} --sftp-disable-hashcheck=true --progress --stats-one-line --stats=5s
       if: github.ref == 'refs/heads/master'
