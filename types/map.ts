@@ -1,3 +1,5 @@
+import type { ParsedContent } from "@nuxt/content"
+
 export interface SocialUrl {
   type: string
   handle: string
@@ -16,4 +18,8 @@ export interface Place {
   coordinates: Location
   text_flow: "left" | "right"
   active: boolean
+}
+
+export interface ParsedPlacesContent extends ParsedContent {
+  places: Place[]
 }

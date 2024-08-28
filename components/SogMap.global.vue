@@ -12,19 +12,8 @@
         v-for="place in places"
         :key="place.name"
         :href="'#' + place.name.toLowerCase()"
-        class="absolute items-center text-sogblue-darker text-xs sm:text-base xl:text-lg leading-none z-10"
-        :class="mapLoaded && configLoaded ? 'flex' : 'hidden'"
-        :style="
-          configLoaded
-            ? relPos(
-                {
-                  north: place.coordinates.north,
-                  east: place.coordinates.east,
-                },
-                place.text_flow,
-              )
-            : ''
-        "
+        class="flex absolute items-center text-sogblue-darker text-xs sm:text-base xl:text-lg leading-none z-10"
+        :style="relPos(place)"
       >
         <div v-if="place.text_flow === 'left'" class="-mt-3 sm:-mt-5 xl:-mt-7" :class="place.active ? '' : 'text-gray-400'">
           {{ place.name }}
@@ -48,12 +37,11 @@
         :data="'/' + mapType + '.svg'"
         class="block opacity-20 z-0"
         alt="Gemany MAP"
-        @load="mapLoaded = true"
       />
     </div>
     <transition name="fade" mode="out-in">
       <div
-        v-if="selectedPlace && mapLoaded"
+        v-if="selectedPlace"
         :key="selectedPlace.name"
         :class="
           mapType === 'germany'
@@ -98,7 +86,7 @@
         </div>
       </div>
       <div
-        v-else-if="mapLoaded"
+        v-else
         :class="
           mapType === 'germany'
             ? 'md:w-1/2 xl:w-3/5 md:min-w-0 md:pl-8 lg:pl-20 self-center'
@@ -130,43 +118,39 @@
 </template>
 
 <script setup lang="ts">
-import type { Place, SocialUrl, Location } from '~/types/map'
+import { useData } from '~/types/composables'
+import type { ParsedPlacesContent, Place, SocialUrl } from '~/types/map'
 
 const props = defineProps({
-  placesConfig: {
-    type: String,
-    default: 'map',
-  },
   mapType: {
     type: String,
     default: 'germany',
     validator: (s) => s === 'germany' || s === 'world',
   },
+  placesConfig: {
+    type: String,
+    default: 'map',
+  },
+  locale: {
+    type: String,
+    default: 'de',
+  },
 })
 
 const route = useRoute()
-const { locale } = useI18n()
 
-const places = ref<Place[]>([])
-const mapLoaded = ref(false)
-const configLoaded = ref(false)
+const { value: places } = await useData(`map-${props.locale}-${props.placesConfig.replaceAll('/', '-')}`, async () => {
+  const content = await queryContent(props.locale, ...props.placesConfig.split('/')).findOne()
+  return (content as ParsedPlacesContent).places
+})
 
 const selectedPlace = computed(() => {
   const hash = route.hash.slice(1)
-  return places.value.find(
+  return places.find(
     (place) => place.name.toLowerCase() === decodeURI(hash),
   )
 })
 
-const fetchPlaces = async () => {
-  configLoaded.value = false
-  places.value = await queryContent(
-    locale.value,
-    props.placesConfig,
-  ).find() as unknown as Place[]
-  configLoaded.value = true
-}
-    
 const fullSocialURI = (socialUrl: SocialUrl) => {
   switch (socialUrl.type) {
     case 'mail':
@@ -180,11 +164,12 @@ const fullSocialURI = (socialUrl: SocialUrl) => {
   }
 }
 
-const relPos = (coordinates: Location, textFlow: 'left' | 'right') => {
+const relPos = (place: Place) => {
+  let north = place.coordinates.north, east = place.coordinates.east
   // convert world coordinates to range (0,360) and (0,180)
   if (props.mapType === 'world') {
-    coordinates.north += 90
-    coordinates.east += 171
+    north += 90
+    east += 171
   }
   // bounds, note that our map excludes antarctica
   const maxNorth = props.mapType === 'germany' ? 55.05864 : 175
@@ -192,30 +177,23 @@ const relPos = (coordinates: Location, textFlow: 'left' | 'right') => {
   const maxEast = props.mapType === 'germany' ? 15.043611 : 360
   const minEast = props.mapType === 'germany' ? 5.866944 : 0
   if (
-    coordinates.north > maxNorth ||
-    coordinates.north < minNorth ||
-    coordinates.east > maxEast ||
-    coordinates.east < minEast
+    north > maxNorth ||
+    north < minNorth ||
+    east > maxEast ||
+    east < minEast
   )
-    throw new Error('coordinates out of bounds')
+    throw new Error('Coordinates out of bounds for ' + place.name)
 
   // calc the relative position on the map
-  const top = (1 - (coordinates.north - minNorth) / (maxNorth - minNorth)) * 100
-  const left = ((coordinates.east - minEast) / (maxEast - minEast)) * 100
+  const top = (1 - (north - minNorth) / (maxNorth - minNorth)) * 100
+  const left = ((east - minEast) / (maxEast - minEast)) * 100
 
   // return CSS-like attributes depending on textFlow
-  if (textFlow === 'left')
+  if (place.text_flow === 'left')
     return { top: top + '%', right: 100 - left + '%' }
   else
     return { top: top + '%', left: left + '%' }
 }
-
-watch(
-  () => props.placesConfig,
-  async () => await fetchPlaces()
-)
-
-await fetchPlaces()
 </script>
 
 <style lang="postcss">
