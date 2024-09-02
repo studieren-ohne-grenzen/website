@@ -1,4 +1,13 @@
 export default defineNuxtConfig({
+  compatibilityDate: '2024-08-26',
+
+  nitro: {
+    prerender: {
+      // Without this limit, prerendering fails on GitHub Actions for random pages
+      concurrency: 1,
+    }
+  },
+
   runtimeConfig: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
   },
@@ -55,6 +64,4 @@ export default defineNuxtConfig({
     langDir: 'content/translations/',
     lazy: true,
   },
-
-  compatibilityDate: '2024-08-26',
 })
