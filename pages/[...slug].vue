@@ -18,6 +18,9 @@ const { data, error } = await useAsyncData(`page-${[...route.params.slug].join("
     pages = await queryContent(defaultLocale, ...route.params.slug).where({ _path: ['', defaultLocale, ...route.params.slug].join('/')}).limit(1).find()
     fallback = true
   }
+  if (pages.length === 0) {
+    throw new Error("Could no find page " + [...route.params.slug].join("/"))
+  }
   return { page: pages[0], fallback }
 })
 
