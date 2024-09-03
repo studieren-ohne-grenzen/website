@@ -18,7 +18,7 @@
         @mouseleave="menuItemExtended = ''"
       >
         <NuxtLink
-          :to="localePath('/' + item.url)"
+          :to="itemPath(item)"
           :class="{
             'border-sogblue':
               route.params.slug === item.url &&
@@ -48,12 +48,7 @@
           >
             <NuxtLink
               class="pt-2 flex-grow whitespace-nowrap transition-colors"
-              :to="
-                localePath(
-                  '/' +
-                    (subitem.url ? subitem.url : item.url + '#' + subitem.hash)
-                )
-              "
+              :to="itemPath(item, subitem)"
               @click="menuItemExtended = ''"
             >
               {{ subitem.name }}
@@ -66,12 +61,7 @@
               >
                 <NuxtLink
                   class="flex-grow whitespace-nowrap transition-colors"
-                  :to="
-                    localePath(
-                      '/' +
-                        (subsubitem.url ? subsubitem.url : item.url + '#' + subsubitem.hash)
-                    )
-                  "
+                  :to="itemPath(item, subitem, subsubitem)"
                   @click="menuItemExtended = ''"
                 >
                   {{ subsubitem.name }}
@@ -130,6 +120,24 @@ withDefaults(defineProps<{ items: MenuItem[] }>(), {
 const route = useRoute()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
+
+const itemPath = (item: MenuItem, subitem?: MenuItem, subsubitem?: MenuItem) => {
+  if (subsubitem) {
+    if (subsubitem.url) {
+      return localePath('/' + subsubitem.url)
+    } else if (subitem?.url) {
+      return localePath('/' + subitem.url + '#' + subsubitem.hash)
+    } else {
+      return localePath('/' + item.url + '#' + subsubitem.hash)
+    }
+  }
+  
+  if (subitem) {
+    return localePath('/' + (subitem.url ? subitem.url : item.url + '#' + subitem.hash))
+  }
+
+  return localePath('/' + item.url)
+}
 
 const selectLanguage = ref(false)
 const menuItemExtended = ref<string | undefined>('')
