@@ -1,4 +1,7 @@
 {
   "eslint.format.enable": true,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "files.associations": {
+    "tailwind.css": "tailwindcss"
+  }
 }

@@ -15,7 +15,10 @@
 .nuxt-content > h2,
 .nuxt-content > h3,
 .nuxt-content > h4,
-.nuxt-content > p {
+.nuxt-content > p,
+.nuxt-content > blockquote,
+.nuxt-content > ul,
+.nuxt-content > ol {
   @apply lg:mx-24 xl:mx-24 2xl:mx-40;
 }
 
@@ -28,7 +31,8 @@
 .nuxt-content h2,
 .nuxt-content h3,
 .nuxt-content h4,
-.nuxt-content p {
+.nuxt-content p,
+.nuxt-content blockquote {
   @apply max-w-prose;
 }
 
@@ -84,7 +88,7 @@ table th {
 
 /* Quote */
 .nuxt-content blockquote {
-  @apply left-10 ml-10 border-l-8 border-sogblue-dark bg-gray-100;
+  @apply border-l-8 border-sogblue-dark bg-gray-100;
   quotes: '\201C''\201D''\2018''\2019';
 }
 
