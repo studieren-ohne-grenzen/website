@@ -11,7 +11,7 @@ import { useData } from '@/types/composables'
 const route = useRoute()
 const { defaultLocale, locale, t } = useI18n()
 
-const { data, error } = await useAsyncData(`page-${[...route.params.slug].join("-")}`, async () => {
+const { data, error } = await useAsyncData(`page-${locale.value}-${[...route.params.slug].join("-")}`, async () => {
   let pages = await queryContent(locale.value, ...route.params.slug).where({ _path: ['', locale.value, ...route.params.slug].join('/')}).limit(1).find()
   let fallback = false
   if (pages.length === 0 && locale.value !== defaultLocale) {
