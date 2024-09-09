@@ -13,7 +13,7 @@
     <div class="mb-4 lg:mb-6" :class="marginLeft ? 'ml-4 lg:ml-6' : 'ml-0'">
       <div
         class="p-4 absolute text-white cursor-pointer right-0 transition duration-200 ease-in-out transform hover:scale-125"
-        @click="galery = true"
+        @click="gallery = true"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@
         :alt="`${imgAlt}`"
         class="p-2"
       >
-        <nuxt-img
+        <NuxtImg
           :src="`${imgSrc}`"
           :alt="`${imgAlt}`"
           format="webp"
@@ -45,8 +45,8 @@
           sizes="sm:100vw md:100vw lg:100vw"
         />
       </SogLink>
-      <div v-else class="cursor-pointer" @click="galery = true">
-        <nuxt-img
+      <div v-else class="cursor-pointer" @click="gallery = true">
+        <NuxtImg
           :src="`${imgSrc}`"
           :alt="`${imgAlt}`"
           format="webp"
@@ -59,41 +59,31 @@
         {{ imgSub }}
       </div>
     </div>
-    <image-galery
-      :open="galery"
+    <ImageGallery
+      :open="gallery"
       :current-img="{
         src: imgSrc,
         alt: imgAlt,
       }"
-      @close="closeGalery"
-    ></image-galery>
+      @close="closeGallery"
+    />
   </div>
 </template>
 
-<script>
-import SogLink from '~/components/sogLink'
-import ImageGalery from '~/components/imageGalery.vue'
-export default {
-  name: 'InlinePicture',
-  components: { SogLink, ImageGalery },
-  props: {
-    imgSrc: { type: String, default: '' },
-    imgAlt: { type: String, default: '' },
-    imgSub: { type: String, default: null },
-    imgUrl: { type: String, default: '/' },
-    position: { type: String, default: 'left' },
-    size: { type: String, default: 'full' },
-    marginLeft: { type: Boolean, default: true },
-  },
-  data: () => ({
-    galery: false,
-  }),
-  methods: {
-    closeGalery() {
-      this.galery = false
-    },
-  },
+<script setup lang="ts">
+defineProps({
+  imgSrc: { type: String, default: '' },
+  imgAlt: { type: String, default: '' },
+  imgSub: { type: String, default: null },
+  imgUrl: { type: String, default: '/' },
+  position: { type: String, default: 'left' },
+  size: { type: String, default: 'full' },
+  marginLeft: { type: Boolean, default: true },
+})
+
+const gallery = ref(false)
+
+const closeGallery = () => {
+  gallery.value = false
 }
 </script>
-
-<style></style>

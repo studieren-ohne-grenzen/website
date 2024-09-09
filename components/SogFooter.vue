@@ -9,13 +9,13 @@
           :key="item.url"
           class="border-sogblue-white hover:border-sogblue-lighter"
         >
-          <nuxt-link
+          <NuxtLink
             :to="localePath('/' + item.url)"
             class="pl-3 pr-1 py-2 xl:pr-6 2xl:pr-10 transition-colors duration-200 hover:text-white"
           >
             <span
               :class="
-                $route.params.slug === item.url
+                route.params.slug === item.url
                   ? 'hover:border-white'
                   : 'border-transparent'
               "
@@ -23,7 +23,7 @@
             >
               {{ item.name }}
             </span>
-          </nuxt-link>
+          </NuxtLink>
         </li>
       </ul>
       <ul
@@ -39,7 +39,7 @@
           >
             <svg class="w-6 h-6 inline-block fill-current mb-3">
               <use
-                :href="localePath('/sprites/socialSymbols.svg#' + icon.type)"
+                :href="'/sprites/socialSymbols.svg#' + icon.type"
               />
             </svg>
           </a>
@@ -69,33 +69,17 @@
   </footer>
 </template>
 
-<script>
-import SogLink from '~/components/sogLink'
+<script setup lang="ts">
+import type { FooterItem, SocialIcon, Award } from '~/types/footer'
 
-export default {
-  name: 'FooterComponent',
-  components: { SogLink },
-  props: {
-    items: {
-      type: Array,
-      default() {
-        return []
-      },
-    },
-    socialIcons: {
-      type: Array,
-      default() {
-        return []
-      },
-    },
-    awards: {
-      type: Array,
-      default() {
-        return []
-      },
-    },
-  },
-}
+withDefaults(defineProps<{ items: FooterItem[], socialIcons: SocialIcon[], awards: Award[] }>(), {
+  items: () => [],
+  socialIcons: () => [],
+  awards: () => [],
+})
+
+const route = useRoute()
+const localePath = useLocalePath()
 </script>
 
 <style scoped></style>

@@ -2,13 +2,13 @@
   <nav class="container">
     <ul class="menu-list relative">
       <li class="flex-grow flex-shrink-0">
-        <nuxt-link :to="localePath('/')">
+        <NuxtLink :to="localePath('/')">
           <img
-            src="~/content/static/Logo.png"
+            src="/Logo.png"
             alt="Start"
             class="h-14 lg:h-20 xl:h-24"
-          />
-        </nuxt-link>
+          >
+        </NuxtLink>
       </li>
       <li
         v-for="item in items"
@@ -17,14 +17,14 @@
         @mouseenter="menuItemExtended = item.url"
         @mouseleave="menuItemExtended = ''"
       >
-        <nuxt-link
-          :to="localePath('/' + item.url)"
+        <NuxtLink
+          :to="itemPath(item)"
           :class="{
             'border-sogblue':
-              $route.params.slug === item.url &&
+              route.params.slug === item.url &&
               (menuItemExtended === item.url || menuItemExtended === ''),
             'border-gray-300':
-              $route.params.slug === item.url && menuItemExtended !== item.url,
+              route.params.slug === item.url && menuItemExtended !== item.url,
             'text-sogblue-dark': menuItemExtended === item.url,
             'text-gray-300':
               menuItemExtended !== item.url && menuItemExtended !== '',
@@ -32,7 +32,7 @@
           class="border-b-2 border-black pb-1 transition-colors duration-200"
         >
           {{ item.name }}
-        </nuxt-link>
+        </NuxtLink>
         <ul
           v-if="
             menuItemExtended === item.url &&
@@ -46,36 +46,26 @@
             :key="subitem.url ?? subitem.hash"
             class="w-full flex flex-col hover:text-sogblue-dark duration-200"
           >
-            <nuxt-link
+            <NuxtLink
               class="pt-2 flex-grow whitespace-nowrap transition-colors"
-              :to="
-                localePath(
-                  '/' +
-                    (subitem.url ? subitem.url : item.url + '#' + subitem.hash ?? '')
-                )
-              "
-              @click.native="menuItemExtended = ''"
+              :to="itemPath(item, subitem)"
+              @click="menuItemExtended = ''"
             >
               {{ subitem.name }}
-            </nuxt-link>
+            </NuxtLink>
             <ul class="ml-6">
               <li
                 v-for="subsubitem in subitem.children"
                 :key="subsubitem.url ?? subsubitem.hash"
                 class="flex text-black hover:text-sogblue-dark"
               >
-                <nuxt-link
+                <NuxtLink
                   class="flex-grow whitespace-nowrap transition-colors"
-                  :to="
-                    localePath(
-                      '/' +
-                        (subsubitem.url ? subsubitem.url : item.url + '#' + subsubitem.hash ?? '')
-                    )
-                  "
-                  @click.native="menuItemExtended = ''"
+                  :to="itemPath(item, subitem, subsubitem)"
+                  @click="menuItemExtended = ''"
                 >
                   {{ subsubitem.name }}
-                </nuxt-link>
+                </NuxtLink>
               </li>
             </ul>
           </li>
@@ -92,7 +82,7 @@
             :class="selectLanguage ? 'text-sogblue-dark' : 'text-gray-600'"
             class="h-6 w-6 fill-current transition-colors duration-100"
           >
-            <use href="~/content/static/sprites/navSymbols.svg#language" />
+            <use href="/sprites/navSymbols.svg#language" />
           </svg>
         </div>
         <ul
@@ -106,13 +96,13 @@
             :key="locale.code"
             class="flex hover:text-sogblue-dark transition-colors duration-100 leading-tight"
           >
-            <nuxt-link
+            <NuxtLink
               :to="switchLocalePath(locale.code)"
               :class="$i18n.locale === locale.code ? 'border-sogblue' : ''"
               class="border-b-2 border-white my-1.5"
             >
               {{ locale.name }}
-            </nuxt-link>
+            </NuxtLink>
           </li>
         </ul>
       </li>
@@ -120,22 +110,37 @@
   </nav>
 </template>
 
-<script>
-export default {
-  name: 'MenuComponent',
-  props: {
-    items: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  data() {
-    return {
-      selectLanguage: false,
-      menuItemExtended: '',
+<script setup lang="ts">
+import type { MenuItem } from '~/types/menu'
+
+withDefaults(defineProps<{ items: MenuItem[] }>(), {
+  items: () => [],
+})
+
+const route = useRoute()
+const localePath = useLocalePath()
+const switchLocalePath = useSwitchLocalePath()
+
+const itemPath = (item: MenuItem, subitem?: MenuItem, subsubitem?: MenuItem) => {
+  if (subsubitem) {
+    if (subsubitem.url) {
+      return localePath('/' + subsubitem.url)
+    } else if (subitem?.url) {
+      return localePath('/' + subitem.url + '#' + subsubitem.hash)
+    } else {
+      return localePath('/' + item.url + '#' + subsubitem.hash)
     }
-  },
+  }
+  
+  if (subitem) {
+    return localePath('/' + (subitem.url ? subitem.url : item.url + '#' + subitem.hash))
+  }
+
+  return localePath('/' + item.url)
 }
+
+const selectLanguage = ref(false)
+const menuItemExtended = ref<string | undefined>('')
 </script>
 
 <style lang="postcss">

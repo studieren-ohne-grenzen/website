@@ -56,7 +56,7 @@
         <div class="relative md:h-full md:flex md:items-center">
           <div
             class="h-full left-3.6 absolute bg-gray-500 border border-gray-500 lg:w-full lg:h-0 lg:left-0 lg:self-center md:w-full md:h-0 md:left-0 md:self-center"
-          ></div>
+          />
           <div
             class="flex items-start w-full lg:h-full md:items-center md:justify-between md:h-full"
             :class="
@@ -65,7 +65,7 @@
                 : `md:flex-col-reverse lg:flex-col-reverse`
             "
           >
-            <div class="hidden order-1 md:block md:h-43 lg:block lg:h-43"></div>
+            <div class="hidden order-1 md:block md:h-43 lg:block lg:h-43" />
 
             <div
               class="pt-6 md:pt-0 w-2/5 flex items-center order-1"
@@ -86,7 +86,7 @@
                   :class="
                     modulo(index) === 0 ? 'bg-sogorange' : 'bg-sogblue-dark'
                   "
-                ></div>
+                />
               </div>
               <div
                 class="w-2/3 order-1 md:h-20 md:w-0 border-2-2 border"
@@ -95,15 +95,15 @@
                     ? 'border-sogorange bg-sogorange'
                     : 'border-sogblue bg-sogblue'
                 "
-              ></div>
+              />
               <div
                 class="h-1.5 w-1.5 order-1 rounded-full"
                 :class="modulo(index) === 0 ? 'bg-sogorange' : 'bg-sogblue'"
-              ></div>
+              />
             </div>
             <div
               class="py-4 w-3/5 order-1 cursor-pointer transition-colors duration-200 md:hover:text-sogblue-dark md:relative md:h-20 md:p-2 md:w-full lg:hover:text-sogblue-dark lg:relative lg:h-20 lg:p-2 lg:w-full"
-              @click="moreInfo(`${index}`)"
+              @click="moreInfo(index)"
             >
               <div
                 class="px-2 py-1 md:p1 text-2xl md:flex md:justify-center md:items-center"
@@ -132,60 +132,62 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'SogTimeline',
-  props: {
-    timelineConfig: {
-      type: String,
-      default: '',
-    },
-  },
-  data() {
-    return {
-      timelines: [],
-      timelineWidth: 0,
-      isFarLeft: true,
-      isFarRight: false,
-    }
-  },
-  async fetch() {
-    this.timelines = await this.$content(
-      `${this.$i18n.locale}`,
-      this.timelineConfig
-    )
-      .fetch()
-      .then((jsonFile) => jsonFile.timelines)
-  },
-  mounted() {
-    this.timelineWidth = this.$refs.timeline.clientWidth
-  },
-  methods: {
-    modulo(key) {
-      return key % 2
-    },
-    moreInfo(index) {
-      const element = document.getElementsByClassName(`content${index}`)
-      if (element[0].classList.contains('hidden')) {
-        element[0].classList.remove('hidden')
-      } else {
-        element[0].classList.add('hidden')
-      }
-    },
-    horizontalScroll(val) {
-      if (val === 'right') {
-        this.$refs.timeline.scrollLeft += this.timelineWidth
-      } else {
-        this.$refs.timeline.scrollLeft -= this.timelineWidth
-      }
-    },
-    showArrows() {
-      this.isFarRight =
-        this.$refs.timeline.scrollWidth ===
-        this.$refs.timeline.scrollLeft + this.$refs.timeline.clientWidth
+<script setup lang="ts">
+import { useData } from '~/types/composables'
+import type { ParsedTimelineContent } from '~/types/timeline'
 
-      this.isFarLeft = this.$refs.timeline.scrollLeft === 0
-    },
+const { locale } = useI18n()
+
+const props = defineProps({
+  timelineConfig: {
+    type: String,
+    required: true,
   },
+})
+
+const { value: timelines } = await useData(`timeline-${locale}-${props.timelineConfig.replaceAll('/', '-')}`, async () => {
+  const content = await queryContent(locale.value, ...props.timelineConfig.split('/')).findOne()
+  return (content as ParsedTimelineContent).timelines
+})
+
+const timeline = ref<HTMLElement | null>(null)
+const timelineWidth = ref(0)
+const isFarLeft = ref(true)
+const isFarRight = ref(false)
+
+onMounted(() => {
+  if (timeline.value)
+    timelineWidth.value = timeline.value.clientWidth
+})
+
+const modulo = (key: number) => {
+  return key % 2
+}
+const moreInfo = (index: number) => {
+  const element = document.getElementsByClassName(`content${index}`)
+  if (element[0].classList.contains('hidden')) {
+    element[0].classList.remove('hidden')
+  } else {
+    element[0].classList.add('hidden')
+  }
+}
+const horizontalScroll = (val: "left" | "right") => {
+  if (timeline.value) {
+    if (val === 'right') {
+      timeline.value.scrollLeft += timelineWidth.value
+    } else {
+      timeline.value.scrollLeft -= timelineWidth.value
+    }
+  }
+}
+const showArrows = () => {
+  if (!timeline.value)
+    return false
+
+  isFarRight.value =
+    timeline.value.scrollWidth ===
+    timeline.value.scrollLeft + timeline.value.clientWidth
+
+  isFarLeft.value = timeline.value.scrollLeft === 0
 }
 </script>
