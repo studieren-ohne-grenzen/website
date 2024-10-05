@@ -24,6 +24,16 @@ export default defineNuxtConfig({
     public: 'content/static',
   },
 
+  content: {
+    ignores: [
+      '^\\/content\\/static\\/',
+      '^\\/content\\/translations\\/',
+    ],
+    markdown: {
+      anchorLinks: false
+    },
+  },
+
   i18n: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     locales: [
