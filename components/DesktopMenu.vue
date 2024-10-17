@@ -34,12 +34,9 @@
           {{ item.name }}
         </NuxtLink>
         <ul
-          v-if="
-            menuItemExtended === item.url &&
-            item.children &&
-            item.children.length > 0
-          "
+          v-if="item.children && item.children.length > 0"
           class="absolute top-full left-0 z-50 pb-3.5 pt-1.5 px-4 ml-1 rounded bg-white shadow-lg"
+          :class="menuItemExtended === item.url ? 'block' : 'hidden'"
         >
           <li
             v-for="subitem in item.children"
