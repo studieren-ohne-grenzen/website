@@ -40,7 +40,7 @@
 .nuxt-content h2,
 .nuxt-content h3,
 .nuxt-content h4 {
-  @apply text-sogblue-dark font-light mt-8 mb-2;
+  @apply text-sogblue-dark font-light mt-8 mb-1;
 }
 
 .nuxt-content h1 {
@@ -56,7 +56,7 @@
 }
 
 .nuxt-content p {
-  @apply pt-2 pb-1;
+  @apply pt-3 pb-1;
 }
 
 /* Links */
@@ -101,12 +101,16 @@ table th {
 }
 
 /* Unordered Lists */
+.nuxt-content ul {
+  @apply mt-1 mb-3;
+}
+
 .nuxt-content ul li {
   @apply list-disc list-inside;
 }
 
 .nuxt-content ul li::marker {
-  @apply text-sogblue-dark text-2xl;
+  @apply text-sogblue-dark text-lg;
 }
 
 .nuxt-content ul ul li {
