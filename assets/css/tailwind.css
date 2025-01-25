@@ -40,7 +40,7 @@
 .nuxt-content h2,
 .nuxt-content h3,
 .nuxt-content h4 {
-  @apply text-sogblue-dark font-light my-6;
+  @apply text-sogblue-dark font-light mt-8 mb-2;
 }
 
 .nuxt-content h1 {
@@ -53,6 +53,10 @@
 
 .nuxt-content h3 {
   @apply text-xl;
+}
+
+.nuxt-content p {
+  @apply pt-2 pb-1;
 }
 
 /* Links */
