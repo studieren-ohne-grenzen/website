@@ -21,13 +21,13 @@ export default defineNuxtConfig({
   ],
 
   dir: {
-    public: 'content/static',
+    public: 'content/.static',
   },
 
   content: {
     ignores: [
-      '^\\/content\\/static\\/',
-      '^\\/content\\/translations\\/',
+      '^\\/content\\/\\.static\\/',
+      '^\\/content\\/\\.translations\\/',
     ],
     markdown: {
       anchorLinks: false
@@ -71,7 +71,7 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'de',
     strategy: 'prefix_except_default',
-    langDir: '../content/translations/',
+    langDir: '../content/.translations/',
     lazy: true,
   },
 })
